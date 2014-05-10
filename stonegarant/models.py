@@ -13,8 +13,13 @@ class SeoEmpoweredModel(models.Model):
 
 class Category(SeoEmpoweredModel):
     title       = models.CharField(max_length=50, unique=True, verbose_name='Название')
+    slug        = models.CharField(max_length=255, verbose_name='URL')
     def __unicode__(self):
         return self.title
+    def save(self, *args, **kwargs):
+        # self.slug = uuslug(self.name, instance=self, separator="_") # optional non-dash separator
+        self.slug = uuslug(self.title, instance=self)
+        super(Category, self).save(*args, **kwargs)
     class Meta:
         verbose_name = u"Категория"
         verbose_name_plural = u"Категории"
@@ -22,15 +27,20 @@ class Category(SeoEmpoweredModel):
 class Memorial(SeoEmpoweredModel):
     photo1       = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 1', null=True, blank=True)
     photo2       = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 2', null=True, blank=True)
-    number       = models.CharField(max_length=50, unique=True, verbose_name='Номер')
+    number       = models.BigIntegerField(unique=True, verbose_name='Номер')
     title        = models.CharField(max_length=50, verbose_name='Заголовок')
+    slug         = models.CharField(max_length=255, verbose_name='URL')
     description  = models.TextField(verbose_name='Описание', null=True, blank=True)
     stella       = models.CharField(max_length=50, verbose_name='Стелла')
     podstavka    = models.CharField(max_length=50, verbose_name='Подставка')
     cvetnik      = models.CharField(max_length=50, verbose_name='Цветник')
     price_face   = models.BigIntegerField(verbose_name='Цена за лицевую полировку')
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
-    categories   = models.ManyToManyField(Category)
+    categories   = models.ManyToManyField(Category, verbose_name='Категории')
+    def save(self, *args, **kwargs):
+        # self.slug = uuslug(self.name, instance=self, separator="_") # optional non-dash separator
+        self.slug = uuslug(self.title, instance=self)
+        super(Memorial, self).save(*args, **kwargs)
     def admin_thumbnail(self):
         if self.photo1:
             return u'<img src="%s" height="100" width="100"/>' % (self.photo1.url)
@@ -63,6 +73,14 @@ class ReadyWork(models.Model):
     title       = models.CharField(max_length=50, verbose_name='Название')
     photo       = models.ImageField(upload_to='uploads/ready', verbose_name='Изображение', null=True, blank=True)
     memorial    = models.ForeignKey(Memorial, verbose_name='Мемориал', null=True, blank=True)
+    description = models.TextField(verbose_name='Текст', null=True, blank=True)
+    def admin_thumbnail(self):
+        if self.photo:
+            return u'<img src="%s" height="100" width="100"/>' % (self.photo.url)
+        else:
+            return 'нет изображения'
+    admin_thumbnail.short_description = 'Изображение 1'
+    admin_thumbnail.allow_tags = True
     def __unicode__(self):
         return self.title  
     class Meta:
@@ -103,3 +121,12 @@ class Order(models.Model):
     class Meta:
         verbose_name = u"Заказа"
         verbose_name_plural = u"Заказы"
+
+class Reply(models.Model):
+    reply           = models.TextField(verbose_name='Отзыв', null=True, blank=True)
+    preson          = models.CharField(max_length=50, verbose_name='Человек', null=True, blank=True)
+    class Meta:
+        verbose_name = u"Отзыв"
+        verbose_name_plural = u"Отзывы"
+    def __unicode__(self):
+        return self.preson  

@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+
+{% block title %}{{memorial.title}}{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{memorial.seo_description}}" />   
+  <meta name="keywords" content="{{memorial.seo_keywords}}" />
+{% endblock %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/stonegarant/stylesheets/stone_garant/catalog.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/static/stonegarant/stylesheets/stone_garant/product.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block topnav_inner %}
+  <div class='content_line dark_gray_1'>
+    <div class='content_holder sections_nav cf'>
+      <div class='mlr20'>
+        <div class='sections'>
+          <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+          <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+          <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+          <a href="/catalog/prostye" class="{% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
+          <a href="/catalog/ekskliuzivnye" class="{% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+          <a href="/catalog/komplektuiushchie" class="{% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+    {% load thumbnail %}
+    <div class='content_line light_gray_2'>
+      <div class='content_holder'>
+        <a class="back_link" href="/catalog/">Вернуться к списку товаров</a>
+        <h1>{{memorial.title}}</h1>
+        <div class='mlr20'>
+          <div class='product cf'>
+            <div class='preview'>
+              <img src="{{ memorial.photo2|thumbnail_url:'catalog' }}" />
+            </div>
+            <div class='finished'>
+              <h5>Готовые работы</h5>
+              {% for work in memorial.readywork_set.all %}
+                <img src="{{ work.photo|thumbnail_url:'work' }}" />
+              {% endfor %}
+            </div>
+            <div class='info user_content'>
+              <dl>
+                <dt>Комплект</dt>
+                <dd>стела, подставка, цветник</dd>
+                <dt>Размеры товара</dt>
+                <dd>
+                  <ul>
+                    <li>Стела: {{memorial.stella}}<br/><br/></li>
+                    <li>Подставка: {{memorial.podstavka}}<br/><br/></li>
+                    <li>Цветник: {{memorial.cvetnik}}<br/><br/></li>
+                  </ul>
+                </dd>
+                <dt>Описание товара</dt>
+                <dd>{{memorial.description|safe}}</dd>
+                <dt>Лицевая полировка:</dt>
+                <dd>{{memorial.price_face}} руб.</dd>
+                <dt>Круговая полировка:</dt>
+                <dd>{{memorial.price_circle}} руб.</dd>
+              </dl>
+              <a class="btn_link order_calc" href="/page-rasschitat-zakaz">Рассчитать заказ</a>
+            </div>
+          </div>
+          <!-- <div class='product_info'>
+            <div class='tabs'>
+              <a class="active" href="#">Специализация</a>
+              <a href="#">О компании</a>
+              <a href="#">VIP серия</a>
+            </div>
+            <div class='content'>
+              <p>Наша Гранитная мастерская занимается изготовлением изделий из природного камня (гранита, мрамора, кварцита). Мы специализируемся на изготовлении надгробных сооружений, памятников, мемориальных комплексов. Также наша Гранитная мастерская изготовит памятники и выполнит граверные работы на памятных мемориальных досках из гранита.</p>
+              <p>Изготовление памятников из природного камня это очень трудоёмкий и ответственный труд. Сотрудники нашей гранитной мастерской профессионально выполнят свою работу с момента приема заказа до момента его установки. На каждом этапе изготовления памятника мы готовы учесть все пожелания заказчика и воплотить их в камне.</p>
+            </div>
+            <div class='content hidden'>
+              <p>В нашей гранитной мастерской надгробные плиты и памятники разрабатывают и создают профессиональные художники, которые перенесут изображение с фотографии на камень. У нас вы можете сделать заказ памятников с покрытием сусальным золотом. Мы можем предложить свои варианты изготовления надгробных комплексов, памятников, а так же всегда готовы рассмотреть и  изготовить памятники по Вашим эскизам любой сложности.</p>
+              <p>Работая с прямыми производителями Габбро диабаза месторождений Карелии и мрамора (змеевика) Южного Урала мы имеем возможность предложить низкие цены при неизменном качестве на наши изделия.</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class='content_line light_gray_1'>
+      <div class='content_holder help_bar'>
+        <div class='mlr20'>
+          <span class='delivery'>Доставка по всей России</span>
+          <span class='phone'>Есть вопросы? Звоните <b>8 800 775-86-24</b></span>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock %}

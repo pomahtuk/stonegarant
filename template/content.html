@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+
+{% block title %}{{page.title}}{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{page.seo_description}}" />   
+  <meta name="keywords" content="{{page.seo_keywords}}" />
+{% endblock %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/stonegarant/stylesheets/stone_garant/catalog.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/static/stonegarant/stylesheets/stone_garant/product.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block topnav_inner %}
+  <div class='content_line dark_gray_1'>
+    <div class='content_holder sections_nav cf'>
+      <div class='mlr20'>
+        <div class='sections'>
+          <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+          <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+          <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+          <a href="/catalog/prostye" class="{% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
+          <a href="/catalog/ekskliuzivnye" class="{% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+          <a href="/catalog/komplektuiushchie" class="{% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+    {% load thumbnail %}
+
+    <div class="content_line light_gray_2">
+      <div class="content_holder">
+        <!-- <a class="back_link" href="#">Вернуться к списку товаров</a>-->
+        <h1>{{ page.title }}</h1>
+        <div class="mlr20">
+          <div class="content user_content">
+            {{ page.description | safe}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='content_line light_gray_1'>
+      <div class='content_holder help_bar'>
+        <div class='mlr20'>
+          <span class='delivery'>Доставка по всей России</span>
+          <span class='phone'>Есть вопросы? Звоните <b>8 800 775-86-24</b></span>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock %}

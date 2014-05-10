@@ -1,0 +1,166 @@
+.main_banner {
+  z-index: 3;
+  height: 500px;
+}
+.main_banner h5.title {
+  font-family: 'PT Sans', sans-serif;
+  color: white;
+  font-size: 5.2em;
+  font-weight: bold;
+  padding-top: 50px;
+  font-variant: small-caps;
+}
+.main_banner .descr {
+  font-family: "museo_1", "museo_2", sans-serif, Helvetica, Arial;
+  color: white;
+  font-size: 2em;
+}
+.main_banner .choose_goods {
+  position: absolute;
+  top: 280px;
+  left: 30px;
+}
+.main_banner .helper {
+  font-family: "pt_suns_regular", sans-serif, Helvetica, Arial;
+  position: absolute;
+  bottom: 18px;
+  left: 30px;
+  color: white;
+  font-size: 1.4em;
+}
+.main_banner .helper a {
+  color: #b69874;
+}
+.main_banner .helper:before {
+  content: ' ';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 120%;
+  border-top: 1px solid white;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+  opacity: 0.1;
+}
+.main_banner:after {
+  z-index: 10;
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: -20px;
+  height: 500px;
+  width: 490px;
+  background: url("/static/stonegarant/images/dark_block.png") no-repeat scroll 0 -100px transparent;
+}
+
+.quality {
+  height: 350px;
+}
+.quality .descr {
+  font-size: 14px;
+  margin-left: 450px;
+}
+.quality .descr b{
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.quality .portfolio {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  width: 420px;
+  height: 320px;
+  background: gray;
+  background: url("/static/stonegarant/images/middle_block_placeholder.png") no-repeat scroll center center transparent;
+}
+.quality .portfolio a {
+  padding: 1px 27px;
+  position: absolute;
+  top: 132px;
+  left: 130px;
+}
+.quality .etching {
+  display: block;
+  position: relative;
+  padding: 10px 0 0 60px;
+}
+.quality .etching:before {
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  display: block;
+  content: ' ';
+  width: 50px;
+  height: 50px;
+  background: url("/static/stonegarant/images/block_icon.png") no-repeat scroll top center transparent;
+}
+
+.advantages {
+  padding-top: 80px;
+  padding-bottom: 30px;
+}
+.advantages p {
+  color: #3e3932;
+  font-size: 1.2em;
+  margin-left: 80px;
+  line-height: 175%;
+}
+.advantages p b {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.advantages ul li {
+  float: left;
+  width: 49.98%;
+  position: relative;
+}
+.advantages ul li:before {
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+.advantages ul li:before {
+  background: url("/static/stonegarant/images/advantages_icons.png") no-repeat scroll 0 0 transparent;
+}
+.advantages ul li:nth-child(1):before {
+  background-position: 0 0;
+}
+.advantages ul li:nth-child(2):before {
+  background-position: -120px 0;
+}
+.advantages ul li:nth-child(3):before {
+  background-position: -240px 0;
+}
+.advantages ul li:nth-child(4):before {
+  background-position: -360px 0;
+}
+
+.feedback {
+  text-align: center;
+  padding-bottom: 20px;
+  background: url("/static/stonegarant/images/curved_people.png") no-repeat scroll right bottom transparent;
+}
+
+.feedback_list {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  padding: 10px 30px;
+  color: #ededed;
+  font-size: 1.2em;
+  background: #434446;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  text-decoration: none;
+}
+.feedback_list:hover {
+  color: #c75a38;
+}

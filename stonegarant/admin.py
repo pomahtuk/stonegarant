@@ -37,10 +37,21 @@ class ReadyWorkInline(admin.TabularInline):
                 'photo2': AdminImageWidget,
             }
 
+class ReadyWorkPageAdmin(admin.ModelAdmin):
+    list_display = ('admin_thumbnail','title','description','memorial')
+    search_fields = ['title', 'description']
+    ordering = ['title']
+    class form(forms.ModelForm): #вот этот кусок кода дополняет полее ввода картинки её превьюхой
+        class Meta:
+            widgets = {
+                'photo': AdminImageWidget,
+                'description': RedactorWidget(editor_options={'lang': 'ru'}),
+            }
+
 class MemorialPageAdmin(admin.ModelAdmin):
-    list_display = ('admin_thumbnail','title','number','price_face','price_circle','get_categories')
+    list_display = ('admin_thumbnail','title','slug','number','price_face','price_circle','get_categories')
     search_fields = ['title', 'slug', 'description']
-    ordering = ['-title']
+    ordering = ['number']
     inlines = [
         SeoArticleMemorialInline,
         ReadyWorkInline,
@@ -67,13 +78,13 @@ class StaticPageAdmin(admin.ModelAdmin):
             }
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ['title', 'slug']
     search_fields = ['title']
     ordering = ('-title',)
     inlines = [
         SeoArticleCategoryInline,
     ]
-    fields = ('title', 'seo_keywords', 'seo_description', 'meta_title')
+    fields = ['title', 'slug', 'seo_keywords', 'seo_description', 'meta_title']
 
 class SeoArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'memorial', 'category')
@@ -85,6 +96,16 @@ class SeoArticleAdmin(admin.ModelAdmin):
                 'description': RedactorWidget(editor_options={'lang': 'ru'}),
             }
 
+class ReplyAdmin(admin.ModelAdmin):
+    list_display = ('reply', 'preson')
+    search_fields = ['reply', 'preson']
+    ordering = ('-preson',)   
+    class form(forms.ModelForm): #вот этот кусок кода дополняет полее ввода картинки её превьюхой
+        class Meta:
+            widgets = {
+                'reply': RedactorWidget(editor_options={'lang': 'ru'}),
+            }
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('pub_date', 'email', 'memorial', 'user_name','user_phone','user_comment','status')
     search_fields = ['email', 'memorial', 'user_name','user_phone','user_comment','status']
@@ -93,6 +114,8 @@ class OrderAdmin(admin.ModelAdmin):
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(SeoArticle, SeoArticleAdmin)
+admin.site.register(ReadyWork, ReadyWorkPageAdmin)
 admin.site.register(StaticPage, StaticPageAdmin)
 admin.site.register(Memorial, MemorialPageAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Reply, ReplyAdmin)

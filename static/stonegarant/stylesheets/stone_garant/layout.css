@@ -1,0 +1,440 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'museo_1';
+  src: url("/static/stonegarant/fonts/museo_1/font.eot");
+  src: url("/static/stonegarant/fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("/static/stonegarant/fonts/museo_1/font.woff") format("woff"), url("/static/stonegarant/fonts/museo_1/font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'museo_2';
+  src: url("/static/stonegarant/fonts/museo_2/font.eot");
+  src: url("/static/stonegarant/fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("/static/stonegarant/fonts/museo_2/font.woff") format("woff"), url("/static/stonegarant/fonts/museo_2/font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'pt_suns_regular';
+  src: url("/static/stonegarant/fonts/pt_suns_regular/font.eot");
+  src: url("/static/stonegarant/fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("/static/stonegarant/fonts/pt_suns_regular/font.woff") format("woff"), url("/static/stonegarant/fonts/pt_suns_regular/font.ttf") format("truetype");
+}
+
+
+body, html {
+  background: #edede9;
+  font-family: 'PT Sans', sans-serif;
+}
+
+/* Styles */
+a {
+  color: #c75a38;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/* Links */
+a.back_link {
+  color: black;
+  font-size: 1.2em;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  text-decoration: none;
+  padding-left: 25px;
+}
+a.back_link:hover {
+  color: #c75a38;
+}
+a.back_link:before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  content: '←';
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.btn_link {
+  color: white;
+  padding: 0 30px;
+  font-size: 1.4em;
+  line-height: 40px;
+  border-radius: 3px;
+  background: #c85b39;
+  text-decoration: none;
+  font-family: 'PT Sans', sans-serif;
+  text-shadow: 0.1px -0.1px 1px #222222;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c45937), color-stop(100%, #d3623e));
+  background-image: -webkit-linear-gradient(#c45937, #d3623e);
+  background-image: -moz-linear-gradient(#c45937, #d3623e);
+  background-image: -o-linear-gradient(#c45937, #d3623e);
+  background-image: linear-gradient(#c45937, #d3623e);
+  -webkit-box-shadow: 0 1px 1px -1px white inset, 0px 1px 4px -1px #010101;
+  -moz-box-shadow: 0 1px 1px -1px white inset, 0px 1px 4px -1px #010101;
+  box-shadow: 0 1px 1px -1px white inset, 0px 1px 4px -1px #010101;
+}
+.btn_link:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d3623e), color-stop(100%, #c45937));
+  background-image: -webkit-linear-gradient(#d3623e, #c45937);
+  background-image: -moz-linear-gradient(#d3623e, #c45937);
+  background-image: -o-linear-gradient(#d3623e, #c45937);
+  background-image: linear-gradient(#d3623e, #c45937);
+}
+
+.title {
+  font-family: "museo_1", "museo_2", sans-serif, Helvetica, Arial;
+}
+
+/* Structure */
+.content_line {
+  border: 0px solid red;
+}
+.content_line .content_holder {
+  margin: 0 auto;
+  width: 1000px;
+  position: relative;
+}
+
+.mlr20 {
+  margin: 0 20px;
+}
+
+.content_holder {
+  position: relative;
+}
+.content_holder p.title {
+  padding-top: 30px;
+  font-size: 3.2em;
+  text-align: center;
+}
+.content_holder h5.title {
+  font-size: 4em;
+}
+
+/* Base BG */
+.dark_gray_1 {
+  background: #272a2d;
+}
+
+.dark_gray_2 {
+  background: #28292e;
+}
+
+.dark_gray_3 {
+  background: #393A3C;
+}
+
+.dark_gray_4 {
+  background: url(/static/stonegarant/images/stone_bg.jpg) no-repeat scroll center center #3a3b3c;
+}
+
+.light_gray_1 {
+  background: #f4f4f4;
+}
+
+.light_gray_2 {
+  background: #edede9;
+}
+
+.light_gray_3 {
+  background: #dcd7d2;
+}
+
+/* Base styles */
+.dark_gray_1 {
+  color: #ededed;
+}
+
+.dark_gray_2 {
+  color: #cacaca;
+}
+
+.dark_gray_3 {
+  color: white;
+}
+
+.light_gray_3 {
+  color: #3e3932;
+}
+
+/* HEADER + FOOTER */
+.stone_garant_logo {
+  height: 70px;
+  width: 210px;
+  float: left;
+  display: block;
+  background: url(/static/stonegarant/images/stone_garant_logo.png) no-repeat scroll 0 18px transparent;
+}
+
+.stone_garant_logo_2 {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  height: 60px;
+  width: 150px;
+  background: url(/static/stonegarant/images/stone_garant_logo_2.png) no-repeat scroll 0 0 transparent;
+}
+
+.header {
+  height: 50px;
+}
+.header .description {
+  font-family: "museo_1", "museo_2", sans-serif, Helvetica, Arial;
+  font-size: 1.4em;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+}
+.header .phone {
+  position: absolute;
+  top: 19px;
+  right: 20px;
+  color: white;
+  font-size: 1.55em;
+  font-weight: bold;
+}
+.header .phone:before {
+  position: absolute;
+  top: -2px;
+  left: -23px;
+  display: block;
+  content: ' ';
+  width: 20px;
+  height: 20px;
+  background: url("/static/stonegarant/images/phone.png") no-repeat scroll 0 0 transparent;
+}
+.header .recall {
+  position: absolute;
+  top: 20px;
+  right: 200px;
+}
+.header .recall a {
+  padding: 7px 15px;
+  color: #ededed;
+  font-size: 1.2em;
+  background: #434446;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.header .recall a:hover {
+  color: #c75a38;
+}
+
+.footer {
+  padding: 15px 0 40px 0;
+}
+.footer p {
+  padding: 0 0 15px 0;
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid gray;
+}
+.footer li {
+  font-size: 1.3em;
+  line-height: 150%;
+  margin-right: 50px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  vertical-align: top;
+}
+
+/* NAVIGATION */
+.base_nav .menu {
+  float: right;
+  font-weight: bold;
+  padding-top: 16px;
+  position: relative;
+  width: 750px ul;
+  width-position: absolute;
+  width-top: 0;
+  width-right: 0;
+  width-width: 100%;
+}
+.base_nav .menu ul > li {
+  float: left;
+  padding: 10px;
+  margin-left: 10px;
+  height: 34px;
+  line-height: 38px;
+  text-align: center;
+  position: relative;
+}
+.base_nav .menu ul > li:hover {
+  background: #fefefe;
+  padding: 10px 20px;
+  margin-left: 0px;
+  margin-right: -10px;
+  border-radius: 4px 4px 0 0;
+  -webkit-box-shadow: #bbbbbb 0px -2px 6px;
+  -moz-box-shadow: #bbbbbb 0px -2px 6px;
+  box-shadow: #bbbbbb 0px -2px 6px;
+}
+.base_nav .menu .submenu {
+  z-index: 20;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 54px;
+}
+
+.base_nav .menu .submenu a {
+  text-transform: none;
+  font-size: 14px;
+  letter-spacing: 0px;
+}
+
+.base_nav .menu .submenu:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  content: ' ';
+  display: block;
+  background: #ececec;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  border-radius: 0 0 4px 4px;
+}
+.base_nav .menu .submenu ol > li {
+  font-size: 7px;
+  text-align: left;
+  padding: 9px 20px;
+}
+.base_nav .menu a {
+  color: #010101;
+  font-size: 1.55em;
+  font-variant: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.base_nav .menu a:hover {
+  color: #C85B39;
+  text-decoration: none;
+}
+
+.sections_nav a {
+  float: left;
+  display: block;
+  padding: 0 15px;
+  height: 105px;
+  line-height: 160px;
+  margin-right: 20px;
+  color: #a0a0a0;
+  font-size: 1.4em;
+  border: 0px solid #f4f4f4;
+  text-decoration: none;
+  background: url("/static/stonegarant/images/block_types_horiz.png") no-repeat scroll 0 0 transparent;
+}
+.sections_nav a.current {
+  color: #c75a38;
+}
+.sections_nav a:hover {
+  color: white;
+  text-decoration: none;
+}
+.sections_nav a:nth-child(1) {
+  background-position: 47px -257px;
+}
+.sections_nav a:nth-child(1).current {
+  background-position: 47px -540px;
+}
+.sections_nav a:nth-child(1):hover {
+  background-position: 47px 24px;
+}
+.sections_nav a:nth-child(2) {
+  background-position: -78px -257px;
+}
+.sections_nav a:nth-child(2).current {
+  background-position: -78px -540px;
+}
+.sections_nav a:nth-child(2):hover {
+  background-position: -78px 24px;
+}
+.sections_nav a:nth-child(3) {
+  background-position: -198px -257px;
+}
+.sections_nav a:nth-child(3).current {
+  background-position: -198px -540px;
+}
+.sections_nav a:nth-child(3):hover {
+  background-position: -198px 24px;
+}
+.sections_nav a:nth-child(4) {
+  background-position: -336px -257px;
+}
+.sections_nav a:nth-child(4).current {
+  background-position: -336px -540px;
+}
+.sections_nav a:nth-child(4):hover {
+  background-position: -336px 24px;
+}
+.sections_nav a:nth-child(5) {
+  background-position: -450px -257px;
+}
+.sections_nav a:nth-child(5).current {
+  background-position: -450px -540px;
+}
+.sections_nav a:nth-child(5):hover {
+  background-position: -450px 24px;
+}
+.sections_nav a:nth-child(6) {
+  background-position: -596px -257px;
+}
+.sections_nav a:nth-child(6).current {
+  background-position: -596px -540px;
+}
+.sections_nav a:nth-child(6):hover {
+  background-position: -596px 24px;
+}
+.sections_nav .helper {
+  float: right;
+}
+.sections_nav .helper a {
+  margin: 0;
+}
+
+.help_bar {
+  color: #5e5d5d;
+  padding: 30px 0;
+}
+.help_bar b {
+  color: black;
+}
+.help_bar span {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  vertical-align: top;
+  position: relative;
+  padding: 0 0 0 70px;
+  line-height: 60px;
+  font-size: 1.6em;
+}
+.help_bar span:before {
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background: url(/static/stonegarant/images/advantages_icons.png) no-repeat scroll -358px 0 transparent;
+}
+.help_bar .phone:before {
+  background-position: -478px 0;
+}
+.help_bar .delivery {
+  width: 50%;
+}
