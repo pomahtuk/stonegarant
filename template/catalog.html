@@ -49,6 +49,7 @@
           {% for memorial in memorials %}
             <li>
               <a class='image' href='/memorial-{{memorial.slug}}' style='background-image: url({{ STATIC_URL }}{{ memorial.photo1 }});'></a>
+              {% thumbnail '{{ STATIC_URL }}{{ memorial.photo1 }}' catalog %}
               <div class='info'>
                 <a href="#">{{memorial.title}}</a>
                 <b>{{memorial.price_face}} р.</b>
