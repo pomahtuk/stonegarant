@@ -1,6 +1,5 @@
 Django==1.6.4
 FeinCMS==1.9.3
-GDAL==1.10.0
 MySQL-python==1.2.5
 Pillow==2.4.0
 Unidecode==0.04.14
