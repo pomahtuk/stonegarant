@@ -1,0 +1,34 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\000031}}
+.index, .about {
+  width: 800px;
+  margin: auto;
+  padding-top: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\000036}}
+.index p, .index h1, .index h2, .index h3, .index h4, .index h5, .about p, .about h1, .about h2, .about h3, .about h4, .about h5 {
+  line-height: 160%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000310}}
+.index .part, .about .part {
+  margin-bottom: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000313}}
+.index .part h4, .about .part h4 {
+  margin-bottom: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000316}}
+.index .part a, .about .part a {
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000318}}
+.index .part a:hover, .about .part a:hover {
+  color: orange;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000321}}
+.index .part p, .about .part p {
+  font-size: 1.6em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/Q\:\/stonegarant\/static\/stonegarant\/stylesheets\/app\/index\.scss}line{font-family:\0000324}}
+.index .part a, .about .part a {
+  font-size: 1.5em;
+}

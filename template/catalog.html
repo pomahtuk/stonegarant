@@ -1,0 +1,100 @@
+{% extends "index.html" %}
+
+{% block title %}
+  {% if category.slug %}
+    Памятники - {{category.meta_title}}
+  {% else %}
+    {{service_page.meta_title}}
+  {% endif %}
+{% endblock %}
+
+{% block meta %}
+  {% if category.slug %}
+    <meta name="description" content="{{category.seo_description}}" />
+    <meta name="keywords" content="{{category.seo_keywords}}" />
+  {% else %}
+    <meta name="description" content="{{service_page.seo_description}}" />
+    <meta name="keywords" content="{{service_page.seo_keywords}}" />
+  {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/catalog.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block topnav_inner %}
+  <div class='content_line dark_gray_1'>
+    <div class='content_holder sections_nav cf'>
+      <div class='mlr20'>
+        <div class='sections'>
+          <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+          <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+          <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+          <a href="/catalog/prostye" class="{% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
+          <a href="/catalog/ekskliuzivnye" class="{% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+          <a href="/catalog/komplektuiushchie" class="{% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+    {% load thumbnail %}
+    <div class='content_line light_gray_2'>
+      <div class='content_holder catalog'>
+        <h1>Наиболее популярные</h1>
+        <ul class='cf'>
+          {% for memorial in memorials %}
+            <li>
+              <a class='image' href='/memorial-{{memorial.slug}}' style='background-image: url({{ memorial.photo1|thumbnail_url:'catalog' }});'></a>
+              <div class='info'>
+                <a href="#">{{memorial.title}}</a>
+                <b>{{memorial.price_face}} р.</b>
+              </div>
+              <div class='hover_block'>
+                <div class='wrp'>
+                  <div class='title'>
+                    {% for category in memorial.categories.all %}
+                      {{category}}&nbsp;
+                    {% endfor %}
+                  </div>
+                  <div class='name'>{{memorial.title}}</div>
+                  <div class='marker'>&diams;</div>
+                  <div class='price'>{{memorial.price_face}} р.</div>
+                  <div class='equip'>
+                    <b>комплект</b>
+                    стела, подставка, цветник
+                  </div>
+                  <a href='/memorial-{{memorial.slug}}'>Смотреть подробности</a>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class='content_line light_gray_1'>
+      <div class='content_holder help_bar'>
+        <div class='mlr20'>
+          <span class='delivery'>Доставка по всей России</span>
+          <span class='phone'>Есть вопросы? Звоните <b>8 800 775-86-24</b></span>
+        </div>
+      </div>
+    </div>
+    {% if service_page.description %}
+    <div class='content_line light_gray_1'>
+      <div class="mlr20">
+        <div class="content user_content seo_content">
+          <br>
+          {{ service_page.description | safe}}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock %}

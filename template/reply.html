@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+
+{% block title %}{{ service_page.meta_title }} {% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{service_page.seo_description}}" />
+  <meta name="keywords" content="{{service_page.seo_keywords}}" />
+{% endblock %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/catalog.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/product.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block topnav_inner %}
+  <div class='content_line dark_gray_1'>
+    <div class='content_holder sections_nav cf'>
+      <div class='mlr20'>
+        <div class='sections'>
+          <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+          <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+          <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+          <a href="/catalog/prostye" class="{% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
+          <a href="/catalog/ekskliuzivnye" class="{% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+          <a href="/catalog/komplektuiushchie" class="{% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+    <div class="content_line light_gray_2">
+      <div class="content_holder">
+        <h1>Отзывы</h1>
+        <div class="mlr20">
+          <div class="user_content">
+            <ul class="thumbs">
+              {% for reply in replies %}
+                <li>
+                  {{ reply.reply | safe }}
+                  <hr>
+                  <i>{{ reply.preson }}</i>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock %}

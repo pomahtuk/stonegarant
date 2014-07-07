@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">      
+{% for memorial in memorials %}
+  <url>
+    <loc>http://stone-garant.ru{% url 'views.memorial' memorial.slug %}</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+{% endfor %}
+{% for pages in pages %}
+  <url>
+    <loc>http://stone-garant.ru{% url 'views.static_page' pages.slug %}</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+{% endfor %}
+{% for category in categories %}
+  <url>
+    <loc>http://stone-garant.ru{% url 'views.catalog_category' category.slug %}</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+{% endfor %}
+  <url>
+    <loc>http://stone-garant.ru/page-raboty</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://stone-garant.ru/page-articles</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://stone-garant.ru/catalog</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://stone-garant.ru</loc>
+    <lastmod>{{now|date:"Y-m-d"}}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

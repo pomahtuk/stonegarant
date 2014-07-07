@@ -1,0 +1,174 @@
+@import "../base/mix";
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/inline-block";
+$experimental-support-for-svg: true;
+
+.main_banner{
+  z-index: 3;
+  height: 500px;
+
+  h5.title{
+    @include pts_font;
+
+    color: white;
+    font-size: 5.2em;
+    font-weight: bold;
+    padding-top: 50px;
+    font-variant: small-caps;
+  }
+
+  .descr{
+    @include museo_font;
+    color: white;
+    font-size:2em;
+  }
+
+  .choose_goods{
+    position: absolute;
+    top: 280px; left: 30px;
+  }
+
+  .helper{
+    @include pts_font;
+
+    position: absolute;
+    bottom: 18px; left: 30px;
+
+    color: white;
+    font-size: 1.4em;
+
+    a{
+      color: #b69874;
+    }
+
+    &:before{
+      content: ' ';
+      position: absolute;
+      top: -10px; left: 0;
+
+      width: 120%;
+
+      border-top: 1px solid white;
+      @include opacity(0.1);
+    }
+  }
+
+  &:after{
+    z-index: 10;
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 0; right: -20px;
+
+    height: 500px;
+    width: 490px;
+
+    background: url('../../images/dark_block.png') no-repeat scroll 0 -100px transparent;
+  }
+}
+
+.quality{
+  
+  height: 350px;
+
+  .descr{
+    font-size: 1.2em;
+    margin-left: 410px;
+  }
+
+  .portfolio{
+    position: absolute;
+    top: 90px; left: 20px;
+    width: 420px; height: 320px;
+
+    background: gray;
+    background: url('../../images/middle_block_placeholder.png') no-repeat scroll center center transparent;
+
+    a{
+      padding: 1px 20px;
+      position: absolute;
+      top: 132px; left: 130px;
+    }
+  }
+
+  .etching{
+    display: block;
+    position: relative;
+    padding: 10px 0 0 80px;
+
+    &:before{
+      position: absolute;
+      top: 10px; left: 0;
+
+      display: block;
+      content: ' ';
+      width: 70px;
+      height: 50px;
+      background: url('../../images/block_icon.png') no-repeat scroll top center transparent;
+    }
+  }
+}
+
+.advantages{
+  padding-top: 80px;
+  padding-bottom: 30px;
+
+  p{
+    color: #3e3932;
+    font-size: 1.2em;
+    margin-left: 80px;
+    line-height: 175%;
+
+    b{
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  }
+
+  ul{
+    li{
+      float: left;
+      width: 49.98%;
+      position: relative;
+
+      &:before{
+        display: block;
+        content: ' ';
+
+        position: absolute;
+        top: 0; left: 0;
+        width: 60px; height: 60px;
+      }
+
+      &:before{ background: url('../../images/advantages_icons.png') no-repeat scroll 0 0 transparent; }
+      &:nth-child(1):before{ background-position:      0 0; }
+      &:nth-child(2):before{ background-position: -120px 0; }
+      &:nth-child(3):before{ background-position: -240px 0; }
+      &:nth-child(4):before{ background-position: -360px 0; }
+    }
+  }
+}
+
+.feedback{
+  text-align: center;
+  padding-bottom: 20px;
+  background: url('../../images/curved_people.png') no-repeat scroll right bottom transparent;
+}
+
+.feedback_list{
+  @include inline-block;
+
+  padding: 7px 15px;
+  color: #ededed;
+  font-size: 1.2em;
+  background: #434446;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  text-decoration: none;
+
+  &:hover{ color: #c75a38; }
+}
