@@ -48,8 +48,8 @@
         <ul class='cf'>
           {% for memorial in memorials %}
             <li>
-              <a class='image' href='/memorial-{{memorial.slug}}' style='background-image: url({{ STATIC_URL }}{{ memorial.photo1 }});'></a>
-              {% thumbnail '{{ STATIC_URL }}{{ memorial.photo1 }}' 50x50 as thumb %}
+              <a class='image' href='/memorial-{{memorial.slug}}' style='background-image: url({{ memorial.photo1.url }});'></a>
+              {% thumbnail {{ memorial.photo1.url }} 50x50 as thumb %}
               {{ thumb.url }}
               <div class='info'>
                 <a href="#">{{memorial.title}}</a>
