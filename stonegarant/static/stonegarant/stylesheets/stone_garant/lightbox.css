@@ -1,6 +1,6 @@
 /* Preload images */
 body:after {
-  content: url(/stonegarant/images/close.png) url(/stonegarant/images/loading.gif) url(/stonegarant/images/prev.png) url(/stonegarant/images/next.png);
+  content: url(/stonegarant/stonegarant/images/close.png) url(/stonegarant/stonegarant/images/loading.gif) url(/stonegarant/stonegarant/images/prev.png) url(/stonegarant/stonegarant/images/next.png);
   display: none;
 }
 
