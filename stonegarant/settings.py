@@ -14,20 +14,18 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-import dj_database_url
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'heroku_ea2ce7f419c71c6',       # Or path to database file if using sqlite3.
+        'USER': 'b9e71b573782ef',               # Not used with sqlite3.
+        'PASSWORD': 'b1b0137',                  # Not used with sqlite3.
+        'HOST': 'eu-cdbr-west-01.cleardb.com',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'memorial',                      # Or path to database file if using sqlite3.
-#         'USER': 'memorial',                      # Not used with sqlite3.
-#         'PASSWORD': '177591',                  # Not used with sqlite3.
-#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
+# mysql://b9e71b573782ef:b1b0137e@eu-cdbr-west-01.cleardb.com/heroku_ea2ce7f419c71c6?reconnect=true
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
