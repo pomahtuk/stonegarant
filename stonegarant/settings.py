@@ -5,7 +5,7 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -14,16 +14,49 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'heroku_ea2ce7f419c71c6',       # Or path to database file if using sqlite3.
-        'USER': 'b9e71b573782ef',               # Not used with sqlite3.
-        'PASSWORD': 'b1b0137',                  # Not used with sqlite3.
-        'HOST': 'eu-cdbr-west-01.cleardb.com',  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'heroku_ea2ce7f419c71c6',       # Or path to database file if using sqlite3.
+#         'USER': 'b9e71b573782ef',               # Not used with sqlite3.
+#         'PASSWORD': 'b1b0137',                  # Not used with sqlite3.
+#         'HOST': 'eu-cdbr-west-01.cleardb.com',  # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
+
+import urlparse
+
+# Register database schemes in URLs.
+urlparse.uses_netloc.append('mysql')
+
+try:
+
+    # Check to make sure DATABASES is set in settings.py file.
+    # If not default to {}
+
+    if 'DATABASES' not in locals():
+        DATABASES = {}
+
+    if 'DATABASE_URL' in os.environ:
+        url = urlparse.urlparse(os.environ['CLEARDB_DATABASE_URL'])
+
+        # Ensure default database exists.
+        DATABASES['default'] = DATABASES.get('default', {})
+
+        # Update with environment configuration.
+        DATABASES['default'].update({
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': url.path[1:],
+            'USER': url.username,
+            'PASSWORD': url.password,
+            'HOST': url.hostname,
+            'PORT': url.port,
+        })
+
+except Exception:
+    print 'Unexpected error:', sys.exc_info()
+
 
 # mysql://b9e71b573782ef:b1b0137e@eu-cdbr-west-01.cleardb.com/heroku_ea2ce7f419c71c6?reconnect=true
 
