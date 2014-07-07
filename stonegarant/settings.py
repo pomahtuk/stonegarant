@@ -178,6 +178,12 @@ INSTALLED_APPS = (
     'stonegarant'
 )
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@app27166045.mailgun.org'
+EMAIL_HOST_PASSWORD = '4js-yusempw5'
+EMAIL_PORT = 587
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
