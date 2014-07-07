@@ -109,7 +109,7 @@ class ReadyWork(models.Model):
     admin_thumbnail.short_description = 'Изображение 1'
     admin_thumbnail.allow_tags = True
     def __unicode__(self):
-        return self.title  
+        return self.title
     class Meta:
         verbose_name = u"Готовая работа"
         verbose_name_plural = u"Готовые работы"
@@ -153,9 +153,9 @@ class Order(models.Model):
     user_name    = models.CharField(max_length=150, verbose_name='Фамилия, имя', null=True, blank=True)
     user_comment = models.TextField(max_length=150, verbose_name='Комментарий', null=True, blank=True)
     status       = models.CharField(max_length=1, choices=STATUS_CHOICES, default='S')
-    pub_date     = models.DateTimeField('Дата оформления', default = datetime.now()) 
+    pub_date     = models.DateTimeField('Дата оформления', default = datetime.now())
     def __unicode__(self):
-        return self.id  
+        return self.id
     class Meta:
         verbose_name = u"Заказа"
         verbose_name_plural = u"Заказы"
@@ -167,4 +167,4 @@ class Reply(models.Model):
         verbose_name = u"Отзыв"
         verbose_name_plural = u"Отзывы"
     def __unicode__(self):
-        return self.preson  
+        return self.preson

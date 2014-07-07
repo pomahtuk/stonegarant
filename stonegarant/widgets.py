@@ -14,7 +14,7 @@ try:
         thumbnail_options = {'crop': True, 'size': (100, 100), 'detail': True, 'upscale':True }
         t=thumbnailer.get_thumbnail(thumbnail_options)
         media_url = settings.MEDIA_URL
-        return u'<img src="%s%s" alt="%s" width="100" height="100"/>' % (media_url, t, image_path)
+        return u'<img src="%s%s%s" alt="%s" width="100" height="100"/>' % (media_url, settings.AWS_STORAGE_BUCKET_NAME, t, image_path)
 except ImportError:
     def thumbnail(image_path):
         absolute_url = os.path.join(settings.MEDIA_ROOT, image_path)
@@ -36,6 +36,6 @@ class AdminImageWidget(AdminFileWidget):
                     (file_path, thumbnail(file_name)))
             except IOError: # not image
                 output.append('')
-            
+
         output.append(super(AdminFileWidget, self).render(name, value, attrs))
         return mark_safe(u''.join(output))

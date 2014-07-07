@@ -183,7 +183,7 @@ AWS_S3_ACCESS_KEY_ID = 'AKIAJAOJ5UR5U5ARJKNA'     # enter your access key id
 AWS_S3_SECRET_ACCESS_KEY = 'IaVwBB4Lds4foQ9SRSmaREtiZWOMl50yxcshb6xM' # enter your secret access key
 AWS_STORAGE_BUCKET_NAME = 'stonegarant'
 
-S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL + '/'
 MEDIA_URL = S3_URL + '/media/'
 
