@@ -200,7 +200,7 @@ LOGGING = {
         'console':{
             'level':'INFO',
             'class':'logging.StreamHandler',
-            'strm': sys.stdout
+            'formatter': 'simple'
         }
     },
     'loggers': {
