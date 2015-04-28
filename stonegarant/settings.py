@@ -191,8 +191,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', "AKIAJAOJ5UR5U5ARJKNA")     # enter your access key id
-AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', "IaVwBB4Lds4foQ9SRSmaREtiZWOMl50yxcshb6xM") # enter your secret access key
+AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY') # enter your secret access key
 AWS_STORAGE_BUCKET_NAME = 'stonegarant'
 
 S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
