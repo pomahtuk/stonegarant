@@ -28,3 +28,7 @@ static==1.1.1
 static3==0.5.1
 Unidecode==0.4.17
 virtualenv==12.1.1
+django-libsass==0.3
+libsass==0.7.0
+django-compressor==1.5
+django-appconf==1.0.1

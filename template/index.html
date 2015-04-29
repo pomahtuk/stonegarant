@@ -9,15 +9,22 @@
       <meta name="description" content="{{page.seo_description}}" />
       <meta name="keywords" content="{{page.seo_keywords}}" />
     {% endblock %}
+
+    {% load compress %}
+
+    {% compress css %}
+
     {% block stylesheets %}
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/reset.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/headers.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/custom.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/layout.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/reset.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/headers.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/base/custom.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/layout.scss" media="screen" rel="stylesheet" type="text/x-scss" />
     {% endblock %}
-      <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/index.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/slider.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/index.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+      <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/slider.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+    {% endcompress %}
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
   </head>
 
   <body>

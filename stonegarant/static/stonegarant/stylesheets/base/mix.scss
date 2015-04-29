@@ -1,4 +1,8 @@
-@import "compass/css3/inline-block";
+@mixin inline-block {
+  display: -moz-inline-stack; // ff 2
+  display: inline-block;
+  zoom:1; *display: inline; _height: 15px; // ie 6-7
+}
 
 @font-face {
   font-family: 'museo_1';

@@ -5,7 +5,7 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -13,17 +13,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'heroku_ea2ce7f419c71c6',       # Or path to database file if using sqlite3.
-#         'USER': 'b9e71b573782ef',               # Not used with sqlite3.
-#         'PASSWORD': 'b1b0137',                  # Not used with sqlite3.
-#         'HOST': 'eu-cdbr-west-01.cleardb.com',  # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
 
 import urlparse
 
@@ -69,8 +58,6 @@ try:
 except Exception:
     print 'Unexpected error:', sys.exc_info()
 
-
-# mysql://b9e71b573782ef:b1b0137e@eu-cdbr-west-01.cleardb.com/heroku_ea2ce7f419c71c6?reconnect=true
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
@@ -131,6 +118,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -189,6 +177,9 @@ THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your access key id
@@ -198,6 +189,13 @@ AWS_STORAGE_BUCKET_NAME = 'stonegarant'
 S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL + '/'
 MEDIA_URL = S3_URL + '/media/'
+COMPRESS_URL = STATIC_URL
+
+COMPRESS_ENABLED = True
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 INSTALLED_APPS = (
     'suit',
@@ -218,14 +216,15 @@ INSTALLED_APPS = (
     'gunicorn',
     #'south',
     'uuslug',
-    'stonegarant'
+    'stonegarant',
+    'compressor'
 )
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@app27166045.mailgun.org'
-EMAIL_HOST_PASSWORD = '4js-yusempw5'
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
