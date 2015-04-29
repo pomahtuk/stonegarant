@@ -1,9 +1,4 @@
 @import "../base/mix";
-@import "compass/css3/opacity";
-@import "compass/css3/box-shadow";
-@import "compass/css3/text-shadow";
-@import "compass/css3/inline-block";
-@import "compass/css3/transition";
 
 h1{
   color: black;
@@ -15,7 +10,7 @@ h1{
 
 .catalog{
   h1{ text-align: left; }
-  
+
   ul{
     border: 0px solid red;
 
@@ -94,7 +89,7 @@ h1{
           top: 40px;
           left: 10px;
           width: 206px;
-          font-size: 1.3em;          
+          font-size: 1.3em;
           line-height: 130%;
         }
         .marker{
@@ -149,9 +144,9 @@ h1{
       &:hover{
         .hover_block{
           height: 270px;
-          @include transition-duration(.2s);
-          @include transition-property(height);
-          @include transition-timing-function(ease-in);
+          @include css3-prefix('transition-duration', .2s);
+          @include css3-prefix('transition-property', height);
+          @include css3-prefix('transition-timing-function', ease-in);
         }
       }
     }

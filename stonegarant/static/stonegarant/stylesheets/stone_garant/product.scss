@@ -1,8 +1,4 @@
 @import "../base/mix";
-@import "compass/css3/opacity";
-@import "compass/css3/box-shadow";
-@import "compass/css3/text-shadow";
-@import "compass/css3/inline-block";
 
 .product{
   padding-bottom: 30px;
@@ -72,4 +68,32 @@
   @include arial;
   font-size: 13px;
   padding: 10px 20px;
+}
+
+.user_content .thumbs li {
+  border-bottom: 1px solid #888;
+  padding: 20px 0px;
+}
+
+.user_content .thumbs li:last-child {
+  border-bottom: none;
+}
+
+.user_content .thumbs li .thumb,
+.user_content .thumbs li .caption {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.user_content .thumbs li .caption {
+  padding-left: 20px;
+}
+
+.content_holder.pagination-holder {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.pagination {
+  font-size: 14px;
 }

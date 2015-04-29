@@ -1,10 +1,4 @@
 @import "../base/mix";
-@import "compass/css3/images";
-@import "compass/css3/opacity";
-@import "compass/css3/box-shadow";
-@import "compass/css3/text-shadow";
-@import "compass/css3/inline-block";
-$experimental-support-for-svg: true;
 
 .main_banner{
   z-index: 3;
@@ -71,7 +65,7 @@ $experimental-support-for-svg: true;
 }
 
 .quality{
-  
+
   height: 350px;
 
   .descr{
@@ -171,4 +165,21 @@ $experimental-support-for-svg: true;
   text-decoration: none;
 
   &:hover{ color: #c75a38; }
+}
+
+.browse_catalog {
+  height: 350px;
+  background: url('../../images/memorials_bottom.jpg') no-repeat scroll right bottom transparent;
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+
+  .choose_goods {
+    position: absolute;
+    padding: 5px 18px 5px 19px;
+    position: absolute;
+    top: 156px;
+    left: 410px;
+    font-size: 20px;
+  }
 }

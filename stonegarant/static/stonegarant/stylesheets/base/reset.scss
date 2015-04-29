@@ -27,7 +27,7 @@ ol, p, pre, table, ul {
   line-height: 100%;
   background: transparent;
   vertical-align: baseline;
-  @include pts_font;
+  font-family: 'PT Sans', sans-serif;
 }
 
 html {
