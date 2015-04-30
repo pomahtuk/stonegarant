@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from tastypie.api import Api
-from django.views.generic import TemplateView
 from stonegarant import views
 
 from tastypie.api import Api
@@ -16,8 +15,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$',  views.index, name="category"),
-    #url(r'^catalog/', TemplateView.as_view(template_name='catalog.html')),
+    url(r'^$', views.index, name="index"),
+
     url(r'^catalog/(?P<category_slug>(.+))', views.catalog_category, name="category"),
     url(r'^catalog/', views.catalog, name="catalog"),
     url(r'^memorial-(?P<memorial_slug>(.+))', views.memorial, name="memorial"),
@@ -31,16 +30,6 @@ urlpatterns = patterns('',
     url(r'^404', views.not_found, name="404"),
 
     url(r'^sitemap.xml$', views.sitemap, name="sitemap"),
-
-    # Examples:
-    # url(r'^$', 'stonegarant.views.home', name='home'),
-    # url(r'^stonegarant/', include('stonegarant.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
 )
 
 handler404 = views.not_found
