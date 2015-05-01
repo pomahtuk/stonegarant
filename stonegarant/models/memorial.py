@@ -5,7 +5,6 @@ from django.db import models
 
 from seo_model import SeoEmpoweredModel
 from category import *
-from stella import *
 from polirovka import *
 from cvetnik import *
 
@@ -49,7 +48,7 @@ class Memorial(SeoEmpoweredModel):
     price_face = models.BigIntegerField(verbose_name='Цена за лицевую полировку')
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
 
-    stella_variants = models.ManyToManyField(Stella, verbose_name='Варианты стэллы')
+    # stella_variants = models.ManyToManyField(Stella, verbose_name='Варианты стэллы')
     cvetnik_variants = models.ManyToManyField(Cvetnik, verbose_name='Варианты цветника')
     polirovka_variants = models.ManyToManyField(Polirovka, verbose_name='Варианты полировки')
 
@@ -59,6 +58,10 @@ class Memorial(SeoEmpoweredModel):
 
     base_price = models.BigIntegerField(verbose_name='Базовая цена', null=True, blank=True)
     # price_from - calculate
+
+    # this one generates 'view on silte link'
+    def get_absolute_url(self):
+        return u'/memorial-%s' % self.slug
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self)
