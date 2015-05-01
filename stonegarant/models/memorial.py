@@ -27,6 +27,7 @@ from category import *
 
 # Will it be a good decision  to calculate price after discount?
 
+
 class Memorial(SeoEmpoweredModel):
     photo1 = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 1', null=True, blank=True)
     photo2 = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 2', null=True, blank=True)
