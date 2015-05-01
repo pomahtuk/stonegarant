@@ -1,14 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
-from tastypie.api import Api
+
 from stonegarant.views import *
-
-from tastypie.api import Api
-from stonegarant.resources import MemorialResource
-
-v1_api = Api(api_name='v1')
-v1_api.register(MemorialResource())
 
 admin.autodiscover()
 
@@ -21,7 +15,6 @@ urlpatterns = patterns('',
     url(r'^catalog/', memorial_list_view, name="catalog"),
     url(r'^memorial-(?P<memorial_slug>(.+))', memorial_view, name="memorial"),
 
-    url(r'^api/', include(v1_api.urls)),
     url(r'^page-raboty', ready_works_view, name="ready"),
     url(r'^page-reply', replies_view, name="reply"),
     url(r'^page-articles', articles_view, name="article"),

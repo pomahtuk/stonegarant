@@ -209,12 +209,10 @@ INSTALLED_APPS = (
     'mptt',
     'feincms',
     'debug_toolbar',
-    'tastypie',
     'suit_redactor',
     'pagination',
     'storages',
     'gunicorn',
-    #'south',
     'uuslug',
     'stonegarant',
     'compressor'
