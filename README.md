@@ -14,6 +14,9 @@
 ### Migrations
     ./manage.py migrate stonegarant --fake-initial
 
+    mysql -u root stonegarant 
+    
+    alter table stonegarant_reply change preson person varchar(50);
 
 
 ## Running server:

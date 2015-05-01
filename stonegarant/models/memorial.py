@@ -5,6 +5,9 @@ from django.db import models
 
 from seo_model import SeoEmpoweredModel
 from category import *
+from stella import *
+from polirovka import *
+from cvetnik import *
 
 # to be clear:
 # we need to have memorial variation depending on:
@@ -35,16 +38,27 @@ class Memorial(SeoEmpoweredModel):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     slug = models.CharField(max_length=255, verbose_name='URL')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    categories = models.ManyToManyField(Category, verbose_name='Категории')
+
+    # this fields will be deprecated
     stella = models.CharField(max_length=50, verbose_name='Стелла')
     podstavka = models.CharField(max_length=50, verbose_name='Подставка')
     cvetnik = models.CharField(max_length=50, verbose_name='Цветник')
+
+    # and this prices but... wait...
     price_face = models.BigIntegerField(verbose_name='Цена за лицевую полировку')
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
-    categories = models.ManyToManyField(Category, verbose_name='Категории')
+
+    stella_variants = models.ManyToManyField(Stella, verbose_name='Варианты стэллы')
+    cvetnik_variants = models.ManyToManyField(Cvetnik, verbose_name='Варианты цветника')
+    polirovka_variants = models.ManyToManyField(Polirovka, verbose_name='Варианты полировки')
+
     discount = models.BooleanField(verbose_name='Со скидкой')
     discount_percent = models.BigIntegerField(verbose_name='Скидка(процент)', null=True, blank=True)
     discount_price = models.BigIntegerField(verbose_name='Цена со скидкой', null=True, blank=True)
-    normal_price = models.BigIntegerField(verbose_name='Цена до скидки', null=True, blank=True)
+
+    base_price = models.BigIntegerField(verbose_name='Базовая цена', null=True, blank=True)
+    # price_from - calculate
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self)

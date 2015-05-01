@@ -22,5 +22,5 @@ class Migration(migrations.Migration):
             model_name='order',
             name='pub_date',
             field=models.DateTimeField(default=datetime.datetime(2015, 5, 1, 12, 15, 44, 817710), verbose_name=b'\xd0\x94\xd0\xb0\xd1\x82\xd0\xb0 \xd0\xbe\xd1\x84\xd0\xbe\xd1\x80\xd0\xbc\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xb8\xd1\x8f'),
-        ),
+        )
     ]
