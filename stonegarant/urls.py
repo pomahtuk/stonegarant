@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from tastypie.api import Api
-from stonegarant import views
+from stonegarant.views import *
 
 from tastypie.api import Api
 from stonegarant.resources import MemorialResource
@@ -15,24 +15,24 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', views.index, name="index"),
+    url(r'^$', index_view, name="index"),
 
-    url(r'^catalog/(?P<category_slug>(.+))', views.catalog_category, name="category"),
-    url(r'^catalog/', views.catalog, name="catalog"),
-    url(r'^memorial-(?P<memorial_slug>(.+))', views.memorial, name="memorial"),
+    url(r'^catalog/(?P<category_slug>(.+))', category_view, name="category"),
+    url(r'^catalog/', memorial_list_view, name="catalog"),
+    url(r'^memorial-(?P<memorial_slug>(.+))', memorial_view, name="memorial"),
 
     url(r'^api/', include(v1_api.urls)),
-    url(r'^page-raboty', views.ready_works, name="ready"),
-    url(r'^page-reply', views.replies, name="reply"),
-    url(r'^page-articles', views.articles, name="article"),
-    url(r'^page-(?P<page_slug>(.+))', views.static_page, name="page"),
+    url(r'^page-raboty', ready_works_view, name="ready"),
+    url(r'^page-reply', replies_view, name="reply"),
+    url(r'^page-articles', articles_view, name="article"),
+    url(r'^page-(?P<page_slug>(.+))', static_page_view, name="page"),
 
-    url(r'^404', views.not_found, name="404"),
+    url(r'^404', not_found_view, name="404"),
 
-    url(r'^sitemap.xml$', views.sitemap, name="sitemap"),
+    url(r'^sitemap.xml$', sitemap_view, name="sitemap"),
 )
 
-handler404 = views.not_found
+handler404 = not_found_view
 
 if settings.DEBUG:
     urlpatterns += patterns('', 

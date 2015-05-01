@@ -3,8 +3,29 @@ from datetime import *
 from uuslug import uuslug
 from django.db import models
 
-from seo_model import *
+from seo_model import SeoEmpoweredModel
 from category import *
+
+# to be clear:
+# we need to have memorial variation depending on:
+# variant of stella
+# presence of podstavka
+# variant of polirovka
+# sizes of cvetnik
+# and based on cheapest option provide a price
+# but now we are faking this one
+
+# ordered memorial should be stored in separate model, associated with orders model
+
+# As well we need to add some sort criteria
+# and find a way to sort by popularity
+# sort by price
+# sort by name
+
+# Price could be a text (from ...) and int (...)
+# This will be based on presence of memorial variants
+
+# Will it be a good decision  to calculate price after discount?
 
 class Memorial(SeoEmpoweredModel):
     photo1 = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 1', null=True, blank=True)
@@ -20,11 +41,15 @@ class Memorial(SeoEmpoweredModel):
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
     categories = models.ManyToManyField(Category, verbose_name='Категории')
     discount = models.BooleanField(verbose_name='Со скидкой')
+    discount_percent = models.BigIntegerField(verbose_name='Скидка(процент)', null=True, blank=True)
+    discount_price = models.BigIntegerField(verbose_name='Цена со скидкой', null=True, blank=True)
+    normal_price = models.BigIntegerField(verbose_name='Цена до скидки', null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)
 
+    # model methods
     def admin_thumbnail(self):
         if self.photo1:
             return u'<img src="%s" height="100" width="100"/>' % self.photo1.url
