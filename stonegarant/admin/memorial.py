@@ -8,8 +8,9 @@ from stonegarant.widgets import *
 from ready_work import ReadyWorkInline
 from seo_article import SeoArticleMemorialInline
 
+
 class MemorialPageAdmin(admin.ModelAdmin):
-    list_display = ('admin_thumbnail','title','slug','number','price_face','price_circle','get_categories')
+    list_display = ('admin_thumbnail', 'title', 'slug', 'number', 'price_face', 'price_circle', 'get_categories')
     search_fields = ['title', 'slug', 'description']
     ordering = ['number']
     inlines = [
@@ -23,10 +24,11 @@ class MemorialPageAdmin(admin.ModelAdmin):
         'cvetnik', 'categories', 'seo_keywords', 
         'seo_description', 'meta_title'
     )
-    class form(forms.ModelForm): #вот этот кусок кода дополняет полее ввода картинки её превьюхой
+
+    class Form(forms.ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
         class Meta:
             widgets = {
-                'photo1': AdminImageWidget, #виджет определён в allvbg/widgets.py
+                'photo1': AdminImageWidget,  # виджет определён в widgets.py
                 'photo2': AdminImageWidget,
                 'description': RedactorWidget(editor_options={'lang': 'ru'}),
             }

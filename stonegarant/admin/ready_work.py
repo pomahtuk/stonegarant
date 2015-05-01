@@ -7,12 +7,14 @@ from suit.widgets import SuitSplitDateTimeWidget
 from stonegarant.widgets import *
 from stonegarant.models import ReadyWork
 
+
 class ReadyWorkPageAdmin(admin.ModelAdmin):
-    list_display = ('admin_thumbnail','title','description','pub_date','memorial')
+    list_display = ('admin_thumbnail', 'title', 'description', 'pub_date', 'memorial')
     search_fields = ['title', 'description']
     ordering = ['-pub_date']
-    list_filter = ['pub_date'] 
-    class form(forms.ModelForm): #вот этот кусок кода дополняет полее ввода картинки её превьюхой
+    list_filter = ['pub_date']
+
+    class Form(forms.ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
         class Meta:
             widgets = {
                 'photo': AdminImageWidget,
@@ -20,10 +22,12 @@ class ReadyWorkPageAdmin(admin.ModelAdmin):
                 'pub_date': SuitSplitDateTimeWidget,
             }
 
+
 class ReadyWorkInline(admin.TabularInline):
     model = ReadyWork
     extra = 1
-    class form(forms.ModelForm): #вот этот кусок кода дополняет полее ввода картинки её превьюхой
+
+    class Form(forms.ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
         class Meta:
             widgets = {
                 'photo2': AdminImageWidget,
