@@ -5,8 +5,6 @@ from django.db import models
 
 from seo_model import SeoEmpoweredModel
 from category import *
-from polirovka import *
-from cvetnik import *
 
 # to be clear:
 # we need to have memorial variation depending on:
@@ -48,15 +46,20 @@ class Memorial(SeoEmpoweredModel):
     price_face = models.BigIntegerField(verbose_name='Цена за лицевую полировку')
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
 
-    # stella_variants = models.ManyToManyField(Stella, verbose_name='Варианты стэллы')
-    cvetnik_variants = models.ManyToManyField(Cvetnik, verbose_name='Варианты цветника')
-    polirovka_variants = models.ManyToManyField(Polirovka, verbose_name='Варианты полировки')
+    # stella_variants
+    # podstavka_variants
+    # cvetnik_variants
+    # polirovka_variants
 
     discount = models.BooleanField(verbose_name='Со скидкой')
     discount_percent = models.BigIntegerField(verbose_name='Скидка(процент)', null=True, blank=True)
     discount_price = models.BigIntegerField(verbose_name='Цена со скидкой', null=True, blank=True)
 
     base_price = models.BigIntegerField(verbose_name='Базовая цена', null=True, blank=True)
+
+    # especially for sorting
+    popularity = models.BigIntegerField(verbose_name='Популярность', null=True, blank=True, default=0)
+
     # price_from - calculate
 
     # this one generates 'view on silte link'

@@ -3,6 +3,7 @@ from django.db import models
 
 from memorial import *
 
+
 class Stella(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название', null=True, blank=True)
     width = models.BigIntegerField(verbose_name='Ширина, см', default=0)
@@ -13,8 +14,8 @@ class Stella(models.Model):
     memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='stella_variants', null=True, blank=True)
 
     class Meta:
-        verbose_name = u"Стэлла"
-        verbose_name_plural = u"Стэллы"
+        verbose_name = u"Вариант стэллы"
+        verbose_name_plural = u"Варианты стэллы"
 
     def __unicode__(self):
-        return u'%s (%s см, %s см, %s см): +%s руб.' % (self.title, self.width, self.height, self.length, self.added_value)
+        return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.width, self.height, self.length, self.added_value)
