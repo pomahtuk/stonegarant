@@ -5,10 +5,10 @@ from memorial import Memorial
 
 
 class Cvetnik(models.Model):
-    title = models.TextField(verbose_name='Название', null=True, blank=True)
+    title = models.CharField(max_length=50, verbose_name='Название', null=True, blank=True)
+    length = models.BigIntegerField(verbose_name='Длина, см', default=0)
     width = models.BigIntegerField(verbose_name='Ширина, см', default=0)
     height = models.BigIntegerField(verbose_name='Высота, см', default=0)
-    length = models.BigIntegerField(verbose_name='Длина, см', default=0)
     added_value = models.BigIntegerField(verbose_name='Надбавка к базовой цене', null=True, blank=True, default=0)
     # memorial reference
     memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='cvetnik_variants', null=True, blank=True)
@@ -18,4 +18,4 @@ class Cvetnik(models.Model):
         verbose_name_plural = u"Варианты цветников"
 
     def __unicode__(self):
-        return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.width, self.height, self.length, self.added_value)
+        return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.length, self.width, self.height, self.added_value)

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import *
 from uuslug import uuslug
-from django.db import models
-
 from seo_model import SeoEmpoweredModel
+from easy_thumbnails.fields import ThumbnailerImageField
+from easy_thumbnails.files import get_thumbnailer
+
 from category import *
 
 # to be clear:
@@ -29,8 +30,16 @@ from category import *
 
 
 class Memorial(SeoEmpoweredModel):
-    photo1 = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 1', null=True, blank=True)
-    photo2 = models.ImageField(upload_to='uploads/memorials', verbose_name='Изображение 2', null=True, blank=True)
+    photo1 = ThumbnailerImageField(upload_to='uploads/memorials',
+                                   verbose_name='Изображение 1',
+                                   null=True,
+                                   blank=True
+                                   )
+    photo2 = ThumbnailerImageField(upload_to='uploads/memorials',
+                                   verbose_name='Изображение 2',
+                                   null=True,
+                                   blank=True
+                                   )
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     slug = models.CharField(max_length=255, verbose_name='URL')
@@ -73,7 +82,13 @@ class Memorial(SeoEmpoweredModel):
     # model methods
     def admin_thumbnail(self):
         if self.photo1:
-            return u'<img src="%s" height="100" width="100"/>' % self.photo1.url
+            thumbnailer = get_thumbnailer(self.photo1)
+            thumbnailer_options = ({
+                                       'size': (100, 100),
+                                       'crop': False
+                                   })
+            thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+            return u'<img src="%s" />' % thumb_file.url
         else:
             return 'нет изображения'
 

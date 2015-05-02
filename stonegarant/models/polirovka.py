@@ -5,7 +5,7 @@ from memorial import Memorial
 
 
 class Polirovka(models.Model):
-    title = models.TextField(verbose_name='Тип', null=True, blank=True)
+    title = models.CharField(max_length=50, verbose_name='Тип', null=True, blank=True)
     added_value = models.BigIntegerField(verbose_name='Надбавка к базовой цене', null=True, blank=True, default=0)
     # memorial reference
     memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='polirovka_variants', null=True)
