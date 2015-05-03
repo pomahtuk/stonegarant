@@ -17,6 +17,7 @@
     mysql -u root stonegarant 
     
     alter table stonegarant_reply change preson person varchar(50);
+    UPDATE stonegarant_memorial SET photo1=NULL WHERE slug='plitka-iz-gabbro-diabaza';
 
 
 ## Running server:

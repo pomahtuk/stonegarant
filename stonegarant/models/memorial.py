@@ -8,15 +8,6 @@ from PIL import Image
 
 from category import *
 
-# to be clear:
-# we need to have memorial variation depending on:
-# variant of stella
-# presence of podstavka
-# variant of polirovka
-# sizes of cvetnik
-# and based on cheapest option provide a price
-# but now we are faking this one
-
 # ordered memorial should be stored in separate model, associated with orders model
 
 # As well we need to add some sort criteria
@@ -73,7 +64,7 @@ class Memorial(SeoEmpoweredModel):
 
     # price_from - calculate
 
-    # this one generates 'view on silte link'
+    # this one generates 'view on site link'
     def get_absolute_url(self):
         return u'/memorial-%s' % self.slug
 
