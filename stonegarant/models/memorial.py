@@ -4,6 +4,7 @@ from uuslug import uuslug
 from seo_model import SeoEmpoweredModel
 from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
+from PIL import Image
 
 from category import *
 
@@ -40,6 +41,7 @@ class Memorial(SeoEmpoweredModel):
                                    null=True,
                                    blank=True
                                    )
+    admin_thumb = ThumbnailerImageField(upload_to='uploads/memorials', null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     slug = models.CharField(max_length=255, verbose_name='URL')
@@ -81,16 +83,33 @@ class Memorial(SeoEmpoweredModel):
 
     # model methods
     def admin_thumbnail(self):
-        if self.photo1:
-            thumbnailer = get_thumbnailer(self.photo1)
-            thumbnailer_options = ({
-                                       'size': (100, 100),
-                                       'crop': False
-                                   })
-            thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-            return u'<img src="%s" />' % thumb_file.url
+        output = [
+            u'<style>',
+            u'.field-admin_thumbnail a{display: block; text-align: center}',
+            u'.field-admin_thumbnail a img{display: inline-block;}',
+            u'</style>',
+        ]
+        if self.admin_thumb:
+            output.append(u'<img src="%s" />' % self.admin_thumb.url)
+            return u''.join(output)
         else:
-            return 'нет изображения'
+            if self.photo1:
+                try:  # an image
+                    Image.open(self.photo1)
+                    thumbnailer = get_thumbnailer(self.photo1)
+                    thumbnailer_options = ({'size': (100, 100), 'crop': False})
+                    thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+                    # save resulting thumb to admin thumb
+                    # self.admin_thumb = thumb_file
+                    self.admin_thumb.save(thumb_file.name, thumb_file)
+                    self.save()
+                    output.append(u'<img src="%s" />' % thumb_file.url)
+                    return u''.join(output)
+                except IOError:  # not image
+                    return 'not an image'
+
+            else:
+                return 'нет изображения'
 
     def get_categories(self):
         return "<br>".join([s.title for s in self.categories.all()])

@@ -186,6 +186,10 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Stonegarant Admin'
+}
+
 INSTALLED_APPS = (
     'suit',
     'django.contrib.auth',
