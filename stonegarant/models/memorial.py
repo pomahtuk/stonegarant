@@ -6,6 +6,8 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
 from PIL import Image
 
+from stonegarant.helpres import admin_thumb
+
 from category import *
 
 # ordered memorial should be stored in separate model, associated with orders model
@@ -69,38 +71,20 @@ class Memorial(SeoEmpoweredModel):
         return u'/memorial-%s' % self.slug
 
     def save(self, *args, **kwargs):
+        if self.slug is not None:
+            orig = Memorial.objects.get(slug=self.slug)
+            if orig.photo1 != self.photo1:
+                # generate new thumb
+                thumbnailer = get_thumbnailer(self.photo1)
+                thumbnailer_options = ({'size': (100, 100), 'crop': False})
+                thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+                self.admin_thumb = thumb_file
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)
 
     # model methods
     def admin_thumbnail(self):
-        output = [
-            u'<style>',
-            u'.field-admin_thumbnail a{display: block; text-align: center}',
-            u'.field-admin_thumbnail a img{display: inline-block;}',
-            u'</style>',
-        ]
-        if self.admin_thumb:
-            output.append(u'<img src="%s" />' % self.admin_thumb.url)
-            return u''.join(output)
-        else:
-            if self.photo1:
-                try:  # an image
-                    Image.open(self.photo1)
-                    thumbnailer = get_thumbnailer(self.photo1)
-                    thumbnailer_options = ({'size': (100, 100), 'crop': False})
-                    thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-                    # save resulting thumb to admin thumb
-                    # self.admin_thumb = thumb_file
-                    self.admin_thumb.save(thumb_file.name, thumb_file)
-                    self.save()
-                    output.append(u'<img src="%s" />' % thumb_file.url)
-                    return u''.join(output)
-                except IOError:  # not image
-                    return 'not an image'
-
-            else:
-                return 'нет изображения'
+        return admin_thumb(self, self.photo1)
 
     def get_categories(self):
         return "<br>".join([s.title for s in self.categories.all()])
