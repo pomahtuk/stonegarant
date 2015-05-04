@@ -38,6 +38,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
         SeoArticleMemorialInline,
         ReadyWorkInline,
     ]
+    readonly_fields = ('discount_percent',)
     fieldsets = (
         (u'Основное', {
             'fields': (
@@ -46,7 +47,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
         }),
         (u'Цены', {
             'fields': (
-                'discount', 'base_price', 'discount_price',
+                'discount', 'base_price', 'discount_price', 'discount_percent',
             )
         }),
         (u'Старые значения', {
@@ -54,11 +55,21 @@ class MemorialPageAdmin(admin.ModelAdmin):
                 'price_face', 'price_circle', 'stella', 'podstavka', 'cvetnik',
             )
         }),
+        (u'Сортировка (считается автоматически)', {
+            'fields': (
+                'popularity',
+            )
+        }),
         (u'SEO', {
             'fields': (
                 'seo_keywords', 'seo_description', 'meta_title',
             )
         }),
+        (u'На будущее', {
+            'fields': (
+                'granit',
+            )
+        })
     )
     suit_form_includes = (
         ('admin/extra.html', 'top'),

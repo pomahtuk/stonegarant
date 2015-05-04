@@ -5,8 +5,8 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-# DEBUG = False if os.environ.get('DJANGO_DEBUG') else True
-DEBUG = False
+DEBUG = False if os.environ.get('DJANGO_DEBUG') else True
+# DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -11,3 +11,4 @@ from stella import *
 from cvetnik import *
 from polirovka import *
 from podstavka import *
+from granit import *

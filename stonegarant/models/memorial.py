@@ -9,6 +9,7 @@ from PIL import Image
 from stonegarant.helpres import admin_thumb
 
 from category import *
+from granit import *
 
 # ordered memorial should be stored in separate model, associated with orders model
 
@@ -55,13 +56,16 @@ class Memorial(SeoEmpoweredModel):
 
     discount = models.BooleanField(verbose_name='Со скидкой')
     # discount_percent - auto populated field not exposed to admin area
-    discount_percent = models.BigIntegerField(verbose_name='Скидка(процент)', null=True, blank=True)
+    discount_percent = models.BigIntegerField(verbose_name='Скидка (процент)', null=True, blank=True)
     discount_price = models.BigIntegerField(verbose_name='Цена со скидкой', null=True, blank=True)
 
     base_price = models.BigIntegerField(verbose_name='Базовая цена', null=True, blank=True)
 
     # especially for sorting
     popularity = models.BigIntegerField(verbose_name='Популярность', null=True, blank=True, default=0)
+
+    # future - granit types
+    granit = models.ForeignKey(Granit, verbose_name='Тип гранита', null=True)
 
     # this one generates 'view on site link'
     def get_absolute_url(self):
@@ -79,8 +83,8 @@ class Memorial(SeoEmpoweredModel):
                 self.admin_thumb = thumb_file
             # update discount_percent
             if (orig.discount_price != self.discount_price) or (orig.base_price != self.base_price):
-                # do a math!
-                self.discount_percent = 2
+                division_value = 100 - (float(self.discount_price) / float(self.base_price) * 100)
+                self.discount_percent = round(division_value)
         # generate slug
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)

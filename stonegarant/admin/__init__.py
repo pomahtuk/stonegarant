@@ -13,6 +13,7 @@ from cvetnik import *
 from polirovka import *
 from stella import *
 from podstavka import *
+from granit import *
 
 from stonegarant.models import *
 
@@ -24,6 +25,7 @@ admin.site.register(ServicePage, ServicePageAdmin)
 admin.site.register(Memorial, MemorialPageAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Reply, ReplyAdmin)
+admin.site.register(Granit, GranitAdmin)
 
 # admin.site.register(Stella, StellaAdmin)
 # admin.site.register(Cvetnik, CvetnikAdmin)
