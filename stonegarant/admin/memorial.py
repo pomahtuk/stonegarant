@@ -14,10 +14,12 @@ from cvetnik import CvetnikInline
 from seo_article import SeoArticleMemorialInline
 
 
-class MemorialPageForm(ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
+# ImageClearableFileInput - replace with bulletproof
+
+class MemorialPageForm(ModelForm):
     class Meta:
         widgets = {
-            'photo1': ImageClearableFileInput,  # виджет определён в widgets.py
+            'photo1': ImageClearableFileInput,
             'photo2': ImageClearableFileInput,
             'description': RedactorWidget(editor_options={'lang': 'ru'}),
         }
@@ -36,17 +38,15 @@ class MemorialPageAdmin(admin.ModelAdmin):
         SeoArticleMemorialInline,
         ReadyWorkInline,
     ]
-    # fields = (
-    #     'photo1', 'photo2', 'number',
-    #     'title', 'price_face', 'price_circle',
-    #     'description', 'stella', 'podstavka',
-    #     'cvetnik', 'categories', 'seo_keywords',
-    #     'seo_description', 'meta_title'
-    # )
     fieldsets = (
         (u'Основное', {
             'fields': (
                 'photo1', 'photo2', 'number', 'title', 'categories',
+            )
+        }),
+        (u'Цены', {
+            'fields': (
+                'discount', 'base_price', 'discount_price',
             )
         }),
         (u'Старые значения', {
@@ -56,8 +56,11 @@ class MemorialPageAdmin(admin.ModelAdmin):
         }),
         (u'SEO', {
             'fields': (
-                'seo_keywords', 'seo_description', 'meta_title'
+                'seo_keywords', 'seo_description', 'meta_title',
             )
         }),
+    )
+    suit_form_includes = (
+        ('admin/extra.html', 'top'),
     )
 

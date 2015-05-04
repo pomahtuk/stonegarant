@@ -9,6 +9,6 @@ class CvetnikAdmin(admin.ModelAdmin):
     ordering = ('-title',)
 
 
-class CvetnikInline(admin.TabularInline):
+class CvetnikInline(admin.StackedInline):
     model = Cvetnik
     extra = 1

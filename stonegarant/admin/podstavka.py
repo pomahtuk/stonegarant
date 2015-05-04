@@ -9,6 +9,6 @@ class PodstavkaAdmin(admin.ModelAdmin):
     search_fields = ['title', 'width', 'height', 'length', 'added_value', 'memorial']
     ordering = ('-title',)
 
-class PodstavkaInline(admin.TabularInline):
+class PodstavkaInline(admin.StackedInline):
     model = Podstavka
     extra = 1

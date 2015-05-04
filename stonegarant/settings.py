@@ -163,17 +163,25 @@ THUMBNAIL_ALIASES = {
 
 THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your access key id
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # enter your secret access key
 AWS_STORAGE_BUCKET_NAME = 'stonegarant'
+AWS_IS_GZIPPED = True
+
+AWS_HEADERS = {
+    'Cache-Control': 'max-age=86400',
+}
+
+STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
+COMPRESS_CSS_HASHING_METHOD = 'hash'
 
 S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL + '/'
@@ -181,9 +189,26 @@ MEDIA_URL = S3_URL + '/media/'
 COMPRESS_URL = STATIC_URL
 
 COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+    # 'compressor.filters.jsmin.SlimItFilter'
+]
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+GZIP_CONTENT_TYPES = (
+    'text/css',
+    'application/javascript',
+    'application/x-javascript',
+    'text/javascript'
 )
 
 SUIT_CONFIG = {

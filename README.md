@@ -22,4 +22,4 @@
 
 ## Running server:
 
-	./manage.py runserver
+	./manage.py compress && ./manage.py runserver
