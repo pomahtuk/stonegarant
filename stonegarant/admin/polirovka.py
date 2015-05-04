@@ -10,6 +10,6 @@ class PolirovkaAdmin(admin.ModelAdmin):
     ordering = ('-title',)
 
 
-class PolirovkaInline(admin.TabularInline):
+class PolirovkaInline(admin.StackedInline):
     model = Polirovka
     extra = 1

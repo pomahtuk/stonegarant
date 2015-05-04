@@ -10,6 +10,6 @@ class StellaAdmin(admin.ModelAdmin):
     ordering = ('-title',)
 
 
-class StellaInline(admin.TabularInline):
+class StellaInline(admin.StackedInline):
     model = Stella
     extra = 1

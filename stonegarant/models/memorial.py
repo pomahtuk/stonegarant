@@ -20,8 +20,6 @@ from category import *
 # Price could be a text (from ...) and int (...)
 # This will be based on presence of memorial variants
 
-# Will it be a good decision  to calculate price after discount?
-
 
 class Memorial(SeoEmpoweredModel):
     photo1 = ThumbnailerImageField(upload_to='uploads/memorials',
@@ -56,6 +54,7 @@ class Memorial(SeoEmpoweredModel):
     # polirovka_variants
 
     discount = models.BooleanField(verbose_name='Со скидкой')
+    # discount_percent - auto populated field not exposed to admin area
     discount_percent = models.BigIntegerField(verbose_name='Скидка(процент)', null=True, blank=True)
     discount_price = models.BigIntegerField(verbose_name='Цена со скидкой', null=True, blank=True)
 
@@ -64,8 +63,6 @@ class Memorial(SeoEmpoweredModel):
     # especially for sorting
     popularity = models.BigIntegerField(verbose_name='Популярность', null=True, blank=True, default=0)
 
-    # price_from - calculate
-
     # this one generates 'view on site link'
     def get_absolute_url(self):
         return u'/memorial-%s' % self.slug
@@ -73,12 +70,18 @@ class Memorial(SeoEmpoweredModel):
     def save(self, *args, **kwargs):
         if self.slug is not None:
             orig = Memorial.objects.get(slug=self.slug)
+            # update thumb
             if orig.photo1 != self.photo1:
                 # generate new thumb
                 thumbnailer = get_thumbnailer(self.photo1)
                 thumbnailer_options = ({'size': (100, 100), 'crop': False})
                 thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
                 self.admin_thumb = thumb_file
+            # update discount_percent
+            if (orig.discount_price != self.discount_price) or (orig.base_price != self.base_price):
+                # do a math!
+                self.discount_percent = 2
+        # generate slug
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)
 

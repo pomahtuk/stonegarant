@@ -16,6 +16,8 @@ class ReadyWorkPageForm(ModelForm):  # вот этот кусок кода до�
 
 
 class ReadyWorkInlineForm(ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
+    exclude = ('admin_thumb',)
+
     class Meta:
         widgets = {
             'photo': AdminImageWidget,
@@ -32,7 +34,8 @@ class ReadyWorkPageAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
 
 
-class ReadyWorkInline(admin.TabularInline):
+class ReadyWorkInline(admin.StackedInline):
+    exclude = ('admin_thumb',)
     form = ReadyWorkInlineForm
     model = ReadyWork
     extra = 1
