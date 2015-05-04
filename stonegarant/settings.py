@@ -163,9 +163,6 @@ THUMBNAIL_ALIASES = {
 
 THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 AWS_S3_SECURE_URLS = False       # use http instead of https
@@ -181,7 +178,7 @@ AWS_HEADERS = {
 
 STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
-COMPRESS_CSS_HASHING_METHOD = 'hash'
+# COMPRESS_CSS_HASHING_METHOD = 'hash'
 
 S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL + '/'
@@ -197,7 +194,6 @@ COMPRESS_CSS_FILTERS = [
 ]
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter',
-    # 'compressor.filters.jsmin.SlimItFilter'
 ]
 
 COMPRESS_PRECOMPILERS = (

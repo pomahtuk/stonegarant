@@ -31,4 +31,3 @@ django-libsass==0.3
 libsass==0.7.0
 django-compressor==1.5
 django-appconf==1.0.1
-slimit==0.8.1
