@@ -18,4 +18,12 @@ class Stella(models.Model):
         verbose_name_plural = u"Варианты стэллы"
 
     def __unicode__(self):
-        return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.length, self.width, self.height, self.added_value)
+        return u'%s (%s*%s*%sсм, +%s руб.) - %s, %s' % (
+            self.title,
+            self.length,
+            self.width,
+            self.height,
+            self.added_value,
+            self.memorial.title,
+            self.memorial.base_price,
+        )

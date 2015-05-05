@@ -27,7 +27,7 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Reply, ReplyAdmin)
 admin.site.register(Granit, GranitAdmin)
 
-# admin.site.register(Stella, StellaAdmin)
+admin.site.register(Stella, StellaAdmin)
 # admin.site.register(Cvetnik, CvetnikAdmin)
 # admin.site.register(Polirovka, PolirovkaAdmin)
 # admin.site.register(Podstavka, PodstavkaAdmin)

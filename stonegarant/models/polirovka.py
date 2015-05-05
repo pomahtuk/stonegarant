@@ -2,13 +2,15 @@
 from django.db import models
 
 from memorial import Memorial
+from stella import Stella
 
 
 class Polirovka(models.Model):
     title = models.CharField(max_length=50, verbose_name='Тип', null=True, blank=True)
     added_value = models.BigIntegerField(verbose_name='Надбавка к базовой цене', null=True, blank=True, default=0)
     # memorial reference
-    memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='polirovka_variants', null=True)
+    # memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='polirovka_variants', null=True)
+    stella = models.ForeignKey(Stella, verbose_name='Стэлла', null=True, blank=True)
 
     class Meta:
         verbose_name = u"Вариант полировки"

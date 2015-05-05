@@ -2,6 +2,7 @@
 from django.db import models
 
 from memorial import Memorial
+from stella import Stella
 
 
 class Podstavka(models.Model):
@@ -11,7 +12,8 @@ class Podstavka(models.Model):
     height = models.BigIntegerField(verbose_name='Высота, см', default=0)
     added_value = models.BigIntegerField(verbose_name='Надбавка к базовой цене', null=True, blank=True, default=0)
     # memorial reference
-    memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='podstavka_variants', null=True, blank=True)
+    # memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='podstavka_variants', null=True, blank=True)
+    stella = models.ForeignKey(Stella, verbose_name='Стэлла', null=True)
 
     class Meta:
         verbose_name = u"Вариант подставки"

@@ -65,7 +65,7 @@ class Memorial(SeoEmpoweredModel):
     popularity = models.BigIntegerField(verbose_name='Популярность', null=True, blank=True, default=0)
 
     # future - granit types
-    granit = models.ForeignKey(Granit, verbose_name='Тип гранита', null=True)
+    granit = models.ForeignKey(Granit, verbose_name='Тип гранита', null=True, blank=True)
 
     # this one generates 'view on site link'
     def get_absolute_url(self):

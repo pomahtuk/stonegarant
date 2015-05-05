@@ -31,10 +31,10 @@ class MemorialPageAdmin(admin.ModelAdmin):
     search_fields = ['title', 'slug', 'description']
     ordering = ['number']
     inlines = [
-        PolirovkaInline,
-        PodstavkaInline,
         StellaInline,
-        CvetnikInline,
+        # PolirovkaInline,
+        # PodstavkaInline,
+        # CvetnikInline,
         SeoArticleMemorialInline,
         ReadyWorkInline,
     ]

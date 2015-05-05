@@ -38,4 +38,4 @@ class ReadyWorkInline(admin.StackedInline):
     exclude = ('admin_thumb',)
     form = ReadyWorkInlineForm
     model = ReadyWork
-    extra = 1
+    extra = 0

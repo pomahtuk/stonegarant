@@ -16,7 +16,7 @@ class SeoArticleForm(ModelForm):  # вот этот кусок кода допо
 class SeoArticleCategoryInline(admin.StackedInline):
     form = SeoArticleForm
     model = SeoArticle
-    extra = 1
+    extra = 0
     exclude = ('memorial',)
 
 
