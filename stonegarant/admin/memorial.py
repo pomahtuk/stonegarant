@@ -7,10 +7,7 @@ from easy_thumbnails.widgets import ImageClearableFileInput
 from stonegarant.widgets import *
 
 from ready_work import ReadyWorkInline
-from polirovka import PolirovkaInline
-from podstavka import PodstavkaInline
 from stella import StellaInline
-from cvetnik import CvetnikInline
 from seo_article import SeoArticleMemorialInline
 
 
@@ -32,9 +29,6 @@ class MemorialPageAdmin(admin.ModelAdmin):
     ordering = ['number']
     inlines = [
         StellaInline,
-        # PolirovkaInline,
-        # PodstavkaInline,
-        # CvetnikInline,
         SeoArticleMemorialInline,
         ReadyWorkInline,
     ]

@@ -1,9 +1,9 @@
 ## ToDo list:
 
-* Save memorial with options on order
 * Automated e-mail sending
 * Data migration script
-* add relation from each memorial option to stella
+* Jivo-site
+* Require-js architecture
 
 
 ## Instalation:

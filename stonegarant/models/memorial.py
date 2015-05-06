@@ -33,6 +33,11 @@ class Memorial(SeoEmpoweredModel):
                                    null=True,
                                    blank=True
                                    )
+    photo3 = ThumbnailerImageField(upload_to='uploads/memorials',
+                                   verbose_name='Изображение 3',
+                                   null=True,
+                                   blank=True
+                                   )
     admin_thumb = ThumbnailerImageField(upload_to='uploads/memorials', null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')

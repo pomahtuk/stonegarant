@@ -181,7 +181,6 @@ AWS_HEADERS = {
 
 STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
-# COMPRESS_CSS_HASHING_METHOD = 'hash'
 
 S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL + '/'
@@ -223,8 +222,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'easy_thumbnails',
-    'mptt',
-    'feincms',
     'debug_toolbar',
     'suit_redactor',
     'pagination',
@@ -234,6 +231,13 @@ INSTALLED_APPS = (
     'stonegarant',
     'compressor'
 )
+
+## replace this with yandex.pdd
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_HOST_USER = 'login@example.com'
+# EMAIL_HOST_PASSWORD = 'password'
+# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
