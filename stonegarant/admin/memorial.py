@@ -2,7 +2,6 @@
 from django.contrib import admin
 from django.forms import ModelForm  # зависимость для переопределения полей формы в админке
 from suit_redactor.widgets import RedactorWidget
-from easy_thumbnails.widgets import ImageClearableFileInput
 
 from stonegarant.widgets import *
 
@@ -16,8 +15,9 @@ from seo_article import SeoArticleMemorialInline
 class MemorialPageForm(ModelForm):
     class Meta:
         widgets = {
-            'photo1': ImageClearableFileInput,
-            'photo2': ImageClearableFileInput,
+            'photo1': SafeImageClearableFileInput,
+            'photo2': SafeImageClearableFileInput,
+            'photo3': SafeImageClearableFileInput,
             'description': RedactorWidget(editor_options={'lang': 'ru'}),
         }
 
@@ -36,7 +36,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
     fieldsets = (
         (u'Основное', {
             'fields': (
-                'photo1', 'photo2', 'number', 'title', 'categories',
+                'photo1', 'photo2', 'photo3', 'number', 'title', 'categories',
             )
         }),
         (u'Цены', {

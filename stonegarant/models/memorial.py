@@ -55,9 +55,6 @@ class Memorial(SeoEmpoweredModel):
     price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
 
     # stella_variants
-    # podstavka_variants
-    # cvetnik_variants
-    # polirovka_variants
 
     discount = models.BooleanField(verbose_name='Со скидкой')
     # discount_percent - auto populated field not exposed to admin area
@@ -88,8 +85,9 @@ class Memorial(SeoEmpoweredModel):
                 self.admin_thumb = thumb_file
             # update discount_percent
             if (orig.discount_price != self.discount_price) or (orig.base_price != self.base_price):
-                division_value = 100 - (float(self.discount_price) / float(self.base_price) * 100)
-                self.discount_percent = round(division_value)
+                if self.base_price > 0:
+                    division_value = 100 - (float(self.discount_price) / float(self.base_price) * 100)
+                    self.discount_percent = round(division_value)
         # generate slug
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)
