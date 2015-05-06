@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.forms import ModelForm #зависимость для переопределения полей формы в админке
+from django.forms import ModelForm  # зависимость для переопределения полей формы в админке
 from suit_redactor.widgets import RedactorWidget
 from suit.widgets import SuitSplitDateTimeWidget
 
@@ -11,7 +11,7 @@ from stonegarant.models import ReadyWork
 class ReadyWorkPageForm(ModelForm):  # вот этот кусок кода дополняет полее ввода картинки её превьюхой
     class Meta:
         widgets = {
-            'photo2': AdminImageWidget,
+            'photo': SafeImageClearableFileInput,
         }
 
 
@@ -20,7 +20,7 @@ class ReadyWorkInlineForm(ModelForm):  # вот этот кусок кода д�
 
     class Meta:
         widgets = {
-            'photo': AdminImageWidget,
+            'photo': SafeImageClearableFileInput,
             'description': RedactorWidget(editor_options={'lang': 'ru'}),
             'pub_date': SuitSplitDateTimeWidget,
         }
