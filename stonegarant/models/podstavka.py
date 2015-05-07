@@ -11,8 +11,6 @@ class Podstavka(models.Model):
     width = models.BigIntegerField(verbose_name='Ширина, см', default=0)
     height = models.BigIntegerField(verbose_name='Высота, см', default=0)
     added_value = models.BigIntegerField(verbose_name='Надбавка к базовой цене', null=True, blank=True, default=0)
-    # memorial reference
-    # memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='podstavka_variants', null=True, blank=True)
     stella = models.ForeignKey(Stella, verbose_name='Стэлла', null=True)
 
     class Meta:

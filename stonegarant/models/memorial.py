@@ -33,11 +33,6 @@ class Memorial(SeoEmpoweredModel):
                                    null=True,
                                    blank=True
                                    )
-    photo3 = ThumbnailerImageField(upload_to='uploads/memorials',
-                                   verbose_name='Изображение 3',
-                                   null=True,
-                                   blank=True
-                                   )
     admin_thumb = ThumbnailerImageField(upload_to='uploads/memorials', null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')
@@ -68,6 +63,9 @@ class Memorial(SeoEmpoweredModel):
 
     # future - granit types
     granit = models.ForeignKey(Granit, verbose_name='Тип гранита', null=True, blank=True)
+
+    # it's better, images reference
+    # images now available
 
     # this one generates 'view on site link'
     def get_absolute_url(self):

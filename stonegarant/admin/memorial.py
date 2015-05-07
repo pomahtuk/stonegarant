@@ -8,6 +8,7 @@ from stonegarant.widgets import *
 from ready_work import ReadyWorkInline
 from stella import StellaInline
 from seo_article import SeoArticleMemorialInline
+from attached_image import ImageMemorialInline
 
 
 # ImageClearableFileInput - replace with bulletproof
@@ -17,7 +18,6 @@ class MemorialPageForm(ModelForm):
         widgets = {
             'photo1': SafeImageClearableFileInput,
             'photo2': SafeImageClearableFileInput,
-            'photo3': SafeImageClearableFileInput,
             'description': RedactorWidget(editor_options={'lang': 'ru'}),
         }
 
@@ -29,6 +29,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
     ordering = ['number']
     inlines = [
         StellaInline,
+        ImageMemorialInline,
         SeoArticleMemorialInline,
         ReadyWorkInline,
     ]
@@ -36,7 +37,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
     fieldsets = (
         (u'Основное', {
             'fields': (
-                'photo1', 'photo2', 'photo3', 'number', 'title', 'categories',
+                'photo1', 'photo2', 'number', 'title', 'categories',
             )
         }),
         (u'Цены', {
