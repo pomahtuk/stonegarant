@@ -1,0 +1,13 @@
+{
+  "name": "stonegarant",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pomahtuk/stonegarant",
+  "authors": [
+    "Ilya Lovriakov <ilya.lovriakov@booking.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "almond": "~0.3.1"
+  }
+}

@@ -149,7 +149,8 @@
 
     {% compress js %}
       {% block javascripts %}
-        <script src="{{STATIC_URL}}stonegarant/javascripts/jquery.js" type="text/javascript"></script>
+        <script src="{{STATIC_URL}}components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="{{STATIC_URL}}components/almond/almond.js" type="text/javascript"></script>
         <script src="{{STATIC_URL}}stonegarant/javascripts/app/logger.js" type="text/javascript"></script>
         <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/slider.js" type="text/javascript"></script>
         <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/menu.js" type="text/javascript"></script>

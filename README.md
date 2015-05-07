@@ -4,6 +4,7 @@
 * Data migration script
 * Jivo-site
 * Require-js architecture
+* add separate model for images
 
 
 ## Instalation:
