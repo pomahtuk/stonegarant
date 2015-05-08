@@ -32,6 +32,9 @@ class ReadyWorkPageAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description']
     ordering = ['-pub_date']
     list_filter = ['pub_date']
+    suit_form_includes = (
+        ('admin/extra.html', 'top'),
+    )
 
 
 class ReadyWorkInline(admin.StackedInline):

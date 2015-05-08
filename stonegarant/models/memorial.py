@@ -4,9 +4,9 @@ from uuslug import uuslug
 from seo_model import SeoEmpoweredModel
 from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
-from PIL import Image
+from django.db.models import signals
 
-from stonegarant.helpres import admin_thumb
+from stonegarant.helpres import simple_admin_thumb
 
 from category import *
 from granit import *
@@ -33,7 +33,7 @@ class Memorial(SeoEmpoweredModel):
                                    null=True,
                                    blank=True
                                    )
-    admin_thumb = ThumbnailerImageField(upload_to='uploads/memorials', null=True, blank=True)
+    admin_thumb = models.CharField(max_length=255, null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     slug = models.CharField(max_length=255, verbose_name='URL')
@@ -74,13 +74,6 @@ class Memorial(SeoEmpoweredModel):
     def save(self, *args, **kwargs):
         if self.slug is not None:
             orig = Memorial.objects.get(slug=self.slug)
-            # update thumb
-            if orig.photo1 != self.photo1:
-                # generate new thumb
-                thumbnailer = get_thumbnailer(self.photo1)
-                thumbnailer_options = ({'size': (100, 100), 'crop': False})
-                thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-                self.admin_thumb = thumb_file
             # update discount_percent
             if (orig.discount_price != self.discount_price) or (orig.base_price != self.base_price):
                 if self.base_price > 0:
@@ -92,7 +85,12 @@ class Memorial(SeoEmpoweredModel):
 
     # model methods
     def admin_thumbnail(self):
-        return admin_thumb(self, self.photo1)
+        photo_list = self.images.order_by('order')
+        if len(photo_list) > 0:
+            photo = photo_list[0].photo
+        else:
+            photo = None
+        return simple_admin_thumb(self, photo)
 
     def get_categories(self):
         return "<br>".join([s.title for s in self.categories.all()])
@@ -110,3 +108,29 @@ class Memorial(SeoEmpoweredModel):
     class Meta:
         verbose_name = u"Памятник"
         verbose_name_plural = u"Памятники"
+
+
+def create_admin_thumb(sender, instance, **kwargs):
+    # sometimes order is not updated
+    photo_list = instance.images.order_by('order')
+    if len(photo_list) > 0:
+        photo = photo_list[0].photo
+        # generate new thumb
+        thumbnailer = get_thumbnailer(photo.name, photo)
+        thumbnailer_options = ({'size': (100, 100), 'crop': False})
+        thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+        same = instance.admin_thumb == thumb_file.url
+        # print u'%s, %s, %s' % (instance.admin_thumb, thumb_file.url, same)
+        if not same:
+            print u'not same'
+            instance.admin_thumb = thumb_file.url
+            print 'thumb_file %s' % thumb_file.url
+            instance.save()
+    else:
+        print 'no image provided'
+        # current thumb is irrelevant
+        instance.admin_thumb = None
+        instance.save()
+
+
+signals.post_save.connect(create_admin_thumb, sender=Memorial)

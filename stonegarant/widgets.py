@@ -9,12 +9,12 @@ from easy_thumbnails.files import get_thumbnailer
 
 class SafeImageClearableFileInput(ClearableFileInput):
     template_with_initial = (
-        u'%(clear_template)s<br />'
-        u'%(input_text)s: %(input)s'
+        u'%(input_text)s: %(input)s<br>'
+        u'%(clear_template)s'
     )
     template_with_thumbnail = (
-        u'%(template)s<br />'
-        u'<a href="%(source_url)s" target="_blank">%(thumb)s</a>'
+        u'<a href="%(source_url)s" target="_blank">%(thumb)s</a><br>'
+        u'%(template)s'
     )
 
     def __init__(self, thumbnail_options=None, attrs=None):
@@ -54,27 +54,3 @@ class SafeImageClearableFileInput(ClearableFileInput):
                 'source_url': value.storage.url(value.name),
             }
             return mark_safe(self.template_with_thumbnail % substitution)
-
-
-
-class AdminImageWidget(AdminFileWidget):
-    """
-    A FileField Widget that displays an image instead of a file path
-    if the current file is an image.
-    """
-    def render(self, name, value, attrs=None):
-        output = []
-        file_name = str(value)
-        if file_name:
-            file_path = '%s%s' % (settings.MEDIA_URL, file_name)
-            try:  # an image
-                Image.open(os.path.join(settings.MEDIA_ROOT, file_name))
-                output.append('<a target="_blank" href="%s">%s</a>' % (file_path,
-                                                                       thumbnail(file_name)
-                                                                       )
-                              )
-            except IOError:  # not image
-                output.append('')
-
-        output.append(super(AdminFileWidget, self).render(name, value, attrs))
-        return mark_safe(u''.join(output))

@@ -14,7 +14,6 @@ class ImageInlineForm(ModelForm):  # вот этот кусок кода доп�
 
 
 class ImageMemorialInline(SortableTabularInline):
-    exclude = ('ready_work',)
     form = ImageInlineForm
     model = AttachedImage
     extra = 1
