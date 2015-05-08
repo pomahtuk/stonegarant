@@ -53,8 +53,8 @@ class Command(BaseCommand):
             self.stdout.write('%s/%s' % (self.memorial.discount_price,  self.memorial.base_price))
             self.create_stella_variants()
             # update images
-            self.memorial.images.create(self.memorial.photo1.filename, self.memorial.photo1)
-            self.memorial.images.create(self.memorial.photo2.filename, self.memorial.photo2)
+            # self.memorial.images.create(self.memorial.photo1.filename, self.memorial.photo1)
+            # self.memorial.images.create(self.memorial.photo2.filename, self.memorial.photo2)
             # saving price update
             self.memorial.save()
         self.stdout.write('Successfully executed command')
