@@ -37,7 +37,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
     fieldsets = (
         (u'Основное', {
             'fields': (
-                'photo1', 'photo2', 'number', 'title', 'categories',
+                'number', 'title', 'categories',
             )
         }),
         (u'Цены', {
@@ -45,11 +45,11 @@ class MemorialPageAdmin(admin.ModelAdmin):
                 'discount', 'base_price', 'discount_price', 'discount_percent',
             )
         }),
-        (u'Старые значения', {
-            'fields': (
-                'price_face', 'price_circle', 'stella', 'podstavka', 'cvetnik',
-            )
-        }),
+        # (u'Старые значения', {
+        #     'fields': (
+        #         'price_face', 'price_circle', 'stella', 'podstavka', 'cvetnik',
+        #     )
+        # }),
         (u'Сортировка (считается автоматически)', {
             'fields': (
                 'popularity',
@@ -60,11 +60,11 @@ class MemorialPageAdmin(admin.ModelAdmin):
                 'seo_keywords', 'seo_description', 'meta_title',
             )
         }),
-        (u'На будущее', {
-            'fields': (
-                'granit',
-            )
-        })
+        # (u'На будущее', {
+        #     'fields': (
+        #         'granit',
+        #     )
+        # })
     )
     suit_form_includes = (
         ('admin/extra.html', 'top'),
