@@ -83,6 +83,9 @@ class Memorial(SeoEmpoweredModel):
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)
 
+    def ordered_images(self):
+        return self.images.order_by('order')
+
     # model methods
     def admin_thumbnail(self):
         photo_list = self.images.order_by('order')

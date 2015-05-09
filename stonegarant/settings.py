@@ -188,7 +188,7 @@ MEDIA_URL = S3_URL + '/media/'
 COMPRESS_URL = STATIC_URL
 
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
@@ -244,6 +244,8 @@ EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
 EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
 EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
 EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+
+JIVOSITE_ID = os.environ.get('JIVOSITE_ID', 'd5VtEOvH6q')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
