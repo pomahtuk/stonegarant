@@ -20,6 +20,7 @@
 ### MySQL
     
 	mysql -u root stonegarant < dump.sql
+	ALTER TABLE stonegarant_reply CHANGE preson person VARCHAR(50);
 
 ### Migrations
 

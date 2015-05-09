@@ -2,6 +2,7 @@
 from django.db import models
 from easy_thumbnails.fields import ThumbnailerImageField
 
+from stonegarant.helpres import admin_thumb
 from memorial import *
 
 
