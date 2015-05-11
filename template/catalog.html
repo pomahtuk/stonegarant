@@ -28,13 +28,13 @@
     <div class='content_holder sections_nav cf'>
       <div class='mlr20'>
         <div class='sections'>
-          <a href="/catalog" class="{% if not category.slug %} active{% endif %}">Все памятники</a>
-          <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
-          <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
-          <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
-          <a href="/catalog/prostye" class="{% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
-          <a href="/catalog/ekskliuzivnye" class="{% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
-          <a href="/catalog/komplektuiushchie" class="{% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+          <a href="/catalog" class="category category-all {% if not category.slug %} active{% endif %}">Все памятники</a>
+          <a href="/catalog/odinarnye" class="category category-odinarnye {% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+          <a href="/catalog/dvoinye" class="category category-dvoinye {% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+          <a href="/catalog/s-krestom" class="category category-s-krestom {% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+          <a href="/catalog/prostye" class="category category-prostye {% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
+          <a href="/catalog/ekskliuzivnye" class="category category-ekskliuzivnye {% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+          <a href="/catalog/komplektuiushchie" class="category category-komplektuiushchie {% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
         </div>
       </div>
     </div>
@@ -57,14 +57,14 @@
               {% if memorial.discount %}
                 <span class="single-memorial-discount">{{ memorial.discount_percent }}</span>
               {% endif %}
-              <a class='single-memorial-image' href='/memorial-{{ memorial.slug }}'>
+              <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
                 <img src="{{ memorial.photo1 | thumbnail_url:'catalog' }}" alt="{{ memorial.slug }}"/>
               </a>
               <div class='single-memorial-info'>
                 <span class="single-memorial-info-title">{{memorial.title}}</span>
                 {% if memorial.discount %}
                   <span class="single-memorial-strikeout">{{ memorial.base_price }}</span>
-                  <a class="single-memorial-button">
+                  <a class="single-memorial-button" href="{% url 'memorial' memorial.slug %}">
                     {{memorial.discount_price}} р.
                   </a>
                 {% else %}
