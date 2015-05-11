@@ -28,6 +28,7 @@
     <div class='content_holder sections_nav cf'>
       <div class='mlr20'>
         <div class='sections'>
+          <a href="/catalog" class="{% if not category.slug %} active{% endif %}">Все памятники</a>
           <a href="/catalog/odinarnye" class="{% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
           <a href="/catalog/dvoinye" class="{% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
           <a href="/catalog/s-krestom" class="{% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
@@ -47,28 +48,30 @@
         <h1>Наиболее популярные</h1>
         <ul class='cf'>
           {% for memorial in memorials %}
-            <li>
-              <a class='image' href='/memorial-{{memorial.slug}}' style="background-image: url({{ memorial.photo1 | thumbnail_url:'catalog' }});"></a>
-              <div class='info'>
-                <a href="#">{{memorial.title}}</a>
-                <b>{{memorial.price_face}} р.</b>
-              </div>
-              <div class='hover_block'>
-                <div class='wrp'>
-                  <div class='title'>
-                    {% for category in memorial.categories.all %}
-                      {{category}}&nbsp;
-                    {% endfor %}
-                  </div>
-                  <div class='name'>{{memorial.title}}</div>
-                  <div class='marker'>&diams;</div>
-                  <div class='price'>{{memorial.price_face}} р.</div>
-                  <div class='equip'>
-                    <b>комплект</b>
-                    стела, подставка, цветник
-                  </div>
-                  <a href='/memorial-{{memorial.slug}}'>Смотреть подробности</a>
-                </div>
+            {% if forloop.counter == 4%}
+              <li class="memorial-promo-block">
+                promo block
+              </li>
+            {% endif %}
+            <li class="single-memorial">
+              {% if memorial.discount %}
+                <span class="single-memorial-discount">{{ memorial.discount_percent }}</span>
+              {% endif %}
+              <a class='single-memorial-image' href='/memorial-{{ memorial.slug }}'>
+                <img src="{{ memorial.photo1 | thumbnail_url:'catalog' }}" alt="{{ memorial.slug }}"/>
+              </a>
+              <div class='single-memorial-info'>
+                <span class="single-memorial-info-title">{{memorial.title}}</span>
+                {% if memorial.discount %}
+                  <span class="single-memorial-strikeout">{{ memorial.base_price }}</span>
+                  <a class="single-memorial-button">
+                    {{memorial.discount_price}} р.
+                  </a>
+                {% else %}
+                  <a class="single-memorial-button">
+                    {{memorial.base_price}} р.
+                  </a>
+                {% endif %}
               </div>
             </li>
           {% endfor %}
