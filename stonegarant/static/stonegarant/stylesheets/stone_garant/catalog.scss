@@ -14,139 +14,45 @@ h1{
   ul{
     border: 0px solid red;
 
-    li{
+    .memorial-promo-block {
       float: left;
       width: 247px;
-      height: 400px;
+      height: 440px;
       overflow: hidden;
       position: relative;
       margin-bottom: 20px;
-      border: 0px solid green;
+    }
 
-      a.image{
+    .single-memorial {
+      float: left;
+      width: 247px;
+      height: 440px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+
+      .single-memorial-image {
         width:  100%;
         height: 330px;
         display: block;
-        position: absolute;
-        left: 0; bottom: 75px;
         background-repeat: no-repeat;
         background-position: center bottom;
       }
-      .info{
+
+      .single-memorial-info {
         @include museo_font;
 
-        width: 100%;
-        position: absolute;
-        left: 0; bottom: 0;
+        text-align: center;
 
-        a{
-          text-decoration: none;
-          line-height: 125%;
-        }
-        b{
-          @include pts_font;
-        }
-        a, b{
-          color: black;
-          display: block;
-          font-size: 1.6em;
-          text-align: center;
-          margin-bottom: 7px;
-        }
-      }
-
-      .hover_block{
-        width: 100%;
-        height: 0;
-        overflow: hidden;
-        background: #272a2d;
-        position: absolute;
-        bottom: 0; left: 0;
-
-        .wrp{
-          width: 227px;
-          height: 250px;
-          position: absolute;
-          top: 10px; left: 10px;
-          border: 1px solid #a0a0a0;
-        }
-
-        a, .title, .name, .price, .equip, .marker{
-          left: 0;
-          width: 100%;
-          color: white;
-          display: block;
-          position: absolute;
-          text-align: center;
-          @include museo_font;
-        }
-
-        .title{
-          top: 20px;
-          color: #a0a0a0;
-        }
-        .name{
-          top: 40px;
-          left: 10px;
-          width: 206px;
-          font-size: 1.3em;
-          line-height: 130%;
-        }
-        .marker{
-          font-size: 1.5em;
-          height: 30px;
-          top: 73px;
-
-          &:before, &:after{
-            border-top: 1px solid white;
-            position: absolute;
-            display: block;
-            content: " ";
-            width: 80px;
-            top: 7px;
-          }
-          &:before{ left: 25px; }
-          &:after{ right: 25px; }
-        }
-        .price{
-          font-size: 1.7em;
-          top: 105px;
-        }
-        .equip{
-          @include pts_font;
-          top: 140px;
-          font-size: 1.1em;
-
-          b{
-            color: #a0a0a0;
-            display: block;
-            margin-bottom: 5px;
-          }
-        }
-
-        a{
-          @include pts_font;
-          width: 167px;
-          color: #c75a38;
+        .single-memorial-info-title {
           font-size: 1.4em;
-          padding: 10px 15px;
-          bottom: 12px; left: 13px;
-          border: 3px solid #c75a38;
-          text-decoration: none;
-          text-align: center;
-
-          &:hover{
-            color: white;
-            background: #c75a38;
-          }
+          margin: 15px 0px;
         }
-      }
-      &:hover{
-        .hover_block{
-          height: 270px;
-          @include css3-prefix('transition-duration', .2s);
-          @include css3-prefix('transition-property', height);
-          @include css3-prefix('transition-timing-function', ease-in);
+
+        .single-memorial-button {
+          display: inline-block;
+          line-height: 40px;
+          color: #fff;
         }
       }
     }

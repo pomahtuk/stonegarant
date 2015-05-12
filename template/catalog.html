@@ -55,21 +55,22 @@
             {% endif %}
             <li class="single-memorial">
               {% if memorial.discount %}
-                <span class="single-memorial-discount">{{ memorial.discount_percent }}</span>
+                <div class="single-memorial-discount">{{ memorial.discount_percent }}</div>
               {% endif %}
-              <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
-                <img src="{{ memorial.photo1 | thumbnail_url:'catalog' }}" alt="{{ memorial.slug }}"/>
+              <a class='single-memorial-image'
+                 href="{% url 'memorial' memorial.slug %}"
+                 style="background-image: url({{ memorial.photo1 | thumbnail_url:'catalog' }})">
               </a>
               <div class='single-memorial-info'>
-                <span class="single-memorial-info-title">{{memorial.title}}</span>
+                <div class="single-memorial-info-title">{{memorial.title}}</div>
                 {% if memorial.discount %}
                   <span class="single-memorial-strikeout">{{ memorial.base_price }}</span>
-                  <a class="single-memorial-button" href="{% url 'memorial' memorial.slug %}">
-                    {{memorial.discount_price}} р.
+                  <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
+                    от <b>{{memorial.discount_price}} р.</b>
                   </a>
                 {% else %}
-                  <a class="single-memorial-button">
-                    {{memorial.base_price}} р.
+                  <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
+                    от <b>{{memorial.base_price}} р.</b>
                   </a>
                 {% endif %}
               </div>
