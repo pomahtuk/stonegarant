@@ -1,0 +1,102 @@
+@font-face {
+  font-family: 'museo_1';
+  src: url("../../fonts/museo_1/font.eot");
+  src: url("../../fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_1/font.woff") format("woff"), url("../../fonts/museo_1/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'museo_2';
+  src: url("../../fonts/museo_2/font.eot");
+  src: url("../../fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_2/font.woff") format("woff"), url("../../fonts/museo_2/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'pt_suns_regular';
+  src: url("../../fonts/pt_suns_regular/font.eot");
+  src: url("../../fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/pt_suns_regular/font.woff") format("woff"), url("../../fonts/pt_suns_regular/font.ttf") format("truetype"); }
+
+/* BOX SHADOW */
+/* OPACITY */
+/* for sliders building */
+/* no text elements select */
+h1 {
+  color: black;
+  padding: 20px 0px;
+  text-align: center;
+  border-bottom: 1px solid #b1b2b0;
+  margin-bottom: 50px; }
+
+.catalog h1 {
+  text-align: left; }
+.catalog ul .memorial-promo-block {
+  float: left;
+  width: 247px;
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center; }
+  .catalog ul .memorial-promo-block .memorial-promo-block-inner {
+    margin: 30px auto 0;
+    width: 200px;
+    height: 350px;
+    background: #fff; }
+  .catalog ul .memorial-promo-block .memorial-promo-block-title {
+    font-style: italic;
+    line-height: 1.8em;
+    font-size: 1.6em; }
+  .catalog ul .memorial-promo-block .memorial-promo-block-image {
+    display: block;
+    margin: 30px auto; }
+  .catalog ul .memorial-promo-block .memorial-promo-block-year {
+    padding-top: 47px;
+    color: #c75a38;
+    font-size: 3.6em; }
+.catalog ul .single-memorial {
+  float: left;
+  width: 247px;
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px; }
+  .catalog ul .single-memorial .single-memorial-image-holder {
+    width: 100%;
+    height: 330px;
+    display: block;
+    position: relative; }
+  .catalog ul .single-memorial .single-memorial-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    text-align: center; }
+    .catalog ul .single-memorial .single-memorial-image img {
+      display: inline-block; }
+  .catalog ul .single-memorial .single-memorial-discount {
+    border-radius: 70px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 70px;
+    width: 70px;
+    background: #c75a38;
+    font-size: 2.4em;
+    line-height: 70px;
+    color: #fff;
+    text-align: center; }
+    .catalog ul .single-memorial .single-memorial-discount .percent {
+      font-size: 18px;
+      padding-left: 2px; }
+  .catalog ul .single-memorial .single-memorial-strikeout {
+    text-decoration: line-through;
+    font-size: 1.4em; }
+  .catalog ul .single-memorial .single-memorial-info {
+    text-align: center; }
+    .catalog ul .single-memorial .single-memorial-info .single-memorial-info-title {
+      display: inline-block;
+      height: 30px;
+      font-size: 1.4em;
+      margin: 15px 0; }
+    .catalog ul .single-memorial .single-memorial-info .single-memorial-button {
+      display: inline-block;
+      line-height: 40px;
+      color: #fff; }

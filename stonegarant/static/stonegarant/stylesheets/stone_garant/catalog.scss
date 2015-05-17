@@ -2,18 +2,16 @@
 
 h1{
   color: black;
-  padding: 20px;
+  padding: 20px 0px;
   text-align: center;
-  border-bottom: 3px solid #272a2d;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #b1b2b0;
+  margin-bottom: 50px;
 }
 
 .catalog{
   h1{ text-align: left; }
 
   ul{
-    border: 0px solid red;
-
     .memorial-promo-block {
       float: left;
       width: 247px;
@@ -21,6 +19,31 @@ h1{
       overflow: hidden;
       position: relative;
       margin-bottom: 20px;
+      text-align: center;
+
+      .memorial-promo-block-inner {
+        margin: 30px auto 0;
+        width: 200px;
+        height: 350px;
+        background: #fff;
+      }
+
+      .memorial-promo-block-title {
+        font-style: italic;
+        line-height: 1.8em;
+        font-size: 1.6em;
+      }
+
+      .memorial-promo-block-image {
+        display: block;
+        margin: 30px auto;
+      }
+
+      .memorial-promo-block-year {
+        padding-top: 47px;
+        color: #c75a38;
+        font-size: 3.6em;
+      }
     }
 
     .single-memorial {
@@ -31,22 +54,58 @@ h1{
       position: relative;
       margin-bottom: 20px;
 
-      .single-memorial-image {
+      .single-memorial-image-holder {
         width:  100%;
         height: 330px;
         display: block;
-        background-repeat: no-repeat;
-        background-position: center bottom;
+        position: relative;
+      }
+
+      .single-memorial-image {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        img {
+          display: inline-block;
+        }
+      }
+
+      .single-memorial-discount {
+        border-radius: 70px;
+        position: absolute;
+        top: -10px;
+        left: 0;
+        height: 70px;
+        width: 70px;
+        background: #c75a38;
+        font-size: 2.4em;
+        line-height: 70px;
+        color: #fff;
+        text-align: center;
+
+        .percent {
+          font-size: 18px;
+          padding-left: 2px;
+        }
+      }
+
+      .single-memorial-strikeout {
+        text-decoration: line-through;
+        font-size: 1.4em;
       }
 
       .single-memorial-info {
-        @include museo_font;
-
         text-align: center;
 
         .single-memorial-info-title {
+          display: inline-block;
+          height: 30px;
           font-size: 1.4em;
-          margin: 15px 0px;
+          margin: 15px 0;
         }
 
         .single-memorial-button {
