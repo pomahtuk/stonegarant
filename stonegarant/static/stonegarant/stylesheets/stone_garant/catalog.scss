@@ -22,6 +22,7 @@ h1{
       bottom: 21px;
       right: 0;
       font-size: 1.4em;
+      vertical-align: bottom;
     }
   }
 
@@ -147,6 +148,11 @@ h1{
 
   .catalog-banner-image {
     margin-right: 100px;
+    float: right;
+  }
+
+  .catalog-banner-header {
+    margin: 50px 0 30px 0;
   }
 
   .catalog-banner-data-holder {
@@ -155,10 +161,17 @@ h1{
     height: 300px;
   }
 
+  .catalog-banner-text {
+    font-size: 1.4em;
+  }
+
   .catalog-banner-data {
   }
 
   .btn_link {
     line-height: 40px;
+    display: inline-block;
+    font-size: 1.6em;
+    margin-top: 30px;
   }
 }
