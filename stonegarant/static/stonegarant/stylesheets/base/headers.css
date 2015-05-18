@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'museo_1';
+  src: url("../../fonts/museo_1/font.eot");
+  src: url("../../fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_1/font.woff") format("woff"), url("../../fonts/museo_1/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'museo_2';
+  src: url("../../fonts/museo_2/font.eot");
+  src: url("../../fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_2/font.woff") format("woff"), url("../../fonts/museo_2/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'pt_suns_regular';
+  src: url("../../fonts/pt_suns_regular/font.eot");
+  src: url("../../fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/pt_suns_regular/font.woff") format("woff"), url("../../fonts/pt_suns_regular/font.ttf") format("truetype"); }
+
+/* BOX SHADOW */
+/* OPACITY */
+/* for sliders building */
+/* no text elements select */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "museo_1", "museo_2", sans-serif, Helvetica, Arial;
+  line-height: 100%;
+  font-weight: normal;
+  margin-bottom: 15px; }
+
+h1 {
+  font-size: 2.3em; }
+
+h2 {
+  font-size: 2.7em; }
+
+h3 {
+  font-size: 2.3em; }
+
+h4 {
+  font-size: 1.9em; }
+
+h5 {
+  font-size: 1.5em; }
+
+h6 {
+  font-size: 1.1em; }

@@ -1,0 +1,102 @@
+@font-face {
+  font-family: 'museo_1';
+  src: url("../../fonts/museo_1/font.eot");
+  src: url("../../fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_1/font.woff") format("woff"), url("../../fonts/museo_1/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'museo_2';
+  src: url("../../fonts/museo_2/font.eot");
+  src: url("../../fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_2/font.woff") format("woff"), url("../../fonts/museo_2/font.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'pt_suns_regular';
+  src: url("../../fonts/pt_suns_regular/font.eot");
+  src: url("../../fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/pt_suns_regular/font.woff") format("woff"), url("../../fonts/pt_suns_regular/font.ttf") format("truetype"); }
+
+/* BOX SHADOW */
+/* OPACITY */
+/* for sliders building */
+/* no text elements select */
+.slider {
+  position: relative;
+  margin-bottom: 20px; }
+  .slider a.bck, .slider a.fwd {
+    height: 80px;
+    width: 40px;
+    display: block;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    background: url("../../images/slider_btns.png") no-repeat scroll 0 0 transparent; }
+  .slider a.bck {
+    left: 20px; }
+    .slider a.bck:hover {
+      background-position: 0 -102px; }
+  .slider a.fwd {
+    right: 20px;
+    background-position: -80px 0; }
+    .slider a.fwd:hover {
+      background-position: -80px -102px; }
+  .slider .viewport {
+    width: 80%;
+    margin: auto;
+    height: 200px;
+    overflow: hidden;
+    position: relative; }
+  .slider ul {
+    width: 100%;
+    height: 170px;
+    font-size: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    white-space: nowrap; }
+    .slider ul li {
+      height: 100%;
+      width: 100%;
+      font-size: 10px;
+      text-align: left;
+      position: relative;
+      white-space: normal;
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      vertical-align: middle; }
+    .slider ul blockquote {
+      margin: 0 25px;
+      font-size: 1.5em;
+      line-height: 150%;
+      position: relative;
+      text-align: justify;
+      margin-bottom: 15px; }
+      .slider ul blockquote:before, .slider ul blockquote:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 15px;
+        background: url("../../images/quotes.png") no-repeat scroll 0 0 transparent; }
+      .slider ul blockquote:before {
+        top: 0;
+        left: -25px; }
+      .slider ul blockquote:after {
+        bottom: 0;
+        right: -25px;
+        background-position: -80px 0; }
+    .slider ul .author {
+      font-family: "museo_1", "museo_2", sans-serif, Helvetica, Arial;
+      text-align: center; }
+      .slider ul .author span {
+        position: relative;
+        font-size: 1.7em; }
+        .slider ul .author span:before, .slider ul .author span:after {
+          top: 10px;
+          width: 75px;
+          display: block;
+          content: ' ';
+          position: absolute;
+          border-top: 1px solid #c6c1bd; }
+        .slider ul .author span:before {
+          left: -90px; }
+        .slider ul .author span:after {
+          right: -90px; }
