@@ -19,12 +19,16 @@ def memorial_list_view(request):
     page = request.GET.get('page')
     limit = request.GET.get('limit')
 
-    if sort_order is None:
-        sort_order = 'popularity'
-    elif sort_order == '-price':
+    if sort_order == '-price':
         sort_order = '-discount_price'
     elif sort_order == 'price':
         sort_order = 'discount_price'
+    elif sort_order == 'title':
+        sort_order = 'title'
+    elif sort_order == '-title':
+        sort_order = '-title'
+    else:
+        sort_order = 'popularity'
 
     # this could be tricky
     memorials_list = Memorial.objects.order_by(u"%s" % sort_order)
