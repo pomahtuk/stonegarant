@@ -45,7 +45,24 @@
     {% load thumbnail %}
     <div class='content_line light_gray_2'>
       <div class='content_holder catalog'>
-        <h1>Наиболее популярные</h1>
+
+        <div class="catalog-header">
+          <!-- this has to be picked depending on sort oder -->
+          <h1>Наиболее популярные</h1>
+
+          <!-- and this has to be styled -->
+          <div class="sort-switcher">
+            Сортировать по:
+            <select name="order">
+              <option value="popularity">популярности</option>
+              <option value="-price">самой высокой цене</option>
+              <option value="price">самой низкой цене</option>
+              <option value="name">названию Ая</option>
+              <option value="-name">названию Яа</option>
+            </select>
+          </div>
+        </div>
+
         <ul class='cf'>
           {% for memorial in memorials %}
             {% if forloop.counter == 4%}
@@ -90,6 +107,23 @@
             </li>
           {% endfor %}
         </ul>
+
+        <!-- here goes the banner -->
+        <div class="catalog-banner">
+          <div class="catalog-banner-image"></div>
+          <div class="catalog-banner-data">
+            <h3 class="catalog-banner-header">
+              Не нашли нужного памятника?
+            </h3>
+            <span class="catalog-banner-text">
+              Lorem ipsum dolor sit amet
+            </span>
+            <a href="#" class="catalog-banner-button btn_link">
+              Подобрать памятник
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class='content_line light_gray_1'>

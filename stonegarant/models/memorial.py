@@ -98,6 +98,9 @@ class Memorial(SeoEmpoweredModel):
     def get_categories(self):
         return "<br>".join([s.title for s in self.categories.all()])
 
+    def get_images(self):
+        return self.images.order_by('order')
+
     # admin sections
     get_categories.short_description = 'Категории'
     get_categories.allow_tags = True
@@ -115,14 +118,14 @@ class Memorial(SeoEmpoweredModel):
 
 def create_admin_thumb(sender, instance, **kwargs):
     # sometimes order is not updated
-    photo_list = instance.images.order_by('order')
+    photo_list = instance.get_images()
     if len(photo_list) > 0:
         photo = photo_list[0].photo
         # generate new thumb
         thumbnailer = get_thumbnailer(photo.name, photo)
         thumbnailer_options = ({'size': (100, 100), 'crop': False})
         thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-        same = instance.admin_thumb == thumb_file.url
+        same = instance.admin_thumb == thumb_file.url if thumb_file.url else True
         # print u'%s, %s, %s' % (instance.admin_thumb, thumb_file.url, same)
         if not same:
             print u'not same'

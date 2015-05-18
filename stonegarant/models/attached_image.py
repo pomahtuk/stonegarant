@@ -25,7 +25,7 @@ class AttachedImage(models.Model):
         super(AttachedImage, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return self.photo.url
+        return self.photo.url if self.photo else u'no image attached'
 
     class Meta:
         verbose_name = u"Прикрепленное изображение"
