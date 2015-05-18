@@ -11,6 +11,13 @@ h1{
 .catalog{
   h1{ text-align: left; }
 
+  .catalog-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    
+  }
+
   ul{
     .memorial-promo-block {
       float: left;

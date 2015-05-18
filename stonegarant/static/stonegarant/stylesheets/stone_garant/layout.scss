@@ -57,7 +57,7 @@ a.back_link{
 
 /* Structure */
 .content_line{
-  border: 0px solid red;
+  border: 0 solid red;
 
   .content_holder{
 
@@ -263,6 +263,7 @@ a.back_link{
     float: left;
     display: block;
     padding: 0 15px;
+    position: relative;
 
     height: 105px;
     line-height: 160px;
@@ -270,44 +271,74 @@ a.back_link{
 
     color: #a0a0a0;
     font-size: 1.4em;
-    border: 0px solid #f4f4f4;
+    border: 0 solid #f4f4f4;
     text-decoration: none;
-
-    background: url('../../images/block_types_horiz.png') no-repeat scroll 0 0 transparent;
 
     &.current{ color: #c75a38; }
     &:hover  { color: white; text-decoration: none; }
 
-    &:nth-child(1){
-      background-position: 47px -257px;
-      &.current{ background-position: 47px -540px; }
-      &:hover{ background-position: 47px 24px; }
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 35px;
+      width: 1px;
+      top: 25px;
+      left: 0;
+      background: url('../../images/type_icons_sprite.png') no-repeat scroll 0 0 transparent;
     }
-    &:nth-child(2){
-      background-position: -78px -257px;
-      &.current{ background-position: -78px -540px; }
-      &:hover{ background-position: -78px 24px; }
+
+    &.category-all {
+      &:before {
+        width: 55px;
+        background-position: 0 0;
+        left: 35px;
+      }
     }
-    &:nth-child(3){
-      background-position: -198px -257px;
-      &.current{ background-position: -198px -540px; }
-      &:hover{ background-position: -198px 24px; }
+    &.category-odinarnye {
+      &:before {
+        width: 20px;
+        background-position: -58px 0;
+        left: 35px;
+      }
     }
-    &:nth-child(4){
-      background-position: -336px -257px;
-      &.current{ background-position: -336px -540px; }
-      &:hover{ background-position: -336px 24px; }
+    &.category-dvoinye {
+      &:before {
+        width: 29px;
+        background-position: -79px 0;
+        left: 40px;
+      }
     }
-    &:nth-child(5){
-      background-position: -450px -257px;
-      &.current{ background-position: -450px -540px; }
-      &:hover{ background-position: -450px 24px; }
+    &.category-s-krestom {
+      &:before {
+        width: 16px;
+        background-position: -110px 0;
+        left: 30px;
+      }
     }
-    &:nth-child(6){
-      background-position: -596px -257px;
-      &.current{ background-position: -596px -540px; }
-      &:hover{ background-position: -596px 24px; }
+    &.category-prostye {
+      &:before {
+        width: 18px;
+        background-position: -128px 0;
+        left: 45px;
+      }
     }
+    &.category-ekskliuzivnye {
+      &:before {
+        width: 18px;
+        background-position: -147px 0;
+        left: 50px;
+      }
+    }
+    &.category-komplektuiushchie {
+      &:before {
+        width: 48px;
+
+        background-position: -167px 0;
+        left: 42px;
+      }
+    }
+
   }
 
   .helper{
