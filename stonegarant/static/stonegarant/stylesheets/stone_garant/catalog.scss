@@ -131,10 +131,28 @@ h1{
     }
   }
 
-  .catalog-banner {
-    background: url("../../images/banner_bg.jpg") repeat-x;
-    width: 100%;
+}
+
+.catalog-banner {
+  background: url("../../images/banner_bg.jpg") repeat-x;
+  width: 100%;
+  height: 300px;
+  color: white;
+
+  .catalog-banner-image {
+    float: left;
+    width: 50%;
+    height: 300px;
+    background: url("../../images/memorial_banner.png") no-repeat 0 100%;
+  }
+
+  .catalog-banner-data {
+    float: left;
+    width: 50%;
     height: 300px;
   }
 
+  .btn_link {
+    line-height: 40px;
+  }
 }

@@ -33,7 +33,7 @@ h1 {
   .catalog .catalog-header .sort-switcher {
     position: absolute;
     bottom: 21px;
-    right: 0px;
+    right: 0;
     font-size: 1.4em; }
 .catalog ul .memorial-promo-block {
   float: left;
@@ -109,7 +109,20 @@ h1 {
       display: inline-block;
       line-height: 40px;
       color: #fff; }
-.catalog .catalog-banner {
+
+.catalog-banner {
   background: url("../../images/banner_bg.jpg") repeat-x;
   width: 100%;
-  height: 300px; }
+  height: 300px;
+  color: white; }
+  .catalog-banner .catalog-banner-image {
+    float: left;
+    width: 50%;
+    height: 300px;
+    background: url("../../images/memorial_banner.png") no-repeat 0 100%; }
+  .catalog-banner .catalog-banner-data {
+    float: left;
+    width: 50%;
+    height: 300px; }
+  .catalog-banner .btn_link {
+    line-height: 40px; }
