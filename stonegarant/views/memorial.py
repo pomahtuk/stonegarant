@@ -20,14 +20,14 @@ def memorial_list_view(request):
     limit = request.GET.get('limit')
 
     if sort_order is None:
-        sort_order = 'popularity'
+        result_order = 'popularity'
     elif sort_order is '-price':
-        sort_order = '=discount_price'
+        result_order = '-discount_price'
     elif sort_order is 'price':
-        sort_order = 'discount_price'
+        result_order = 'discount_price'
 
     # this could be tricky
-    memorials_list = Memorial.objects.order_by(u"%s" % sort_order)
+    memorials_list = Memorial.objects.order_by(u"%s" % result_order)
 
     if limit is not None:
         lmt = int(limit)
