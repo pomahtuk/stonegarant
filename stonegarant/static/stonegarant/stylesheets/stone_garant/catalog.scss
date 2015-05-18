@@ -139,17 +139,23 @@ h1{
   height: 300px;
   color: white;
 
-  .catalog-banner-image {
+  .catalog-banner-image-holder {
     float: left;
     width: 50%;
     height: 300px;
-    background: url("../../images/memorial_banner.png") no-repeat 0 100%;
+  }
+
+  .catalog-banner-image {
+    margin-right: 100px;
+  }
+
+  .catalog-banner-data-holder {
+    float: left;
+    width: 50%;
+    height: 300px;
   }
 
   .catalog-banner-data {
-    float: left;
-    width: 50%;
-    height: 300px;
   }
 
   .btn_link {
