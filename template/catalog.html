@@ -50,9 +50,9 @@
           <!-- this has to be picked depending on sort oder -->
           {% if sort_order == 'popolarity' %}
             <h1>Наиболее популярные</h1>
-          {% elif sort_order == '-price' %}
+          {% elif sort_order == '-discount_price' %}
             <h1>Самые выгодные предложения</h1>
-          {% elif sort_order == 'price' %}
+          {% elif sort_order == 'discount_price' %}
             <h1>Самые дорогие</h1>
           {% elif sort_order == 'title' %}
             <h1>По названию А-Я</h1>
@@ -66,8 +66,8 @@
               Сортировать по:
               <select name="order">
                 <option value="popularity" {% if sort_order == 'popolarity' %}selected{% endif %}>популярности</option>
-                <option value="-price" {% if sort_order == '-price' %}selected{% endif %}>самой высокой цене</option>
-                <option value="price" {% if sort_order == 'price' %}selected{% endif %}>самой низкой цене</option>
+                <option value="-price" {% if sort_order == '-discount_price' %}selected{% endif %}>самой высокой цене</option>
+                <option value="price" {% if sort_order == 'discount_price' %}selected{% endif %}>самой низкой цене</option>
                 <option value="title" {% if sort_order == 'title' %}selected{% endif %}>названию Ая</option>
                 <option value="-title" {% if sort_order == '-title' %}selected{% endif %}>названию Яа</option>
               </select>
