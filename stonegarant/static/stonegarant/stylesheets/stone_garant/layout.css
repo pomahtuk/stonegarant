@@ -316,11 +316,11 @@ a.back_link {
   .sections_nav a.category-s-krestom:before {
     width: 16px;
     background-position: -110px 0;
-    left: 30px; }
+    left: 45px; }
   .sections_nav a.category-prostye:before {
     width: 18px;
     background-position: -128px 0;
-    left: 45px; }
+    left: 35px; }
   .sections_nav a.category-ekskliuzivnye:before {
     width: 18px;
     background-position: -147px 0;

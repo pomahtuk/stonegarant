@@ -30,6 +30,11 @@ h1 {
   position: relative;
   top: 0;
   left: 0; }
+  .catalog .catalog-header .sort-switcher {
+    position: absolute;
+    bottom: 21px;
+    right: 0px;
+    font-size: 1.4em; }
 .catalog ul .memorial-promo-block {
   float: left;
   width: 247px;
@@ -104,3 +109,7 @@ h1 {
       display: inline-block;
       line-height: 40px;
       color: #fff; }
+.catalog .catalog-banner {
+  background: url("../../images/banner_bg.jpg") repeat-x;
+  width: 100%;
+  height: 300px; }
