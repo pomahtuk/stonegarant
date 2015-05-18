@@ -50,6 +50,8 @@ docs/_build/
 
 .idea
 
+.sass-cache
+
 static
 
 !stonegarant/static
