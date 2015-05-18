@@ -21,9 +21,9 @@ def memorial_list_view(request):
 
     if sort_order is None:
         sort_order = 'popularity'
-    elif sort_order is '-price':
+    elif sort_order == '-price':
         sort_order = '-discount_price'
-    elif sort_order is 'price':
+    elif sort_order == 'price':
         sort_order = 'discount_price'
 
     # this could be tricky
