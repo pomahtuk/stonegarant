@@ -34,8 +34,9 @@ h1 {
     position: absolute;
     bottom: 21px;
     right: 0;
-    font-size: 1.4em;
     vertical-align: bottom; }
+  .catalog .catalog-header form {
+    font-size: 1.4em; }
 .catalog ul .memorial-promo-block {
   float: left;
   width: 247px;
