@@ -18,7 +18,7 @@ class Stella(models.Model):
         verbose_name_plural = u"Варианты стэллы"
 
     def __unicode__(self):
-        memorial_title = self.memorial.tile if self.memorial else ''
+        memorial_title = self.memorial.title if self.memorial else ''
         memorial_base_price = self.memorial.base_price if self.memorial else ''
         return u'%s (%s*%s*%sсм, +%s руб.) - %s, %s' % (
             self.title,

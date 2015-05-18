@@ -86,6 +86,9 @@ class Memorial(SeoEmpoweredModel):
     def ordered_images(self):
         return self.images.order_by('order')
 
+    def catalog_image(self):
+        return self.images.order_by('order')[0]
+
     # model methods
     def admin_thumbnail(self):
         photo_list = self.images.order_by('order')
