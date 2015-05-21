@@ -1,7 +1,6 @@
 ## ToDo list:
 
-* Automated e-mail sending
-* Require-js architecture
+* Automated e-mail sendin
 
 Стэлла (120/60/8):
 Длина 120 (это высота стелы)
