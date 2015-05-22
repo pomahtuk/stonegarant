@@ -201,6 +201,7 @@ COMPRESS_JS_FILTERS = [
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/x-javascript', 'stonegarant.compilers.JSXCompiler'),
 )
 
 GZIP_CONTENT_TYPES = (

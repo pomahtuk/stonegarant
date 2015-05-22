@@ -96,7 +96,9 @@
               <div class="single-memorial-image-holder">
                 <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
                   <!-- use propper image -->
-                  <img src="{{ memorial.catalog_image.photo | thumbnail_url:'catalog' }}" alt='{{ memorial.title }}'>
+                  {% if memorial.catalog_image %}
+                    <img src="{{ memorial.catalog_image.photo | thumbnail_url:'catalog' }}" alt='{{ memorial.title }}'>
+                  {% endif %}
                   {% if memorial.discount %}
                     <span class="single-memorial-discount">
                       {{ memorial.discount_percent }}<span class="percent">%</span>

@@ -35,21 +35,17 @@
     {% load thumbnail %}
     <div class='content_line light_gray_2'>
       <div class='content_holder'>
+
         <a class="back_link" href="/catalog/">Вернуться к списку товаров</a>
+
         <h1>{{memorial.title}}</h1>
         <div class='mlr20'>
           <div class='product cf'>
+
             <div class='preview'>
               <img src="{{ memorial.photo2|thumbnail_url:'catalog' }}" />
             </div>
-            {% if memorial.readywork_set.all %}
-              <div class='finished'>
-                <h5>Готовые работы</h5>
-                {% for work in memorial.readywork_set.all %}
-                  <img src="{{ work.photo|thumbnail_url:'work' }}" />
-                {% endfor %}
-              </div>
-            {% endif %}
+
             <div class='info user_content'>
               <dl>
                 <dt>Комплект</dt>
@@ -71,7 +67,10 @@
               </dl>
               <a class="btn_link order_calc" href="/page-rasschitat-zakaz">Рассчитать заказ</a>
             </div>
+
           </div>
+
+          <div id="reactApp"></div>
           <!-- <div class='product_info'>
             <div class='tabs'>
               <a class="active" href="#">Специализация</a>
@@ -102,4 +101,5 @@
 
 {% block javascripts %}
   {{ block.super }}
+  <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/react/app.jsx" type="text/x-javascript"></script>
 {% endblock %}
