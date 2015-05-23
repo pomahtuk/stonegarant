@@ -63,10 +63,22 @@
     margin: 0 auto; }
 .product .product-details {
   margin: 20px 0 30px 0;
-  padding-left: 35px;
+  padding-left: 25px;
   text-align: center; }
   .product .product-details > span {
-    margin-left: 25px; }
+    margin-left: 45px;
+    position: relative; }
+    .product .product-details > span:before {
+      position: absolute;
+      top: 0;
+      left: -20px;
+      font-size: 1.4em; }
+    .product .product-details > span.length:before {
+      content: "↔"; }
+    .product .product-details > span.height:before {
+      content: "↕"; }
+    .product .product-details > span.width:before {
+      content: "⤢"; }
     .product .product-details > span > span {
       font-size: 1.4em; }
 

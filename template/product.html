@@ -47,14 +47,14 @@
               <ul class="product-images-list">
                 {% for image in memorial.ordered_images %}
                   <li class="catalog-image-thumb {% if forloop.counter == 1%}active{% endif %}">
-                    <a href="javascript:void(0)">
-                      <img src="{{ image.photo | thumbnail_url:'preview'  }}">
+                    <a href="javascript:void(0)" class="js-thumb-changer">
+                      <img src="{{ image.photo | thumbnail_url:'preview'  }}" data-original="{{ image.photo | thumbnail_url:'product' }}">
                     </a>
                   </li>
                 {% endfor %}
               </ul>
               <div class="product-image-current">
-                <img src="{{ memorial.catalog_image.photo | thumbnail_url:'product' }}">
+                <img src="{{ memorial.catalog_image.photo | thumbnail_url:'product' }}" class="js-thumb-holder">
               </div>
               <div class="product-details">
                 <span class="height">
