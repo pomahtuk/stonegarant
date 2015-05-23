@@ -1,16 +1,18 @@
-@charset "UTF-8";
 @font-face {
   font-family: 'museo_1';
   src: url("../../fonts/museo_1/font.eot");
   src: url("../../fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_1/font.woff") format("woff"), url("../../fonts/museo_1/font.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'museo_2';
   src: url("../../fonts/museo_2/font.eot");
   src: url("../../fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_2/font.woff") format("woff"), url("../../fonts/museo_2/font.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'pt_suns_regular';
   src: url("../../fonts/pt_suns_regular/font.eot");
   src: url("../../fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/pt_suns_regular/font.woff") format("woff"), url("../../fonts/pt_suns_regular/font.ttf") format("truetype"); }
+
 /* BOX SHADOW */
 /* OPACITY */
 /* for sliders building */
@@ -29,24 +31,6 @@ a {
     text-decoration: none; }
 
 /* Links */
-a.back_link {
-  color: black;
-  font-size: 1.2em;
-  position: absolute;
-  top: 15px;
-  right: 0;
-  text-decoration: none;
-  padding-left: 25px; }
-  a.back_link:hover {
-    color: #c75a38; }
-  a.back_link:before {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    content: '←';
-    font-size: 1.7em;
-    font-weight: bold; }
-
 .btn_link {
   color: white;
   padding: 0 30px;
@@ -56,7 +40,7 @@ a.back_link {
   background: #c85b39;
   text-decoration: none;
   font-family: 'PT Sans', sans-serif;
-  text-shadow: 0.1px -0.1px 1px #222 2px 5px rgba(0, 0, 0, 0.4);
+  text-shadow: 0.1px -0.1px 1px #222222 2px 5px rgba(0, 0, 0, 0.4);
   background-color: #c45937;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#c45937), to(#d3623e));
   background-image: -webkit-linear-gradient(top, #c45937, #d3623e);
@@ -359,5 +343,3 @@ a.back_link {
     background-position: -478px 0; }
   .help_bar .delivery {
     width: 50%; }
-
-/*# sourceMappingURL=layout.css.map */

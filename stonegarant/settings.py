@@ -157,6 +157,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 THUMBNAIL_ALIASES = {
     '': {
         'avatar': {'size': (80, 80), 'crop': True},
+        'preview': {'size': (60, 80), 'crop': False},
+        'product': {'size': (375, 480), 'crop': False},
         'thumb': {'size': (160, 160), 'crop': True},
         'catalog': {'size': (230, 320), 'crop': False},
         'work': {'size': (200, 280), 'crop': False},

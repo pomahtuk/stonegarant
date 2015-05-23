@@ -36,56 +36,77 @@
     <div class='content_line light_gray_2'>
       <div class='content_holder'>
 
-        <a class="back_link" href="/catalog/">Вернуться к списку товаров</a>
+        <div class="product-header">
+          <a class="back_link" href="/catalog/">Вернуться к списку товаров</a>
+        </div>
 
-        <h1>{{memorial.title}}</h1>
         <div class='mlr20'>
           <div class='product cf'>
 
-            <div class='preview'>
-              <img src="{{ memorial.photo2|thumbnail_url:'catalog' }}" />
+            <div class="product-images">
+              <ul class="product-images-list">
+                {% for image in memorial.ordered_images %}
+                  <li class="catalog-image-thumb {% if forloop.counter == 1%}active{% endif %}">
+                    <a href="javascript:void(0)">
+                      <img src="{{ image.photo | thumbnail_url:'preview'  }}">
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              <div class="product-image-current">
+                <img src="{{ memorial.catalog_image.photo | thumbnail_url:'product' }}">
+              </div>
+              <div class="product-details">
+                <span class="height">
+                  Высота&nbsp;
+                  <span class="value"> 100 см</span>
+                </span>
+                <span class="length">
+                  Длина&nbsp;
+                  <span class="value"> 50 см</span>
+                </span>
+                <span class="width">
+                  Ширина&nbsp;
+                  <span class="value"> 8 см</span>
+                </span>
+              </div>
             </div>
+            <div class="product-info">
+              <div class="memorial-title">
+                {{ memorial.title }}
+              </div>
+              <div class="memorial-description">
+                {{ memorial.description | safe }}
+              </div>
+              <div class="memorial-options">
+                <div class="memorial-options-complect">
+                  <div class="memorial-opions-title">
+                    Выбирите комплектующие
+                    <a href="javascript:void(0)" class="js-lightbox-trigger" data-lightbox="complect">?</a>
+                  </div>
+                </div>
+                <div class="memorial-options-polirovka">
+                  <div class="memorial-opions-title">
+                    Выбирите тип полировки
+                    <a href="javascript:void(0)" class="js-lightbox-trigger" data-lightbox="polirovka">?</a>
+                  </div>
+                </div>
+                <div class="memorial-options-summary">
+                  <a href="javascript:void(0)" class="btn_link">Оформить заказ</a>
+                  <div class="memorial-options-total">
+                    <span class="memorial-options-total-text">Цена в базовой комплектации</span>
+                    <h4>21 999 р.</h4>
+                  </div>
+                </div>
 
-            <div class='info user_content'>
-              <dl>
-                <dt>Комплект</dt>
-                <dd>стела, подставка, цветник</dd>
-                <dt>Размеры товара</dt>
-                <dd>
-                  <ul>
-                    <li>Стела: {{memorial.stella}}<br/><br/></li>
-                    <li>Подставка: {{memorial.podstavka}}<br/><br/></li>
-                    <li>Цветник: {{memorial.cvetnik}}<br/><br/></li>
-                  </ul>
-                </dd>
-                <dt>Описание товара</dt>
-                <dd>{{memorial.description|safe}}</dd>
-                <dt>Лицевая полировка:</dt>
-                <dd>{{memorial.price_face}} руб.</dd>
-                <dt>Круговая полировка:</dt>
-                <dd>{{memorial.price_circle}} руб.</dd>
-              </dl>
-              <a class="btn_link order_calc" href="/page-rasschitat-zakaz">Рассчитать заказ</a>
+              </div>
+              <a href="javascript:void(0)" class="memorial-consultant">Получить консультацию</a>
             </div>
 
           </div>
 
           <div id="reactApp"></div>
-          <!-- <div class='product_info'>
-            <div class='tabs'>
-              <a class="active" href="#">Специализация</a>
-              <a href="#">О компании</a>
-              <a href="#">VIP серия</a>
-            </div>
-            <div class='content'>
-              <p>Наша Гранитная мастерская занимается изготовлением изделий из природного камня (гранита, мрамора, кварцита). Мы специализируемся на изготовлении надгробных сооружений, памятников, мемориальных комплексов. Также наша Гранитная мастерская изготовит памятники и выполнит граверные работы на памятных мемориальных досках из гранита.</p>
-              <p>Изготовление памятников из природного камня это очень трудоёмкий и ответственный труд. Сотрудники нашей гранитной мастерской профессионально выполнят свою работу с момента приема заказа до момента его установки. На каждом этапе изготовления памятника мы готовы учесть все пожелания заказчика и воплотить их в камне.</p>
-            </div>
-            <div class='content hidden'>
-              <p>В нашей гранитной мастерской надгробные плиты и памятники разрабатывают и создают профессиональные художники, которые перенесут изображение с фотографии на камень. У нас вы можете сделать заказ памятников с покрытием сусальным золотом. Мы можем предложить свои варианты изготовления надгробных комплексов, памятников, а так же всегда готовы рассмотреть и  изготовить памятники по Вашим эскизам любой сложности.</p>
-              <p>Работая с прямыми производителями Габбро диабаза месторождений Карелии и мрамора (змеевика) Южного Урала мы имеем возможность предложить низкие цены при неизменном качестве на наши изделия.</p>
-            </div>
-          </div> -->
+
         </div>
       </div>
     </div>
