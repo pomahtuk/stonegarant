@@ -67,13 +67,19 @@ $('document').ready(function () {
     var memorialPriceTextHolder = $('.memorial-options-total h4');
     var currentMemorialPrice = parseInt($('.memorial-options-total').data('initila-price'), 10) || 0;
 
+    // dimensions variables
+    var stellaHeight = $('.product-details .height .value');
+    var stellaWidth = $('.product-details .width .value');
+    var stellaLength = $('.product-details .length .value');
+
+    // pricing variables
     var priceOptions = {
         base: currentMemorialPrice,
         stella: 0,
         podstavka: 0,
         cvetnik: 0,
         polirovka: 1
-    }
+    };
 
     var memorialOptionsToggles = $('.memorial-options-group');
 
@@ -101,6 +107,7 @@ $('document').ready(function () {
                 priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
             } else if (memorialOptionsToggle.hasClass('stella')) {
                 priceOptions.stella = priceMod;
+                emitter.trigger('stella:changed', memorialOption.data('dimensions'));
             }
 
             // update price text
@@ -109,11 +116,31 @@ $('document').ready(function () {
         });
     });
 
+    // dropdown part
 
     emitter.on('price:modified', function () {
         // format price in future
         var memorialPrice = priceOptions.base + priceOptions.stella + priceOptions.podstavka + priceOptions.cvetnik;
         memorialPrice = memorialPrice * priceOptions.polirovka;
         memorialPriceTextHolder.text(memorialPrice + ' р.');
+
+        // update resulting form
+    });
+
+    emitter.on('stella:changed', function (evt, dimensions) {
+        var dimensionsArr = dimensions.split(',');
+        dimensionsArr.forEach(function(item, index) {
+            switch (index) {
+                case 0:
+                    stellaHeight.text(item + ' см.');
+                    break;
+                case 1:
+                    stellaLength.text(item + ' см.');
+                    break;
+                case 2:
+                    stellaWidth.text(item + ' см.');
+                    break;
+            }
+        });
     });
 });
