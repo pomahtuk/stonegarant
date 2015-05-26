@@ -120,14 +120,12 @@ h1{
         text-align: center;
 
         .single-memorial-info-title {
-          display: inline-block;
-          height: 30px;
           font-size: 1.4em;
           margin: 15px 0;
         }
 
         .single-memorial-button {
-          display: inline-block;
+          @include inline-block;
           line-height: 40px;
           color: #fff;
         }
@@ -172,8 +170,8 @@ h1{
   }
 
   .btn_link {
+    @include inline-block;
     line-height: 40px;
-    display: inline-block;
     font-size: 1.6em;
     margin-top: 30px;
   }

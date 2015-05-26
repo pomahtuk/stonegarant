@@ -100,12 +100,13 @@ h1 {
   .catalog ul .single-memorial .single-memorial-info {
     text-align: center; }
     .catalog ul .single-memorial .single-memorial-info .single-memorial-info-title {
-      display: inline-block;
-      height: 30px;
       font-size: 1.4em;
       margin: 15px 0; }
     .catalog ul .single-memorial .single-memorial-info .single-memorial-button {
       display: inline-block;
+      *display: inline;
+      zoom: 1;
+      vertical-align: middle;
       line-height: 40px;
       color: #fff; }
 
@@ -130,8 +131,11 @@ h1 {
   .catalog-banner .catalog-banner-text {
     font-size: 1.4em; }
   .catalog-banner .btn_link {
-    line-height: 40px;
     display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+    line-height: 40px;
     font-size: 1.6em;
     margin-top: 30px; }
 

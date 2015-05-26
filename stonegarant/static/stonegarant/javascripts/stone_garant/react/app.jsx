@@ -1,9 +1,20 @@
 var mountNode = document.getElementById('reactApp');
 
-var HelloMessage = React.createClass({
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
   render: function() {
-    return <div>Hello {this.props.name}</div>;
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
   }
 });
 
-React.render(<HelloMessage name="John" />, mountNode);
+React.render(<LikeButton />, mountNode);
