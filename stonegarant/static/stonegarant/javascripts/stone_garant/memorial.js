@@ -2,6 +2,10 @@
  * Created by ilovriakov on 26/05/15.
  */
 $('document').ready(function () {
+    // event emitter
+    var emitter = $('body');
+
+    // image part
     var imageThumbs = $('.product-images-list .catalog-image-thumb');
     var imageHolder = $('.js-thumb-holder');
     var loadedImages = {};
@@ -55,5 +59,61 @@ $('document').ready(function () {
                 preloadImage.src = imageSrc;
             }
         }
+    });
+
+
+    // toggles part
+    // global memorial price
+    var memorialPriceTextHolder = $('.memorial-options-total h4');
+    var currentMemorialPrice = parseInt($('.memorial-options-total').data('initila-price'), 10) || 0;
+
+    var priceOptions = {
+        base: currentMemorialPrice,
+        stella: 0,
+        podstavka: 0,
+        cvetnik: 0,
+        polirovka: 1
+    }
+
+    var memorialOptionsToggles = $('.memorial-options-group');
+
+    memorialOptionsToggles.each(function () {
+        var memorialOptionsToggle = $(this);
+        var memorialOptions = memorialOptionsToggle.find('.memorial-options-group-option');
+
+        memorialOptions.click(function () {
+            var memorialOption = $(this);
+            var priceMod = parseInt(memorialOption.data('price-mod'), 10) || 0;
+
+            // basic scenario - just changing modificators
+
+            // check if user trying to unselect
+            if (memorialOptionsToggle.hasClass('podstavka') && memorialOption.hasClass('selected')) {
+                memorialOption.removeClass('selected');
+            } else {
+                memorialOptions.removeClass('selected');
+                memorialOption.addClass('selected');
+            }
+
+            if (memorialOptionsToggle.hasClass('polirovka')) {
+                priceOptions.polirovka = 1 + (priceMod / 100);
+            } else if (memorialOptionsToggle.hasClass('podstavka')) {
+                priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
+            } else if (memorialOptionsToggle.hasClass('stella')) {
+                priceOptions.stella = priceMod;
+            }
+
+            // update price text
+            emitter.trigger('price:modified');
+
+        });
+    });
+
+
+    emitter.on('price:modified', function () {
+        // format price in future
+        var memorialPrice = priceOptions.base + priceOptions.stella + priceOptions.podstavka + priceOptions.cvetnik;
+        memorialPrice = memorialPrice * priceOptions.polirovka;
+        memorialPriceTextHolder.text(memorialPrice + ' р.');
     });
 });
