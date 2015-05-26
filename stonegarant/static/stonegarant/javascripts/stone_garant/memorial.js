@@ -106,8 +106,11 @@ $('document').ready(function () {
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
                 priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
             } else if (memorialOptionsToggle.hasClass('stella')) {
-                priceOptions.stella = priceMod;
-                emitter.trigger('stella:changed', memorialOption.data('dimensions'));
+                emitter.trigger('stella:changed', {
+                    stellaId: memorialOption.data('stella-id'),
+                    stellaPrice: priceMod,
+                    dimensions: memorialOption.data('dimensions')
+                });
             }
 
             // update price text
@@ -127,8 +130,29 @@ $('document').ready(function () {
         // update resulting form
     });
 
-    emitter.on('stella:changed', function (evt, dimensions) {
-        var dimensionsArr = dimensions.split(',');
+    emitter.on('stella:changed', function (evt, data) {
+        var dimensionsArr = data.dimensions.split(',');
+
+        // basic switch
+        $('.memorial-options-group:not(.stella) .memorial-options-group-option').hide();
+        $('.memorial-options-group-option.stella_' + data.stellaId).show().removeClass('selected');
+
+        $('.memorial-options-group.polirovka .stella_' + data.stellaId).first().addClass('selected');
+        // reset all options
+        priceOptions = {
+            base: currentMemorialPrice,
+            stella: data.stellaPrice,
+            podstavka: 0,
+            cvetnik: 0,
+            polirovka: 1
+        };
+        // and keep all currently selected options
+        if ($('.memorial-options-group.podstavka .selected').length > 0) {
+             $('.memorial-options-group.podstavka .stella_' + data.stellaId).click();
+        }
+        // keep polirovka variant
+
+
         dimensionsArr.forEach(function(item, index) {
             switch (index) {
                 case 0:
