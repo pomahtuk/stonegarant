@@ -154,13 +154,16 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+
+THUMBNAIL_CHECK_CACHE_MISS = True
+
 THUMBNAIL_ALIASES = {
     '': {
         'avatar': {'size': (80, 80), 'crop': True},
-        'preview': {'size': (60, 80), 'crop': False},
-        'product': {'size': (375, 480), 'crop': False},
-        'thumb': {'size': (160, 160), 'crop': True},
-        'catalog': {'size': (230, 320), 'crop': False},
+        'preview': {'size': (60, 80), 'crop': False, 'autocrop': True},
+        'product': {'size': (375, 480), 'crop': False, 'autocrop': True},
+        'thumb': {'size': (160, 160), 'crop': False, 'autocrop': True},
+        'catalog': {'size': (230, 320), 'crop': False, 'autocrop': True},
         'work': {'size': (200, 280), 'crop': False},
         'ready': {'size': (400, 560), 'crop': False},
         'admin': {'size': (100, 100), 'crop': False}
