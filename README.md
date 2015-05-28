@@ -12,7 +12,6 @@
 Ширина 60
 Толщина 8
 
-
 ## Instalation:
 
 ### Python
