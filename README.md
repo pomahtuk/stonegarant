@@ -1,6 +1,6 @@
 ## ToDo list:
 
-* Automated e-mail sendin
+* Automated e-mail sending
 
 Стэлла (120/60/8):
 Длина 120 (это высота стелы)
