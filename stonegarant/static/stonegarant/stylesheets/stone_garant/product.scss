@@ -108,9 +108,13 @@
     margin-bottom: 15px;
   }
 
-  .memorial-description > p {
-    font-size: 1.4em;
-    line-height: 1.2em;
+  .memorial-description {
+    margin-bottom: 10px;
+
+    & > p {
+      font-size: 1.4em;
+      line-height: 1.2em;
+    }
   }
 
   .memorial-options {

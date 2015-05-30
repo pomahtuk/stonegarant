@@ -72,6 +72,24 @@ $('document').ready(function () {
     var stellaWidth = $('.product-details .width .value');
     var stellaLength = $('.product-details .length .value');
 
+    var memorialOptionsToggles = $('.memorial-options-group');
+    var optionsContainer = $('.product-info .memorial-options');
+
+    var stellaCount = optionsContainer.data('stella-count');
+    var initialStellaId = optionsContainer.data('stella-id');
+    var currentStellaId = initialStellaId;
+
+    //// i will remove it soon! very-very soon!
+    //$('.memorial-options-group:not(.stella) .memorial-options-group-option').hide();
+    //$('.memorial-options-group-option.stella_' + initialStellaId).show();
+
+    var selectedOptionsIds = {
+        stella: initialStellaId,
+        podstavka: 0,
+        cvetnik: 0,
+        polirovka: 0
+    };
+
     // pricing variables
     var priceOptions = {
         base: currentMemorialPrice,
@@ -80,8 +98,6 @@ $('document').ready(function () {
         cvetnik: 0,
         polirovka: 1
     };
-
-    var memorialOptionsToggles = $('.memorial-options-group');
 
     memorialOptionsToggles.each(function () {
         var memorialOptionsToggle = $(this);
@@ -103,14 +119,21 @@ $('document').ready(function () {
 
             if (memorialOptionsToggle.hasClass('polirovka')) {
                 priceOptions.polirovka = 1 + (priceMod / 100);
+                selectedOptionsIds.polirovka = memorialOptionsToggle.data('optid');
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
                 priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
+                selectedOptionsIds.podstavka = memorialOptionsToggle.data('optid');
             } else if (memorialOptionsToggle.hasClass('stella')) {
-                emitter.trigger('stella:changed', {
-                    stellaId: memorialOption.data('stella-id'),
-                    stellaPrice: priceMod,
-                    dimensions: memorialOption.data('dimensions')
-                });
+                var targetStellaId = memorialOption.data('stella-id');
+
+                if (currentStellaId !== targetStellaId) {
+                    currentStellaId = targetStellaId;
+                    emitter.trigger('stella:changed', {
+                        stellaId: targetStellaId,
+                        stellaPrice: priceMod,
+                        dimensions: memorialOption.data('dimensions')
+                    });
+                }
             }
 
             // update price text
@@ -126,18 +149,27 @@ $('document').ready(function () {
         var memorialPrice = priceOptions.base + priceOptions.stella + priceOptions.podstavka + priceOptions.cvetnik;
         memorialPrice = memorialPrice * priceOptions.polirovka;
         memorialPriceTextHolder.text(memorialPrice + ' р.');
-
-        // update resulting form
     });
 
     emitter.on('stella:changed', function (evt, data) {
         var dimensionsArr = data.dimensions.split(',');
 
         // basic switch
-        $('.memorial-options-group:not(.stella) .memorial-options-group-option').hide();
-        $('.memorial-options-group-option.stella_' + data.stellaId).show().removeClass('selected');
+        $('.memorial-options-group:not(.stella)').hide();
+        $('.memorial-options-group.stella_' + data.stellaId).show();
 
-        $('.memorial-options-group.polirovka .stella_' + data.stellaId).first().addClass('selected');
+
+        var selectedPodstavka = $('.memorial-options-group.podstavka .selected');
+        var selectedPolirovka = $('.memorial-options-group.polirovka .selected');
+        var polirovkaOptions = $('.memorial-options-group.polirovka.stella_' + data.stellaId + ' .memorial-options-group-option');
+
+        selectedOptionsIds = {
+            stella: data.stellaId,
+            podstavka: 0,
+            cvetnik: 0,
+            polirovka: 0
+        };
+
         // reset all options
         priceOptions = {
             base: currentMemorialPrice,
@@ -146,12 +178,18 @@ $('document').ready(function () {
             cvetnik: 0,
             polirovka: 1
         };
+
+
         // and keep all currently selected options
-        if ($('.memorial-options-group.podstavka .selected').length > 0) {
+        if (selectedPodstavka.length > 0) {
              $('.memorial-options-group.podstavka .stella_' + data.stellaId).click();
         }
         // keep polirovka variant
-
+        if (selectedPolirovka.length > 0) {
+            var index = selectedPolirovka.index();
+            var currentPolirovka = polirovkaOptions.get(index);
+            $(currentPolirovka).click();
+        }
 
         dimensionsArr.forEach(function(item, index) {
             switch (index) {

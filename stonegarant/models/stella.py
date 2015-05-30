@@ -17,6 +17,20 @@ class Stella(models.Model):
         verbose_name = u"Вариант стэллы"
         verbose_name_plural = u"Варианты стэллы"
 
+    def data_size(self):
+        return '%s,%s,%s' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
+    def text_size(self):
+        return '%sx%sx%s см' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
     def __unicode__(self):
         memorial_title = self.memorial.title if self.memorial else ''
         memorial_base_price = self.memorial.base_price if self.memorial else ''

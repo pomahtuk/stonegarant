@@ -59,15 +59,15 @@
               <div class="product-details">
                 <span class="height">
                   Высота&nbsp;
-                  <span class="value"> 100 см</span>
+                  <span class="value"> {{ memorial.stella_variants.all.0.length }} см</span>
                 </span>
                 <span class="length">
                   Длина&nbsp;
-                  <span class="value"> 50 см</span>
+                  <span class="value"> {{ memorial.stella_variants.all.0.width }} см</span>
                 </span>
                 <span class="width">
                   Ширина&nbsp;
-                  <span class="value"> 8 см</span>
+                  <span class="value"> {{ memorial.stella_variants.all.0.height }} см</span>
                 </span>
               </div>
             </div>
@@ -78,7 +78,7 @@
               <div class="memorial-description">
                 {{ memorial.description | safe }}
               </div>
-              <div class="memorial-options">
+              <div class="memorial-options" data-stella-id="1" data-stella-count="2">
                 <div class="memorial-options-complect">
                   <div class="memorial-opions-title">
                     Выбирите комплектующие
@@ -86,56 +86,48 @@
                   </div>
 
                   <div class="memorial-options-group stella">
-                    <div class="memorial-options-group-option selected" data-price-mod="0" data-dimensions="100,50,80"
-                        data-stella-id="1">
-                      Малая стэлла
-                      <div>100x50x8 см</div>
-                    </div>
-                    <div class="memorial-options-group-option" data-price-mod="800" data-dimensions="120,60,80"
-                        data-stella-id="2">
-                      Большая стэлла
-                      <div>120x60x8 см</div>
-                    </div>
+                    {% for stella in memorial.stella_variants.all %}
+                      <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ stella.added_value }}" data-dimensions="{{ stella.data_size }}"
+                          data-stella-id="{{ stella.pk }}">
+                        {{ stella.title }}
+                        <div>{{ stella.text_size }}</div>
+                      </div>
+                    {% endfor %}
                   </div>
 
-                  <div class="memorial-options-group podstavka">
-                    <!-- first stella -->
-                    <div class="memorial-options-group-option stella_1" data-price-mod="1000">
-                      Подставка
-                      <div>100x50x8 см</div>
+                  {% for stella in memorial.stella_variants.all %}
+                    <div class="memorial-options-group podstavka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
+                      <!--  {{ forloop.counter}} stella -->
+                      {% for podstavka in stella.podstavka_set.all %}
+                        <div class="memorial-options-group-option" data-price-mod="{{ podstavka.added_value }}">
+                          {{ podstavka.title }}
+                          <div>{{ podstavka.text_size }}</div>
+                        </div>
+                      {% endfor %}
                     </div>
-                    <!-- second stella -->
-                    <div class="memorial-options-group-option stella_2" data-price-mod="2000">
-                      Подставка
-                      <div>100x50x8 см</div>
-                    </div>
-                  </div>
+                  {% endfor %}
 
                 </div>
+
                 <div class="memorial-options-polirovka">
                   <div class="memorial-opions-title">
                     Выбирите тип полировки
                     <a href="javascript:void(0)" class="js-lightbox-trigger" data-lightbox="polirovka">?</a>
                   </div>
 
-                  <div class="memorial-options-group polirovka">
-                    <!-- first stella -->
-                    <div class="memorial-options-group-option selected stella_1" data-price-mod="0">
-                      Лицевая
+                  {% for stella in memorial.stella_variants.all %}
+                    <div class="memorial-options-group polirovka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
+                      <!--  {{ forloop.counter}} stella -->
+                      {% for polirovka in stella.polirovka_set.all %}
+                        <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ polirovka.added_value }}">
+                          {{ polirovka.title }}
+                        </div>
+                      {% endfor %}
                     </div>
-                    <div class="memorial-options-group-option stella_1" data-price-mod="50">
-                      Круговая
-                    </div>
-                    <!-- second stella -->
-                    <div class="memorial-options-group-option selected stella_2" data-price-mod="25">
-                      Лицевая
-                    </div>
-                    <div class="memorial-options-group-option stella_2" data-price-mod=100">
-                      Круговая
-                    </div>
-                  </div>
+                  {% endfor %}
 
                 </div>
+
                 <div class="memorial-options-summary">
                   <a href="javascript:void(0)" class="btn_link">Оформить заказ</a>
                   <div class="memorial-options-total" data-initila-price="{{ memorial.base_price }}">
@@ -149,8 +141,6 @@
             </div>
 
           </div>
-
-          <div id="reactApp"></div>
 
         </div>
       </div>
@@ -167,6 +157,5 @@
 
 {% block javascripts %}
   {{ block.super }}
-  {#  <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/react/app.jsx" type="text/x-javascript"></script>#}
   <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/memorial.js" type="text/javascript"></script>
 {% endblock %}

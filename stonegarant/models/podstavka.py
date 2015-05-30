@@ -17,5 +17,12 @@ class Podstavka(models.Model):
         verbose_name = u"Вариант подставки"
         verbose_name_plural = u"Варианты подставок"
 
+    def text_size(self):
+        return '%sx%sx%s см' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
     def __unicode__(self):
         return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.length, self.width, self.height, self.added_value)
