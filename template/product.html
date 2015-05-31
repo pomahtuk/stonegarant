@@ -177,7 +177,71 @@
             </div>
           </div>
 
-          <div class="js-lightbox-content complect">
+          <div class="js-lightbox-content lightbox-content complect">
+            <div class="polirovka-lightbox-title">
+              <h2>Выбор комплекта</h2>
+              Базовые элементы памятника
+            </div>
+            <div class="lightbox-text lightbox-stella-text">
+              <h4>Стела (надгробие)</h4>
+              <p>
+                Стела — основной элемент памятника в виде вертикальной плиты.
+                На стелу наносят основные элементы гравировки – ФИО, даты жизни,
+                портрет и эпитафию. Стелы различаются по форме и размерам.
+                Для двух и более человек следует выбирать стелы горизонтального расположения.
+              </p>
+              {% for stella in memorial.stella_variants.all %}
+                 <div class="lightbox-price">{{ stella.lightbox_info }}</div>
+              {% endfor %}
+            </div>
+
+
+            {% for stella in memorial.stella_variants.all %}
+              <div class="stella-related-info stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
+
+                <div class="lightbox-text lightbox-podstavka-text">
+                  <h4>Подставка (тумба)</h4>
+                  <p>
+                    Подставка необходимый элемент для монтажа памятника.
+                    Она соединяет стелу и бетонное основание, что придает
+                    устойчивости всей конструкции. Подставка
+                    увеличивает общую высоту надгробия на 15 см.
+                  </p>
+                  {% for podstavka in stella.podstavka_set.all %}
+                     <div class="lightbox-price">{{ podstavka.lightbox_info }}</div>
+                  {% endfor %}
+                </div>
+
+                <div class="lightbox-text lightbox-plita-text">
+                  <h4>Плита</h4>
+                  <p>
+                    Устанавливается вместо цветника. Если нет возможности ухаживать за цветником,
+                    лучше оборудовать памятник надгробной плитой. Плита хорошо подходит для
+                    нанесения гравировки, также можно вмонтировать вазу.
+                  </p>
+                  <div class="lightbox-price">{{ stella.cvetnik_set.all.0.lightbox_info }}</div>
+                </div>
+
+                <div class="lightbox-text lightbox-cvetnik-text">
+                  <h4>Цветник</h4>
+                  <p>
+                    Цветник служит для благоустройства захоронения.
+                    Внутрь цветника засыпают грунт и по желанию выращивают цветы.
+                    Если вы не планируете сажать цветы и ухаживать за ними,
+                    цветник можно заменить плитой.
+                  </p>
+                  <div class="lightbox-price">{{ stella.cvetnik_set.all.1.lightbox_info }}</div>
+                </div>
+
+              </div>
+            {% endfor %}
+
+            <div class="lightbox-remark-text">
+              Если вам необходимы другие размеры элементов памятника или требуется
+              <br/>
+              помощь с заказом, звоните по бесплатному номеру: 8 800 775-86-24
+            </div>
+
 
           </div>
 

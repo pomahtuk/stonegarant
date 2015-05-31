@@ -17,5 +17,20 @@ class Cvetnik(models.Model):
         verbose_name = u"Вариант цветника"
         verbose_name_plural = u"Варианты цветников"
 
+    def text_size(self):
+        return '%sx%sx%s см' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
+    def lightbox_info(self):
+        return '%sx%sx%s см - %s р.' % (
+            self.length,
+            self.width,
+            self.height,
+            self.added_value
+        )
+
     def __unicode__(self):
         return u'%s (%s * %s * %s см): +%s руб.' % (self.title, self.length, self.width, self.height, self.added_value)

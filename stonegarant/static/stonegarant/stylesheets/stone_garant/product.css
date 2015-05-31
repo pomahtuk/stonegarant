@@ -220,13 +220,66 @@
     left: 0;
     border-radius: 3px; }
   .lightbox-container .content-wrap {
-    padding: 0 160px;
     height: 100%;
     overflow: auto; }
   .lightbox-container .lightbox-content {
     display: none;
-    font-size: 0;
-    padding: 60px 0 75px; }
+    font-size: 0; }
+    .lightbox-container .lightbox-content.polirovka {
+      padding: 60px 160px 75px; }
+    .lightbox-container .lightbox-content.complect {
+      padding: 60px 80px 40px;
+      width: 840px;
+      height: 820px;
+      background: url("../../images/complect_lightbox_bg.jpg") 215px 150px no-repeat; }
+    .lightbox-container .lightbox-content .lightbox-text p {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 10px;
+      color: #3e3932; }
+    .lightbox-container .lightbox-content .lightbox-text h4 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: bold; }
+    .lightbox-container .lightbox-content .lightbox-text .lightbox-price {
+      font-size: 14px;
+      line-height: 24px; }
+    .lightbox-container .lightbox-content .lightbox-stella-text {
+      position: absolute;
+      top: 205px;
+      left: 75px;
+      width: 275px; }
+    .lightbox-container .lightbox-content .lightbox-podstavka-text {
+      position: absolute;
+      top: 520px;
+      left: 75px;
+      width: 295px; }
+    .lightbox-container .lightbox-content .lightbox-plita-text {
+      position: absolute;
+      top: 625px;
+      left: 415px;
+      width: 470px; }
+    .lightbox-container .lightbox-content .lightbox-cvetnik-text {
+      position: absolute;
+      top: 285px;
+      left: 665px;
+      width: 255px; }
+    .lightbox-container .lightbox-content .lightbox-remark-text {
+      position: absolute;
+      top: 820px;
+      left: 75px;
+      font-size: 14px;
+      padding-top: 15px;
+      color: #3e3932; }
+      .lightbox-container .lightbox-content .lightbox-remark-text:before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        width: 50px;
+        height: 1px;
+        background: #b1b2b0; }
   .lightbox-container .polirovka-lightbox-variant {
     display: inline-block;
     *display: inline;

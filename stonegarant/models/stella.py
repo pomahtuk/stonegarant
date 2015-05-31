@@ -31,6 +31,15 @@ class Stella(models.Model):
             self.height,
         )
 
+    def lightbox_info(self):
+        stella_price = self.memorial.base_price + self.added_value
+        return '%sx%sx%s см - %s р.' % (
+            self.length,
+            self.width,
+            self.height,
+            stella_price
+        )
+
     def __unicode__(self):
         memorial_title = self.memorial.title if self.memorial else ''
         memorial_base_price = self.memorial.base_price if self.memorial else ''

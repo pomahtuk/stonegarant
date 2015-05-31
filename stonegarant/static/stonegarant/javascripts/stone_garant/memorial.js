@@ -204,6 +204,9 @@ $('document').ready(function () {
                     break;
             }
         });
+
+        $('.lightbox-content.complect .stella-related-info').hide();
+        $('.lightbox-content.complect .stella_' + data.stellaId).show();
     });
 
     // lightboxes part
@@ -230,17 +233,13 @@ $('document').ready(function () {
 
         // calculations done after showing to get actual sizing
         lbHeight = lighboxContent.outerHeight();
-        wHeight = $(window).height() * 0.90;
-
-        console.log(lbHeight, wHeight);
+        wHeight = $(window).height() * 0.98;
 
         if (lbHeight > wHeight) {
             lbHeight = wHeight;
         }
 
-        margins = ((wHeight / 0.9) - lbHeight) / 2;
-
-        console.log(margins);
+        margins = ((wHeight / 0.98) - lbHeight) / 2;
 
         lighboxContent.css({
             'height': lbHeight + 'px',
