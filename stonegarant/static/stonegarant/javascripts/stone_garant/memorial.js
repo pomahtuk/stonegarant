@@ -181,8 +181,9 @@ $('document').ready(function () {
 
 
         // and keep all currently selected options
+        $('.podstavka > div').removeClass('selected');
         if (selectedPodstavka.length > 0) {
-             $('.memorial-options-group.podstavka .stella_' + data.stellaId).click();
+             $('.podstavka.stella_' + data.stellaId + ' > div').click();
         }
         // keep polirovka variant
         if (selectedPolirovka.length > 0) {

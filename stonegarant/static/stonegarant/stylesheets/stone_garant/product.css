@@ -38,49 +38,51 @@
       font-size: 1.4em;
       font-weight: bold; }
 
-.product .product-images {
-  width: 50%;
-  float: left; }
-.product .product-images-list {
-  width: 60px;
-  position: absolute;
-  bottom: 130px;
-  left: 0; }
-.product .catalog-image-thumb {
-  margin-top: 15px;
-  border-bottom: 2px solid #414446; }
-  .product .catalog-image-thumb.active {
-    border-bottom: 2px solid #c75b38; }
-  .product .catalog-image-thumb img {
-    display: block;
-    margin: 0 auto 10px auto; }
-.product .product-image-current {
-  width: calc(100% - 60px);
-  margin-left: 60px;
-  min-height: 300px; }
-  .product .product-image-current img {
-    display: block;
-    margin: 0 auto; }
-.product .product-details {
-  margin: 20px 0 30px 0;
-  padding-left: 15px;
-  text-align: center; }
-  .product .product-details > span {
-    margin-left: 45px;
-    position: relative; }
-    .product .product-details > span:before {
-      position: absolute;
-      top: 0;
-      left: -20px;
-      font-size: 1.4em; }
-    .product .product-details > span.length:before {
-      content: "↔"; }
-    .product .product-details > span.height:before {
-      content: "↕"; }
-    .product .product-details > span.width:before {
-      content: "⤢"; }
-    .product .product-details > span > span {
-      font-size: 1.4em; }
+.product {
+  margin: 0 0 55px 0; }
+  .product .product-images {
+    width: 50%;
+    float: left; }
+  .product .product-images-list {
+    width: 60px;
+    position: absolute;
+    bottom: 130px;
+    left: 0; }
+  .product .catalog-image-thumb {
+    margin-top: 15px;
+    border-bottom: 2px solid #414446; }
+    .product .catalog-image-thumb.active {
+      border-bottom: 2px solid #c75b38; }
+    .product .catalog-image-thumb img {
+      display: block;
+      margin: 0 auto 10px auto; }
+  .product .product-image-current {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+    min-height: 300px; }
+    .product .product-image-current img {
+      display: block;
+      margin: 0 auto; }
+  .product .product-details {
+    margin: 20px 0 30px 0;
+    padding-left: 15px;
+    text-align: center; }
+    .product .product-details > span {
+      margin-left: 45px;
+      position: relative; }
+      .product .product-details > span:before {
+        position: absolute;
+        top: 0;
+        left: -20px;
+        font-size: 1.4em; }
+      .product .product-details > span.length:before {
+        content: "↔"; }
+      .product .product-details > span.height:before {
+        content: "↕"; }
+      .product .product-details > span.width:before {
+        content: "⤢"; }
+      .product .product-details > span > span {
+        font-size: 1.4em; }
 
 .product-info {
   margin-left: 50%; }
@@ -88,7 +90,7 @@
     font-size: 2.4em;
     margin-bottom: 15px; }
   .product-info .memorial-description {
-    margin-bottom: 10px; }
+    margin-bottom: 25px; }
     .product-info .memorial-description > p {
       font-size: 1.4em;
       line-height: 1.2em; }
@@ -173,6 +175,23 @@
         color: white; }
   .product-info .memorial-options-polirovka {
     margin-top: 30px; }
+
+.memorial-consultant {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  margin-left: 30px;
+  position: relative;
+  top: 10px; }
+  .memorial-consultant:before {
+    position: absolute;
+    top: -3px;
+    left: -30px;
+    display: block;
+    content: '';
+    height: 23px;
+    width: 22px;
+    background: url("../../images/get_help.png"); }
 
 .order_calc {
   font-family: Arial, Helvetica, sans-serif;
