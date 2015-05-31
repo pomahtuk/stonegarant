@@ -153,6 +153,37 @@
         </div>
       </div>
     </div>
+
+    <div class="js-lightbox-container lightbox-container">
+      <div class="js-lightbox-wrapper lightbox-wrapper">
+        <a href="javascript:void(0)" class="js-lightbox-close lightbox-close"></a>
+        <div class="content-wrap">
+          <div class="js-lightbox-content lightbox-content polirovka">
+            <div class="polirovka-lightbox-title">
+              <h2>Выбор полировки</h2>
+              Тип полировки памятника
+            </div>
+            <div class="polirovka-lightbox-variant facial">
+              <img src="{{STATIC_URL}}stonegarant/images/polirovka_f.png" class="polirovka-lightbox-image">
+              <h4>Лицевая полировка</h4>
+              <p>Полируется лицевая сторона стелы. Подставка и цветник полируются сверху. Неполированный камень выглядит темно-серым.</p>
+              <em>Цена уже входит в стоимость памятника.</em>
+            </div>
+            <div class="polirovka-lightbox-variant round">
+              <img src="{{STATIC_URL}}stonegarant/images/polirovka_r.png" class="polirovka-lightbox-image">
+              <h4>Круговая полировка</h4>
+              <p>Полируется вся поверхность памятника. Такая полировка защищает камень от выветривания, замерзания влаги в микропорах и нарастания лишайников.</p>
+              <em>Круговая полировка увеличивает стоимость памятника на 50%.</em>
+            </div>
+          </div>
+
+          <div class="js-lightbox-content complect">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

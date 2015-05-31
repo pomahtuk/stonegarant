@@ -228,6 +228,94 @@
   }
 }
 
+.lightbox-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0,0,0, 0.6);
+  display: none;
+
+  .lightbox-close {
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    display: block;
+    width: 26px;
+    height: 26px;
+    background: url('../../images/close_lightbox.png');
+  }
+
+  .lightbox-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    background: #ffffff;
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+  }
+
+  .content-wrap {
+    padding: 0 160px;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .lightbox-content {
+    display: none;
+    font-size: 0;
+    padding: 60px 0 75px;
+  }
+
+  .polirovka-lightbox-variant {
+    @include inline-block;
+    width: 45%;
+    vertical-align: top;
+    margin-right: 0;
+    margin-left: 5%;
+    font-size: 14px;
+    line-height: 20px;
+
+    h4 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &:first-child {
+      margin-right: 5%;
+      margin-left: 0;
+    }
+
+    .polirovka-lightbox-image {
+      margin-bottom: 35px;
+    }
+  }
+
+  .polirovka-lightbox-title {
+    text-align: center;
+    color: #626262;
+    margin-bottom: 45px;
+    font-size: 18px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+  }
+
+}
+
 .order_calc{
   @include arial;
   font-size: 13px;

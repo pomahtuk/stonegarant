@@ -61,7 +61,6 @@ $('document').ready(function () {
         }
     });
 
-
     // toggles part
     // global memorial price
     var memorialPriceTextHolder = $('.memorial-options-total h4');
@@ -206,4 +205,49 @@ $('document').ready(function () {
             }
         });
     });
+
+    // lightboxes part
+    var lightbox = $('.js-lightbox-container');
+    var lighboxContent = $('.js-lightbox-wrapper');
+    var lighboxTriggers = $('.js-lightbox-trigger');
+    var lightboxClose = $('.js-lightbox-close');
+
+    lightboxClose.click(function () {
+        lightbox.hide();
+        lighboxContent.attr('style', '');
+        $('.js-lightbox-content').hide();
+    });
+
+    lighboxTriggers.click(function () {
+        var lbHeight, wHeight, margins;
+
+        var trigger = $(this);
+        var targetLighboxClass = trigger.data('lightbox') || 'polirovka';
+        var targetLightbox = $('.js-lightbox-content.' + targetLighboxClass);
+
+        targetLightbox.show();
+        lightbox.show();
+
+        // calculations done after showing to get actual sizing
+        lbHeight = lighboxContent.outerHeight();
+        wHeight = $(window).height() * 0.90;
+
+        console.log(lbHeight, wHeight);
+
+        if (lbHeight > wHeight) {
+            lbHeight = wHeight;
+        }
+
+        margins = ((wHeight / 0.9) - lbHeight) / 2;
+
+        console.log(margins);
+
+        lighboxContent.css({
+            'height': lbHeight + 'px',
+            'margin-top': margins
+        });
+
+
+    });
+
 });
