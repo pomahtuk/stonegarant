@@ -74,13 +74,9 @@ $('document').ready(function () {
     var memorialOptionsToggles = $('.memorial-options-group');
     var optionsContainer = $('.product-info .memorial-options');
 
-    var stellaCount = optionsContainer.data('stella-count');
     var initialStellaId = optionsContainer.data('stella-id');
     var currentStellaId = initialStellaId;
-
-    //// i will remove it soon! very-very soon!
-    //$('.memorial-options-group:not(.stella) .memorial-options-group-option').hide();
-    //$('.memorial-options-group-option.stella_' + initialStellaId).show();
+    var submitButton = $('.memorial-options-summary .btn_link');
 
     var selectedOptionsIds = {
         stella: initialStellaId,
@@ -118,10 +114,10 @@ $('document').ready(function () {
 
             if (memorialOptionsToggle.hasClass('polirovka')) {
                 priceOptions.polirovka = 1 + (priceMod / 100);
-                selectedOptionsIds.polirovka = memorialOptionsToggle.data('optid');
+                selectedOptionsIds.polirovka = memorialOptions.data('optid');
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
                 priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
-                selectedOptionsIds.podstavka = memorialOptionsToggle.data('optid');
+                selectedOptionsIds.podstavka = memorialOptions.data('optid');
             } else if (memorialOptionsToggle.hasClass('stella')) {
                 var targetStellaId = memorialOption.data('stella-id');
 
@@ -139,6 +135,10 @@ $('document').ready(function () {
             emitter.trigger('price:modified');
 
         });
+    });
+
+    submitButton.click(function () {
+        console.log(selectedOptionsIds);
     });
 
     // dropdown part

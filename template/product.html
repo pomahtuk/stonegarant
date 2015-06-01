@@ -99,7 +99,7 @@
                     <div class="memorial-options-group podstavka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
                       <!--  {{ forloop.counter}} stella -->
                       {% for podstavka in stella.podstavka_set.all %}
-                        <div class="memorial-options-group-option" data-price-mod="{{ podstavka.added_value }}">
+                        <div class="memorial-options-group-option" data-price-mod="{{ podstavka.added_value }}" data-optid="{{ podstavka.pk }}">
                           {{ podstavka.title }}
                           <div>{{ podstavka.text_size }}</div>
                         </div>
@@ -119,7 +119,7 @@
                     <div class="memorial-options-group polirovka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
                       <!--  {{ forloop.counter}} stella -->
                       {% for polirovka in stella.polirovka_set.all %}
-                        <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ polirovka.added_value }}">
+                        <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ polirovka.added_value }}" data-optid="{{ polirovka.pk }}">
                           {{ polirovka.title }}
                         </div>
                       {% endfor %}
