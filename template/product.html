@@ -71,7 +71,8 @@
                 </span>
               </div>
             </div>
-            <div class="product-info">
+            <div class="product-info js-memorial" data-optid="{{ memorial.pk }}">
+              {% csrf_token %}
               <div class="memorial-title">
                 {{ memorial.title }}
               </div>

@@ -20,6 +20,10 @@ urlpatterns = patterns('',
     url(r'^page-articles', articles_view, name="article"),
     url(r'^page-(?P<page_slug>(.+))', static_page_view, name="page"),
 
+    url(r'^order-create', order_create_view, name="order_create"),
+    url(r'^order-confirm-(?P<order_number>(.+))', order_confirm_view, name="order_confirm"),
+    url(r'^order-details-(?P<order_number>(.+))', order_details_view, name="order_details"),
+
     url(r'^404', not_found_view, name="404"),
 
     url(r'^sitemap.xml$', sitemap_view, name="sitemap"),

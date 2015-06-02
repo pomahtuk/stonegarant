@@ -1,0 +1,31 @@
+from django.shortcuts import get_object_or_404, render_to_response, redirect
+from django.http import Http404
+from stonegarant.models import *
+from django.template import RequestContext
+from stonegarant.forms import OrderCreateForm
+
+
+def order_create_view(request):
+    if request.method == 'POST':
+        order_form = OrderCreateForm(request.POST)
+        if order_form.is_valid():
+            order_instance = order_form.save()
+        else:
+            print('form invalid', order_form.errors)
+            raise Http404
+
+        return redirect('order_confirm', order_number=order_instance.order_number)
+    else:
+        print('not POST')
+        raise Http404
+
+
+# this has to respond on GET if order created already
+def order_confirm_view(request, order_number):
+    memorial_data = get_object_or_404(Order, order_number=order_number)
+    return render_to_response('order_confirm.html', {}, context_instance=RequestContext(request))
+
+# POST - update order and return confirmation page
+# GET - just render confirmation page
+def order_details_view(request, order_number):
+    return render_to_response('order_details.html', {}, context_instance=RequestContext(request))

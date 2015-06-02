@@ -79,6 +79,7 @@ $('document').ready(function () {
     var submitButton = $('.memorial-options-summary .btn_link');
 
     var selectedOptionsIds = {
+        memorial: $('.js-memorial').data('optid'),
         stella: initialStellaId,
         podstavka: 0,
         cvetnik: 0,
@@ -163,6 +164,7 @@ $('document').ready(function () {
         var polirovkaOptions = $('.memorial-options-group.polirovka.stella_' + data.stellaId + ' .memorial-options-group-option');
 
         selectedOptionsIds = {
+            memorial: $('.js-memorial').data('optid'),
             stella: data.stellaId,
             podstavka: 0,
             cvetnik: 0,
@@ -248,5 +250,42 @@ $('document').ready(function () {
 
 
     });
+
+//$.ajaxSetup({
+//     beforeSend: function(xhr, settings) {
+//         function getCookie(name) {
+//             var cookieValue = null;
+//             if (document.cookie && document.cookie != '') {
+//                 var cookies = document.cookie.split(';');
+//                 for (var i = 0; i < cookies.length; i++) {
+//                     var cookie = jQuery.trim(cookies[i]);
+//                     // Does this cookie string begin with the name we want?
+//                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+//                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                     break;
+//                 }
+//             }
+//         }
+//         return cookieValue;
+//         }
+//         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+//             // Only send the token to relative URLs i.e. locally.
+//             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+//         }
+//     }
+//});
+//
+//$.ajax({
+//	method: 'POST',
+//	url: '/order-create',
+//	data: {
+//        memorial: 1,
+//        stella: 0,
+//        podstavka: 0,
+//        cvetnik: 0,
+//        polirovka: 1
+//    }
+//});
+
 
 });
