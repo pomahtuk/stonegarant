@@ -108,6 +108,24 @@
                     </div>
                   {% endfor %}
 
+                  {% for stella in memorial.stella_variants.all %}
+                    <div class="memorial-options-group cvetnik stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
+                      <div class="memorial-options-group-option dropdown-toggle js-additional-elements">
+                        Доп.
+                        <div>элементы</div>
+                      </div>
+                      <div class="dropdown-content memorial-options-dropdown">
+                        <div class="reset-additional">Сбросить</div>
+                        {% for cvetnik in stella.cvetnik_set.all %}
+                          <div class="additional-element-option" data-price-mod="{{ cvetnik.added_value }}" data-optid="{{ cvetnik.pk }}">
+                            {{ cvetnik.title }}
+                            <div>{{ cvetnik.text_size }}</div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endfor %}
+
                 </div>
 
                 <div class="memorial-options-polirovka">
@@ -135,6 +153,13 @@
                     <span class="memorial-options-total-text">Цена в базовой комплектации</span>
                     <h4>{{ memorial.base_price }} р.</h4>
                   </div>
+
+                  <div class="placeholder content user_content" style="display: none;">
+                    <p>Звоните по&nbsp;единому&nbsp;<b>бесплатному</b>&nbsp;<b>номеру 8 800 775-86-24</b> и менеджер составит смету и даст любые рекомендации в течение одного звонка.</p>
+                    <p>Или напишите нам на почту&nbsp;<b><a href="mailto:info@stone-garant.ru">info@stone-garant.ru</a></b>&nbsp;и менеджер поможет вам составить полную смету на памятник. В письме необходимо указать № памятника, тип полировки (лицевая, круговая), желаемые надписи на памятник, формат портрета, а также город доставки.&nbsp;</p><p><span style="line-height: 1.45em; background-color: initial;">Мы работаем с 9.00 до 21.00 по московскому времени без выходных.&nbsp;</span><br></p>
+                    <p>Отправлять заявки по почте можно круглосуточно. Расчет сметы придет в рабочие часы.&nbsp;</p>
+                  </div>
+
                 </div>
 
               </div>

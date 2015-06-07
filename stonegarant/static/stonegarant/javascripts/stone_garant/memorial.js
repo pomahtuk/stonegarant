@@ -71,7 +71,7 @@ $('document').ready(function () {
     var stellaWidth = $('.product-details .width .value');
     var stellaLength = $('.product-details .length .value');
 
-    var memorialOptionsToggles = $('.memorial-options-group');
+    var memorialOptionsToggles = $('.memorial-options-group:not(.cvetnik)');
     var optionsContainer = $('.product-info .memorial-options');
 
     var initialStellaId = optionsContainer.data('stella-id');
@@ -81,9 +81,8 @@ $('document').ready(function () {
     var selectedOptionsIds = {
         memorial: $('.js-memorial').data('optid'),
         stella: initialStellaId,
-        podstavka: 0,
-        cvetnik: 0,
-        polirovka: 0
+        // this is ugly but still
+        polirovka: $('.memorial-options-group.polirovka').first().find('div').first().data('optid')
     };
 
     // pricing variables
@@ -117,8 +116,14 @@ $('document').ready(function () {
                 priceOptions.polirovka = 1 + (priceMod / 100);
                 selectedOptionsIds.polirovka = memorialOptions.data('optid');
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
-                priceOptions.podstavka = memorialOption.hasClass('selected') ? priceMod : 0;
-                selectedOptionsIds.podstavka = memorialOptions.data('optid');
+                if (memorialOption.hasClass('selected')) {
+                    priceOptions.podstavka = priceMod;
+                    selectedOptionsIds.podstavka = memorialOptions.data('optid');
+                } else {
+                    priceOptions.podstavka = 0;
+                    delete selectedOptionsIds.podstavka;
+                }
+
             } else if (memorialOptionsToggle.hasClass('stella')) {
                 var targetStellaId = memorialOption.data('stella-id');
 
@@ -140,15 +145,65 @@ $('document').ready(function () {
 
     submitButton.click(function () {
         console.log(selectedOptionsIds);
+        submitButton.siblings('.placeholder').toggle();
     });
 
     // dropdown part
+    var dropdownTogler = $('.memorial-options-group-option.dropdown-toggle');
+
+    dropdownTogler.click(function() {
+        var togler = $(this);
+
+        // if we clicked at child element
+        if (togler.parents('.dropdown-toggle').length > 0) {
+            togler = togler.parents('.dropdown-toggle');
+        }
+
+        var dropdown = togler.next();
+
+        if (togler.hasClass('selected')) {
+            togler.removeClass('selected');
+            dropdown.hide();
+        } else {
+            togler.addClass('selected');
+            dropdown.show();
+        }
+    });
+
+    dropdownTogler.each(function() {
+        var ddToggle = $(this);
+        var dd = ddToggle.next();
+        var clearButton = dd.find('.reset-additional');
+        var optionsButtons = dd.find('.additional-element-option');
+
+        function closeDd () {
+            dd.hide();
+            ddToggle.removeClass('selected');
+            emitter.trigger('price:modified');
+        }
+
+        clearButton.click(function() {
+            ddToggle.html("Доп.<div>элементы</div>");
+            priceOptions.cvetnik = 0;
+            delete selectedOptionsIds.cvetnik;
+            closeDd();
+        });
+
+        optionsButtons.click(function() {
+            var elem = $(this);
+            ddToggle.html(elem.html());
+            priceOptions.cvetnik = elem.data('price-mod');
+            selectedOptionsIds.cvetnik = elem.data('optid');
+            closeDd();
+        });
+    });
 
     emitter.on('price:modified', function () {
         // format price in future
         var memorialPrice = priceOptions.base + priceOptions.stella + priceOptions.podstavka + priceOptions.cvetnik;
         memorialPrice = memorialPrice * priceOptions.polirovka;
         memorialPriceTextHolder.text(memorialPrice + ' р.');
+        $('.memorial-options-total-text').text('Цена в выбранной комлектации');
     });
 
     emitter.on('stella:changed', function (evt, data) {
@@ -165,10 +220,7 @@ $('document').ready(function () {
 
         selectedOptionsIds = {
             memorial: $('.js-memorial').data('optid'),
-            stella: data.stellaId,
-            podstavka: 0,
-            cvetnik: 0,
-            polirovka: 0
+            stella: data.stellaId
         };
 
         // reset all options
@@ -192,6 +244,10 @@ $('document').ready(function () {
             var currentPolirovka = polirovkaOptions.get(index);
             $(currentPolirovka).click();
         }
+
+        // keep options variant
+
+
 
         dimensionsArr.forEach(function(item, index) {
             switch (index) {

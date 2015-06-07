@@ -42,11 +42,12 @@
   margin: 0 0 55px 0; }
   .product .product-images {
     width: 50%;
-    float: left; }
+    float: left;
+    position: relative; }
   .product .product-images-list {
     width: 60px;
     position: absolute;
-    bottom: 130px;
+    bottom: 70px;
     left: 0; }
   .product .catalog-image-thumb {
     margin-top: 15px;
@@ -175,6 +176,52 @@
         color: white; }
   .product-info .memorial-options-polirovka {
     margin-top: 30px; }
+  .product-info .memorial-options-group-option.dropdown-toggle {
+    width: 68px;
+    position: relative; }
+    .product-info .memorial-options-group-option.dropdown-toggle:before {
+      content: '▼';
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      font-size: 8px;
+      color: #000; }
+    .product-info .memorial-options-group-option.dropdown-toggle.selected:before {
+      content: '▲'; }
+  .product-info .memorial-options-dropdown {
+    display: none;
+    position: absolute;
+    height: auto;
+    width: 108px;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    margin-top: 1px; }
+    .product-info .memorial-options-dropdown > div {
+      padding: 10px 15px 5px 20px;
+      font-size: 14px;
+      cursor: pointer; }
+      .product-info .memorial-options-dropdown > div.reset-additional:before {
+        content: '×';
+        position: absolute;
+        left: 8px;
+        font-size: 18px;
+        font-weight: 100; }
+      .product-info .memorial-options-dropdown > div.selected, .product-info .memorial-options-dropdown > div:hover {
+        background: #faf1ef; }
+      .product-info .memorial-options-dropdown > div.selected:before {
+        color: #ca6242;
+        content: '✓';
+        position: absolute;
+        left: 8px;
+        font-size: 12px;
+        font-weight: 100; }
+      .product-info .memorial-options-dropdown > div > div {
+        font-size: 12px;
+        margin-top: 5px; }
 
 .memorial-consultant {
   text-decoration: none;

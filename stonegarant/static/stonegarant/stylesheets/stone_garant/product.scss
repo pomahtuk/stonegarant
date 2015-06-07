@@ -31,12 +31,13 @@
   .product-images {
     width: 50%;
     float: left;
+    position: relative;
   }
 
   .product-images-list {
     width: 60px;
     position: absolute;
-    bottom: 130px;
+    bottom: 70px;
     left: 0;
   }
 
@@ -204,6 +205,71 @@
 
   .memorial-options-polirovka {
     margin-top: 30px;
+  }
+
+  .memorial-options-group-option.dropdown-toggle {
+    width: 68px;
+    position: relative;
+
+    &:before {
+      content: '▼';
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      font-size: 8px;
+      color: #000;
+    }
+
+    &.selected:before {
+      content: '▲';
+    }
+
+  }
+
+  .memorial-options-dropdown {
+    display: none;
+    position: absolute;
+    height: auto;
+    width: 108px;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+    overflow: hidden;
+    margin-top: 1px;
+
+    & > div {
+      padding: 10px 15px 5px 20px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &.reset-additional:before {
+        content: '×';
+        position: absolute;
+        left: 8px;
+        font-size: 18px;
+        font-weight: 100;
+      }
+
+      &.selected, &:hover {
+        background: #faf1ef;
+      }
+
+      &.selected:before {
+        color: #ca6242;
+        content: '✓';
+        position: absolute;
+        left: 8px;
+        font-size: 12px;
+        font-weight: 100;
+      }
+
+      & > div {
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
   }
 
 }
