@@ -275,6 +275,7 @@
     .lightbox-container .lightbox-content.polirovka {
       padding: 60px 160px 75px; }
     .lightbox-container .lightbox-content.complect {
+      position: relative;
       padding: 60px 80px 40px;
       width: 840px;
       height: 820px;
