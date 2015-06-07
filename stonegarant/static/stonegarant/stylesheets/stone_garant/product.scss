@@ -305,6 +305,7 @@
   display: none;
 
   .lightbox-close {
+    z-index: 999;
     position: absolute;
     top: 19px;
     right: 19px;
