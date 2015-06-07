@@ -164,7 +164,7 @@
       .product-info .memorial-options-group .memorial-options-group-option > div {
         font-size: 12px;
         margin-top: 5px; }
-      .product-info .memorial-options-group .memorial-options-group-option.selected {
+      .product-info .memorial-options-group .memorial-options-group-option.selected, .product-info .memorial-options-group .memorial-options-group-option.opened {
         background-color: #cc7358;
         background-image: -webkit-gradient(linear, left top, left bottom, from(#cc7358), to(#d47c61));
         background-image: -webkit-linear-gradient(top, #cc7358, #d47c61);

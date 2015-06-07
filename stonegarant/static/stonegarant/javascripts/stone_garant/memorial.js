@@ -161,11 +161,11 @@ $('document').ready(function () {
 
         var dropdown = togler.next();
 
-        if (togler.hasClass('selected')) {
-            togler.removeClass('selected');
+        if (togler.hasClass('opened')) {
+            togler.removeClass('opened');
             dropdown.hide();
         } else {
-            togler.addClass('selected');
+            togler.addClass('opened');
             dropdown.show();
         }
     });
@@ -178,12 +178,13 @@ $('document').ready(function () {
 
         function closeDd () {
             dd.hide();
-            ddToggle.removeClass('selected');
+            ddToggle.removeClass('opened');
             emitter.trigger('price:modified');
         }
 
         clearButton.click(function() {
             ddToggle.html("Доп.<div>элементы</div>");
+            ddToggle.removeClass('selected');
             priceOptions.cvetnik = 0;
             delete selectedOptionsIds.cvetnik;
             closeDd();
@@ -192,6 +193,7 @@ $('document').ready(function () {
         optionsButtons.click(function() {
             var elem = $(this);
             ddToggle.html(elem.html());
+            ddToggle.addClass('selected');
             priceOptions.cvetnik = elem.data('price-mod');
             selectedOptionsIds.cvetnik = elem.data('optid');
             closeDd();

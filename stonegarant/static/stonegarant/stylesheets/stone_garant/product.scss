@@ -195,7 +195,7 @@
         margin-top: 5px;
       }
 
-      &.selected {
+      &.selected, &.opened {
         @include background-gradient(#cc7358, #d47c61);
         color: white;
       }
