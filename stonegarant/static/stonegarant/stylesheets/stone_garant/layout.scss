@@ -255,7 +255,21 @@ a{
     text-decoration: none;
 
     &.current{ color: #c75a38; }
-    &:hover, &:active  { color: white; text-decoration: none; }
+    &:hover  {
+      color: white;
+      text-decoration: none;
+
+      &:before {
+        background-position-y: -74px;
+      }
+    }
+    &:active {
+      color: #d3623e;
+
+      &:before {
+        background-position-y: -37px;
+      }
+    }
 
     &:before {
       content: '';
