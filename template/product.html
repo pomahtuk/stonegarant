@@ -79,7 +79,7 @@
               <div class="memorial-description">
                 {{ memorial.description | safe }}
               </div>
-              <div class="memorial-options" data-stella-id="1" data-stella-count="2">
+              <div class="memorial-options" data-stella-id="{{ memorial.stella_variants.all.0.pk }}" data-stella-count="2">
                 <div class="memorial-options-complect">
                   <div class="memorial-opions-title">
                     Выберите комплектующие

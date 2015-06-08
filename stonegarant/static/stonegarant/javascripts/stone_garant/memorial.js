@@ -185,6 +185,7 @@ $('document').ready(function () {
         clearButton.click(function() {
             ddToggle.html("Доп.<div>элементы</div>");
             ddToggle.removeClass('selected');
+            optionsButtons.removeClass('selected');
             priceOptions.cvetnik = 0;
             delete selectedOptionsIds.cvetnik;
             closeDd();
@@ -192,6 +193,8 @@ $('document').ready(function () {
 
         optionsButtons.click(function() {
             var elem = $(this);
+            optionsButtons.removeClass('selected');
+            elem.addClass('selected');
             ddToggle.html(elem.html());
             ddToggle.addClass('selected');
             priceOptions.cvetnik = elem.data('price-mod');
@@ -218,6 +221,8 @@ $('document').ready(function () {
 
         var selectedPodstavka = $('.memorial-options-group.podstavka .selected');
         var selectedPolirovka = $('.memorial-options-group.polirovka .selected');
+        var selectedCvetnik = $('.memorial-options-group.cvetnik .dropdown-toggle.selected');
+        var cvetnikOptions = $('.memorial-options-group.cvetnik.stella_' + data.stellaId + ' .dropdown-content > div');
         var polirovkaOptions = $('.memorial-options-group.polirovka.stella_' + data.stellaId + ' .memorial-options-group-option');
 
         selectedOptionsIds = {
@@ -242,13 +247,19 @@ $('document').ready(function () {
         }
         // keep polirovka variant
         if (selectedPolirovka.length > 0) {
-            var index = selectedPolirovka.index();
-            var currentPolirovka = polirovkaOptions.get(index);
+            var pIndex = selectedPolirovka.index();
+            var currentPolirovka = polirovkaOptions.get(pIndex);
             $(currentPolirovka).click();
         }
 
         // keep options variant
-
+        if (selectedCvetnik.length > 0) {
+            var selectedDd = selectedCvetnik.siblings('.dropdown-content');
+            var ddOption = selectedDd.find('.selected');
+            var cIndex = ddOption.index();
+            var currentCvetnik = cvetnikOptions.get(cIndex);
+            $(currentCvetnik).click();
+        }
 
 
         dimensionsArr.forEach(function(item, index) {
