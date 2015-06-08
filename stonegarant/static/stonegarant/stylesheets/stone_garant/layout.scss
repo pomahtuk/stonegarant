@@ -260,14 +260,14 @@ a{
       text-decoration: none;
 
       &:before {
-        background-position-y: -74px;
+        background-position-y: -74px !important;
       }
     }
-    &:active {
+    &.active {
       color: #d3623e;
 
       &:before {
-        background-position-y: -37px;
+        background-position-y: -37px !important;
       }
     }
 

@@ -274,11 +274,11 @@ a {
     color: white;
     text-decoration: none; }
     .sections_nav a:hover:before {
-      background-position-y: -74px; }
-  .sections_nav a:active {
+      background-position-y: -74px !important; }
+  .sections_nav a.active {
     color: #d3623e; }
-    .sections_nav a:active:before {
-      background-position-y: -37px; }
+    .sections_nav a.active:before {
+      background-position-y: -37px !important; }
   .sections_nav a:before {
     content: '';
     display: block;
