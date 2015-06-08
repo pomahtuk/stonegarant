@@ -255,7 +255,7 @@ a{
     text-decoration: none;
 
     &.current{ color: #c75a38; }
-    &:hover  { color: white; text-decoration: none; }
+    &:hover, &:active  { color: white; text-decoration: none; }
 
     &:before {
       content: '';

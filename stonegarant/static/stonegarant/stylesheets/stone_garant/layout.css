@@ -270,7 +270,7 @@ a {
   text-decoration: none; }
   .sections_nav a.current {
     color: #c75a38; }
-  .sections_nav a:hover {
+  .sections_nav a:hover, .sections_nav a:active {
     color: white;
     text-decoration: none; }
   .sections_nav a:before {
