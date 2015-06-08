@@ -23,7 +23,7 @@ def category_view(request, category_slug):
         sort_order = 'popularity'
 
     # this could be tricky
-    memorials_list = Memorial.objects.order_by(u"%s" % sort_order)
+    memorials_list = category_data.memorial_set.all().order_by(u"%s" % sort_order)
 
     if limit is not None:
         lmt = int(limit)
