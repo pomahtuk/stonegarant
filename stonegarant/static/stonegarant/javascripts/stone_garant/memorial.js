@@ -116,7 +116,7 @@ $('document').ready(function () {
                 try {
                     yaCounter22269611.reachGoal('POLIROVKA');
                 } catch (e) {
-                    console.log('goals aviable only on prod');
+                    console.log('goals available only on prod');
                 }
                 priceOptions.polirovka = 1 + (priceMod / 100);
                 selectedOptionsIds.polirovka = memorialOptions.data('optid');
@@ -124,7 +124,7 @@ $('document').ready(function () {
                 try {
                     yaCounter22269611.reachGoal('PODSTAVKA');
                 } catch (e) {
-                    console.log('goals aviable only on prod');
+                    console.log('goals available only on prod');
                 }
                 if (memorialOption.hasClass('selected')) {
                     priceOptions.podstavka = priceMod;
@@ -158,7 +158,7 @@ $('document').ready(function () {
         try {
             yaCounter22269611.reachGoal('ORDER');
         } catch (e) {
-            console.log('goals aviable only on prod');
+            console.log('goals available only on prod');
         }
         submitButton.siblings('.placeholder').toggle();
     });
@@ -244,7 +244,7 @@ $('document').ready(function () {
         try {
             yaCounter22269611.reachGoal('STELLA');
         } catch (e) {
-            console.log('goals aviable only on prod');
+            console.log('goals available only on prod');
         }
 
         var dimensionsArr = data.dimensions.split(',');
@@ -328,6 +328,13 @@ $('document').ready(function () {
     });
 
     lighboxTriggers.click(function () {
+        try {
+            yaCounter22269611.reachGoal('LIGHTBOX');
+        } catch (e) {
+            console.log('goals available only on prod');
+        }
+
+
         var lbHeight, wHeight, margins;
 
         var trigger = $(this);
