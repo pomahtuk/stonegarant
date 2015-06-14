@@ -20,9 +20,9 @@ def memorial_list_view(request):
     limit = request.GET.get('limit')
 
     if sort_order == '-price':
-        sort_order = '-discount_price'
+        sort_order = '-base_price'
     elif sort_order == 'price':
-        sort_order = 'discount_price'
+        sort_order = 'base_price'
     elif sort_order == 'title':
         sort_order = 'title'
     elif sort_order == '-title':
