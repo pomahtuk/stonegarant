@@ -102,6 +102,9 @@ class Memorial(SeoEmpoweredModel):
             photo = None
         return simple_admin_thumb(self, photo)
 
+    def formatted_price(self):
+        return "{:,}".format(self.base_price).replace(',', ' ')
+
     def get_categories(self):
         return "<br>".join([s.title for s in self.categories.all()])
 

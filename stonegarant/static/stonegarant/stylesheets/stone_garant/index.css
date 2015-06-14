@@ -2,14 +2,17 @@
   font-family: 'museo_1';
   src: url("../../fonts/museo_1/font.eot");
   src: url("../../fonts/museo_1/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_1/font.woff") format("woff"), url("../../fonts/museo_1/font.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'museo_2';
   src: url("../../fonts/museo_2/font.eot");
   src: url("../../fonts/museo_2/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/museo_2/font.woff") format("woff"), url("../../fonts/museo_2/font.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'pt_suns_regular';
   src: url("../../fonts/pt_suns_regular/font.eot");
   src: url("../../fonts/pt_suns_regular/font.eot?#iefix") format("embedded-opentype"), url("../../fonts/pt_suns_regular/font.woff") format("woff"), url("../../fonts/pt_suns_regular/font.ttf") format("truetype"); }
+
 /* BOX SHADOW */
 /* OPACITY */
 /* for sliders building */
@@ -81,7 +84,7 @@
     background: gray;
     background: url("../../images/middle_block_placeholder.png") no-repeat scroll center center transparent; }
     .quality .portfolio a {
-      padding: 1px 20px;
+      padding: 1px 28px;
       position: absolute;
       top: 132px;
       left: 130px; }
@@ -167,5 +170,3 @@
     top: 156px;
     left: 410px;
     font-size: 20px; }
-
-/*# sourceMappingURL=index.css.map */

@@ -143,14 +143,15 @@
 
   .memorial-options-summary {
     border-top: 1px solid #b1b2b0;
-    padding-top: 20px;
-    margin-top: 20px;
+    padding-top: 30px;
+    margin-top: 30px;
 
     .btn_link {
       float: left;
       display: block;
-      height: 40px;
-      font-size: 1.6em;
+      height: 44px;
+      line-height: 44px;
+      font-size: 18px;
       margin-right: 20px;
     }
 
@@ -159,7 +160,7 @@
 
       h4 {
         margin-top: 5px;
-        font-size: 24px;
+        font-size: 32px;
       }
     }
 
@@ -396,6 +397,7 @@
       top: 820px;
       left: 75px;
       font-size: 14px;
+      line-height: 20px;
       padding-top: 15px;
       color: #3e3932;
 

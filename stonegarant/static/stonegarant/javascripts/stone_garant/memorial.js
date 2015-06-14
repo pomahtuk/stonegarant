@@ -205,9 +205,17 @@ $('document').ready(function () {
 
     emitter.on('price:modified', function () {
         // format price in future
+        var mPriceArr, formattedPrice;
         var memorialPrice = priceOptions.base + priceOptions.stella + priceOptions.podstavka + priceOptions.cvetnik;
         memorialPrice = memorialPrice * priceOptions.polirovka;
-        memorialPriceTextHolder.text(memorialPrice + ' р.');
+        mPriceArr = String(memorialPrice).split('');
+        if (mPriceArr.length === 4) {
+            mPriceArr.splice(1, 0, ' ');
+        } else {
+            mPriceArr.splice(2, 0, ' ');
+        }
+        formattedPrice = mPriceArr.join('');
+        memorialPriceTextHolder.text(formattedPrice + ' р.');
         $('.memorial-options-total-text').text('Цена в выбранной комлектации');
     });
 
