@@ -113,9 +113,19 @@ $('document').ready(function () {
             }
 
             if (memorialOptionsToggle.hasClass('polirovka')) {
+                try {
+                    yaCounter22269611.reachGoal('POLIROVKA');
+                } catch (e) {
+                    console.log('goals aviable only on prod');
+                }
                 priceOptions.polirovka = 1 + (priceMod / 100);
                 selectedOptionsIds.polirovka = memorialOptions.data('optid');
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
+                try {
+                    yaCounter22269611.reachGoal('PODSTAVKA');
+                } catch (e) {
+                    console.log('goals aviable only on prod');
+                }
                 if (memorialOption.hasClass('selected')) {
                     priceOptions.podstavka = priceMod;
                     selectedOptionsIds.podstavka = memorialOptions.data('optid');
@@ -144,7 +154,12 @@ $('document').ready(function () {
     });
 
     submitButton.click(function () {
-        console.log(selectedOptionsIds);
+        //console.log(selectedOptionsIds);
+        try {
+            yaCounter22269611.reachGoal('ORDER');
+        } catch (e) {
+            console.log('goals aviable only on prod');
+        }
         submitButton.siblings('.placeholder').toggle();
     });
 
@@ -175,6 +190,12 @@ $('document').ready(function () {
         var dd = ddToggle.next();
         var clearButton = dd.find('.reset-additional');
         var optionsButtons = dd.find('.additional-element-option');
+
+        try {
+            yaCounter22269611.reachGoal('CVETNIK');
+        } catch (e) {
+            console.log('goals aviable only on prod');
+        }
 
         function closeDd () {
             dd.hide();
@@ -220,6 +241,12 @@ $('document').ready(function () {
     });
 
     emitter.on('stella:changed', function (evt, data) {
+        try {
+            yaCounter22269611.reachGoal('STELLA');
+        } catch (e) {
+            console.log('goals aviable only on prod');
+        }
+
         var dimensionsArr = data.dimensions.split(',');
 
         // basic switch
