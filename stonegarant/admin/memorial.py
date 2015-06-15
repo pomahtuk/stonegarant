@@ -37,7 +37,7 @@ class MemorialPageAdmin(admin.ModelAdmin):
     fieldsets = (
         (u'Основное', {
             'fields': (
-                'number', 'title', 'categories',
+                'number', 'title', 'categories', 'description'
             )
         }),
         (u'Цены', {
