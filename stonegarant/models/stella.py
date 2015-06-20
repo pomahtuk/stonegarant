@@ -31,6 +31,13 @@ class Stella(models.Model):
             self.height,
         )
 
+    def order_text(self):
+        return 'Стэла %sx%sx%s см' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
     def lightbox_info(self):
         stella_price = self.memorial.base_price + self.added_value
         return '%sx%sx%s см - %s р.' % (

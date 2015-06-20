@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+
+{% block title %} Stonegarant - Заказ оформлен {% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{service_page.seo_description}}" />
+  <meta name="keywords" content="{{service_page.seo_keywords}}" />
+{% endblock %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/order.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block topnav_inner %}
+  <div class='content_line dark_gray_1'>
+  </div>
+{% endblock %}
+
+{% block content %}
+    {% load thumbnail %}
+    <div class="content_line light_gray_2 order-wrapper">
+      <div class="content_holder">
+
+        <h1 class="order-title">Ваш заказ оформлен</h1>
+
+        <div class="order-details-form bigger-margins">
+
+          <img class="order-done-image" src="{{ STATIC_URL }}stonegarant/images/order-done.png">
+
+          <div class="order-done-heading">Номер заказа: <span>{{ order.order_number }}</span></div>
+
+          <p class="order-done-text">
+            Письмо со всеми подробностями уже отправлено на ваш электронный адрес. Как только заказ будет рассчитан, менеджер свяжется с вами для подтверждения заказа и условий доставки.
+          </p>
+
+          <p class="order-done-clarification">
+            Обработка заказов проходит ежедневно с 9:00 до 21:00
+            <br/>
+            по московскому времени, без выходных
+          </p>
+
+        </div>
+        <div class="order-details-summary">
+          <img src="{{ order.memorial.catalog_image.photo | thumbnail_url:'thumb' }}" alt='{{ order.memorial.title }}' class="order-details-img">
+          <h5 class="order-details-memorial-name">{{ order.memorial.title }}</h5>
+          <div class="order-details-additions">
+            {% if order.stella %}
+              {{ order.stella.order_text }}<br/>
+            {% endif %}
+            {% if order.podstavka %}
+              {{ order.podstavka.order_text }}<br/>
+            {% endif %}
+            {% if order.cvetnik %}
+              {{ order.cvetnik.order_text }}<br/>
+            {% endif %}
+            {% if order.polirovka %}
+              {{ order.polirovka.title }} полировка<br/>
+            {% endif %}
+          </div>
+          <div class="order-details-separator"></div>
+          <div class="order-details-total-price-block">Общая стоимость без доставки:</div>
+          <div class="order-details-total-price">{{ order.formatted_price }} р.</div>
+        </div>
+
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock %}

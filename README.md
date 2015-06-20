@@ -13,6 +13,7 @@
 Толщина 8
 
 ## Instalation:
+    ALTER TABLE stonegarant_order MODIFY total_price bigint(20);
 
 ### Python
 	

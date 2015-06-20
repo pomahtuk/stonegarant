@@ -2,6 +2,39 @@
  * Created by ilovriakov on 26/05/15.
  */
 $('document').ready(function () {
+    // preparations part
+    $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+
+    function trackYandex(goal) {
+        try {
+            yaCounter22269611.reachGoal(goal);
+        } catch (e) {
+            console.log('something went wrong');
+        }
+    }
+
     // event emitter
     var emitter = $('body');
 
@@ -113,22 +146,16 @@ $('document').ready(function () {
             }
 
             if (memorialOptionsToggle.hasClass('polirovka')) {
-                try {
-                    yaCounter22269611.reachGoal('POLIROVKA');
-                } catch (e) {
-                    console.log('goals available only on prod');
-                }
+                trackYandex('POLIROVKA');
                 priceOptions.polirovka = 1 + (priceMod / 100);
-                selectedOptionsIds.polirovka = memorialOptions.data('optid');
+                selectedOptionsIds.polirovka = memorialOption.data('optid');
+
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
-                try {
-                    yaCounter22269611.reachGoal('PODSTAVKA');
-                } catch (e) {
-                    console.log('goals available only on prod');
-                }
+                trackYandex('PODSTAVKA');
+
                 if (memorialOption.hasClass('selected')) {
                     priceOptions.podstavka = priceMod;
-                    selectedOptionsIds.podstavka = memorialOptions.data('optid');
+                    selectedOptionsIds.podstavka = memorialOption.data('optid');
                 } else {
                     priceOptions.podstavka = 0;
                     delete selectedOptionsIds.podstavka;
@@ -154,13 +181,20 @@ $('document').ready(function () {
     });
 
     submitButton.click(function () {
-        //console.log(selectedOptionsIds);
-        try {
-            yaCounter22269611.reachGoal('ORDER');
-        } catch (e) {
-            console.log('goals available only on prod');
-        }
-        submitButton.siblings('.placeholder').toggle();
+        trackYandex('ORDER');
+
+        // add spinner to a button
+
+        var xhr = $.ajax({
+            method: 'POST',
+            url: '/order-create',
+            data: selectedOptionsIds
+        });
+
+        xhr.success(function(data) {
+           // remove spinner from button
+           window.location = '/order-confirm-' + data.order_number;
+        });
     });
 
     // dropdown part
@@ -191,11 +225,6 @@ $('document').ready(function () {
         var clearButton = dd.find('.reset-additional');
         var optionsButtons = dd.find('.additional-element-option');
 
-        try {
-            yaCounter22269611.reachGoal('CVETNIK');
-        } catch (e) {
-            console.log('goals aviable only on prod');
-        }
 
         function closeDd () {
             dd.hide();
@@ -213,6 +242,7 @@ $('document').ready(function () {
         });
 
         optionsButtons.click(function() {
+            trackYandex('CVETNIK');
             var elem = $(this);
             optionsButtons.removeClass('selected');
             elem.addClass('selected');
@@ -241,11 +271,7 @@ $('document').ready(function () {
     });
 
     emitter.on('stella:changed', function (evt, data) {
-        try {
-            yaCounter22269611.reachGoal('STELLA');
-        } catch (e) {
-            console.log('goals available only on prod');
-        }
+        trackYandex('STELLA');
 
         var dimensionsArr = data.dimensions.split(',');
 
@@ -328,12 +354,7 @@ $('document').ready(function () {
     });
 
     lighboxTriggers.click(function () {
-        try {
-            yaCounter22269611.reachGoal('LIGHTBOX');
-        } catch (e) {
-            console.log('goals available only on prod');
-        }
-
+        trackYandex('LIGHTBOX');
 
         var lbHeight, wHeight, margins;
 
@@ -361,42 +382,5 @@ $('document').ready(function () {
 
 
     });
-
-//$.ajaxSetup({
-//     beforeSend: function(xhr, settings) {
-//         function getCookie(name) {
-//             var cookieValue = null;
-//             if (document.cookie && document.cookie != '') {
-//                 var cookies = document.cookie.split(';');
-//                 for (var i = 0; i < cookies.length; i++) {
-//                     var cookie = jQuery.trim(cookies[i]);
-//                     // Does this cookie string begin with the name we want?
-//                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
-//                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//                     break;
-//                 }
-//             }
-//         }
-//         return cookieValue;
-//         }
-//         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-//             // Only send the token to relative URLs i.e. locally.
-//             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-//         }
-//     }
-//});
-//
-//$.ajax({
-//	method: 'POST',
-//	url: '/order-create',
-//	data: {
-//        memorial: 1,
-//        stella: 0,
-//        podstavka: 0,
-//        cvetnik: 0,
-//        polirovka: 1
-//    }
-//});
-
 
 });

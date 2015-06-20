@@ -6,6 +6,7 @@ class OrderCreateForm(ModelForm):
         model = Order
         fields = ['memorial', 'stella', 'cvetnik', 'podstavka', 'polirovka']
 
+
 class OrderUpdateForm(ModelForm):
     class Meta:
         model = Order

@@ -24,6 +24,13 @@ class Podstavka(models.Model):
             self.height,
         )
 
+    def order_text(self):
+        return 'Подставка %sx%sx%s см' % (
+            self.length,
+            self.width,
+            self.height,
+        )
+
     def lightbox_info(self):
         return '%sx%sx%s см - %s р.' % (
             self.length,

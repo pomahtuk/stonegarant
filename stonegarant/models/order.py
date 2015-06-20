@@ -2,6 +2,7 @@
 from django.db import models
 from datetime import *
 import random
+import uuid
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
@@ -15,7 +16,6 @@ from polirovka import Polirovka
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('D', 'Черновик'),
         ('N', 'Новый'),
         ('S', 'Отправлен'),
         ('D', 'Данные внесены'),
@@ -35,7 +35,7 @@ class Order(models.Model):
     user_phone = models.CharField(max_length=150, verbose_name='Телефон', null=True, blank=True)
     user_name = models.CharField(max_length=150, verbose_name='Фамилия, имя', null=True, blank=True)
     user_comment = models.TextField(max_length=150, verbose_name='Комментарий пользователя', null=True, blank=True)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='D')
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='N')
     pub_date = models.DateTimeField('Дата оформления', default=datetime.now())
     # new fields
     user_email = models.CharField(max_length=150, verbose_name='Email', null=True, blank=True)
@@ -47,18 +47,26 @@ class Order(models.Model):
                                     unique=True)  # генерировать автоматически
     order_pin = models.CharField(max_length=150, verbose_name='ПИН-код')  # так же
 
+
+    def formatted_price(self):
+        return "{:,}".format(self.total_price).replace(',', ' ')
+
+    # this has to ba based on user filling status
     def save(self, *args, **kwargs):
         if not self.order_number:
+            # 0 - get total price
+            total_price = self.memorial.base_price
+            total_price += self.stella.added_value
+            if self.cvetnik:
+                total_price += self.cvetnik.added_value
+            if self.podstavka:
+                total_price += self.podstavka.added_value
+            # this is tricky but still works fine
+            total_price = int(total_price * (1 + ((self.polirovka.added_value + 0.0) / 100)))
+            self.total_price = total_price
             # 1 - generate number and pin on creation
-            self.order_number = u'%s%s%s%s-%s%s%s' % (
-                self.memorial.number,
-                self.stella.pk,
-                self.podstavka.pk,
-                self.polirovka.pk,
-                self.pub_date.day,
-                self.pub_date.month,
-                self.pub_date.year,
-            )
+            # number generation could have some collisions but pretty safe
+            self.order_number = str(uuid.uuid4())[:8]
             self.order_pin = random.randrange(10000, 99999)
             # 3 - update memorial popularity?
             self.memorial.popularity += 100
