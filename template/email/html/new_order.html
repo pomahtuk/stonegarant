@@ -1,0 +1,327 @@
+{% load premailer %}
+{% load thumbnail %}
+{% premailer "http://stone-garant.ru" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Новый заказ на сайте Stone-Garant.ru</title>
+<style>
+/* -------------------------------------
+		GLOBAL
+------------------------------------- */
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	line-height: 1.6;
+}
+img {
+	max-width: 100%;
+}
+body {
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: none;
+	width: 100%!important;
+	height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #edede9;
+}
+/* -------------------------------------
+		TYPOGRAPHY
+------------------------------------- */
+h1, h2, h3 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #000;
+	margin: 40px 0 10px;
+	line-height: 1.2;
+	font-weight: 200;
+}
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 28px;
+}
+h3 {
+	font-size: 22px;
+}
+p, ul, ol {
+	margin-bottom: 10px;
+	font-weight: normal;
+	font-size: 14px;
+}
+ul li, ol li {
+	margin-left: 5px;
+	list-style-position: inside;
+}
+/* -------------------------------------
+		Header
+------------------------------------- */
+table.header-wrap {
+	width: 100%;
+	height: 350px;
+  background: #2C3034; /* 2C3034 */
+  color: #fff;
+  text-align: center;
+}
+.email-logo-image {
+  margin: 18px 0 22px 0;
+  width: 212px;
+  height: 46px;
+}
+.email-header-stripe {
+  background: #474a4c;
+  padding: 1px 452px 0 0;
+  font-size: 1px;
+}
+.email-header-title {
+  font-size: 32px;
+  margin: 18px 0;
+  color: #fff;
+  font-weight: bold;
+}
+.spacing {
+  margin-top: 20px;
+}
+.email-order-number {
+  border: 1px solid #c75a38;
+  color: #c75a38;
+  font-size: 16px;
+  padding: 10px 15px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.email-order-number span {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 3px;
+}
+.email-header-text {
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0;
+}
+/* -------------------------------------
+		BODY
+------------------------------------- */
+table.body-wrap {
+	width: 100%;
+  background: #fff;
+  height: 350px;
+}
+.email-body{
+  margin-top: 40px;
+}
+.email-body-image {
+  width: 240px;
+  text-align: center;
+  float: left;
+  margin: 0 5px 0 50px;
+}
+.email-body-order-details {
+  width: 240px;
+  float: right;
+  margin: 0 50px 0 5px;
+}
+.order-details-memorial-name {
+  font-size: 18px;
+  margin: 0 0 20px 0;
+}
+.order-details-additions {
+  color: #3e3932;
+  font-size: 14px;
+  line-height: 21px;
+  margin-bottom: 20px;
+}
+.order-details-separator {
+  height: 1px;
+  background: #b1b2b0;
+  margin-bottom: 20px;
+}
+.order-details-total-price-block {
+  color: #3e3932;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.order-details-total-price {
+  color: #000000;
+  font-size: 32px;
+}
+/* -------------------------------------
+		FOOTER
+------------------------------------- */
+table.footer-wrap {
+  height: 215px;
+  background: #edede9;
+	width: 100%;	
+	clear: both!important;
+}
+.email-footer-text {
+  color: #36322c;
+  font-size: 14px;
+  line-height: 21px;
+  padding-left: 75px;
+}
+.email-footer-link {
+  color: #c75a38;
+}
+.email-footer-wrp {
+  padding-top: 40px;
+}
+/* ---------------------------------------------------
+		RESPONSIVENESS
+		Nuke it from orbit. It's the only way to be sure.
+------------------------------------------------------ */
+/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+.container {
+	display: block!important;
+	max-width: 600px!important;
+	margin: 0 auto!important; /* makes it centered */
+	clear: both!important;
+}
+/* This should also be a block element, so that it will fill 100% of the .container */
+.content {
+	max-width: 600px;
+	margin: 0 auto;
+	display: block;
+}
+/* Let's make sure tables in the content area are 100% wide */
+.content > table {
+	width: 100%;
+}
+</style>
+</head>
+
+<body>
+  <!-- header -->
+  <table class="header-wrap">
+    <tr>
+      <td></td>
+      <td class="container">
+        <div class="content">
+          <table>
+            <tr>
+              <td>
+                <img src="{{ STATIC_URL }}stonegarant/images/email-logo.png" class="email-logo-image">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="email-header-stripe"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h1 class="email-header-title">Ваш заказ оформлен</h1>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="email-header-text">Как только заказ будет рассчитан менеджер свяжется с вами</p>
+                <p class="email-header-text">для подтверждения заказа и условий доставки</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="spacing"></div>
+                <span class="email-order-number">Номер заказа: <span>{{ order.order_number }}</span></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+  <!-- /header -->
+
+  <!-- body -->
+  <table class="body-wrap" bgcolor="#f6f6f6">
+    <tr>
+      <td></td>
+      <td class="container" bgcolor="#FFFFFF">
+
+        <!-- content -->
+        <div class="content">
+          <table>
+            <tr>
+              <td>
+                <div class="email-body">
+                  <div class="email-body-image">
+                    <img src="{{ order.memorial.catalog_image.photo | thumbnail_url:'email' }}" alt='{{ order.memorial.title }}'>
+                  </div>
+                  <div class="email-body-order-details">
+                    <h5 class="order-details-memorial-name">{{ order.memorial.title }}</h5>
+                    <div class="order-details-additions">
+                      {% if order.stella %}
+                        {{ order.stella.order_text }}<br/>
+                      {% endif %}
+                      {% if order.podstavka %}
+                        {{ order.podstavka.order_text }}<br/>
+                      {% endif %}
+                      {% if order.cvetnik %}
+                        {{ order.cvetnik.order_text }}<br/>
+                      {% endif %}
+                      {% if order.polirovka %}
+                        {{ order.polirovka.title }} полировка<br/>
+                      {% endif %}
+                    </div>
+                    <div class="order-details-separator"></div>
+                    <div class="order-details-total-price-block">Общая стоимость без доставки:</div>
+                    <div class="order-details-total-price">{{ order.formatted_price }} р.</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- /content -->
+
+      </td>
+      <td></td>
+    </tr>
+  </table>
+  <!-- /body -->
+
+  <!-- footer -->
+  <table class="footer-wrap">
+    <tr>
+      <td></td>
+      <td class="container">
+        <!-- content -->
+        <div class="content">
+          <table>
+            <tr>
+              <td class="email-footer-wrp">
+                <p class="email-footer-text">
+                  Если у вас возникнут какие-либо вопросы, просто ответьте на это письмо
+                  <br/>
+                  или позвоните по бесплатному номеру <strong>8 800 775-86-24</strong>
+                </p>
+                <p class="email-footer-text">
+                  Мы работаем с 9:00 до 21:00 по московскому времени, без выходных.
+                </p>
+                <p class="email-footer-text">
+                  С уважением, мастеркая <a class="email-footer-link" href="http://stone-garant.ru">StoneGarant.ru</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- /content -->
+
+      </td>
+      <td></td>
+    </tr>
+  </table>
+  <!-- /footer -->
+
+</body>
+</html>
+{% endpremailer %}

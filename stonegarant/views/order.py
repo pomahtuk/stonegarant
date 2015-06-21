@@ -22,10 +22,16 @@ def order_create_view(request):
         raise Http404
 
 
+def order_email_test(request):
+    order_data = get_object_or_404(Order, order_number='af4e4121')
+    return render_to_response('email/html/new_order.html', {'order': order_data}, context_instance=RequestContext(request))
+
+
 # this has to respond on GET if order created already
 def order_confirm_view(request, order_number):
     order_data = get_object_or_404(Order, order_number=order_number)
     return render_to_response('order_confirm.html', {'order': order_data}, context_instance=RequestContext(request))
+
 
 # POST - update order and return confirmation page
 # GET - just render confirmation page

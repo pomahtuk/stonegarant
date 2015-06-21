@@ -53,6 +53,8 @@ class Order(models.Model):
 
     # this has to ba based on user filling status
     def save(self, *args, **kwargs):
+        if self.pk is not None:
+            orig = Order.objects.get(pk=self.pk)
         if not self.order_number:
             # 0 - get total price
             total_price = self.memorial.base_price
@@ -70,18 +72,18 @@ class Order(models.Model):
             self.order_pin = random.randrange(10000, 99999)
             # 3 - update memorial popularity?
             self.memorial.popularity += 100
-            # 2 - send email on creation - отправлять руками
-            if self.user_email:
-                msg_plain = render_to_string('email/text/new_order.txt', {'some_params': 1})
-                msg_html = render_to_string('email/html/new_order.html', {'some_params': 2})
-                # use some real values
-                send_mail(
-                    u'Новый заказ на сайте Stone-Garant.ru',
-                    msg_plain,
-                    'no-reply@example.com',
-                    [self.user_email, ],
-                    html_message=msg_html,
-                )
+        if self.status == 'D' and orig.status != 'D' and self.user_email:
+            print('trying to send an email')
+            msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
+            msg_html = render_to_string('email/html/new_order.html', {'order': self})
+            # use some real values
+            send_mail(
+                u'Новый заказ на сайте Stone-Garant.ru',
+                msg_plain,
+                'info@stone-garant.ru',
+                [self.user_email, 'pman89@ya.ru', 'info@stone-garant.ru'],
+                html_message=msg_html,
+            )
         super(Order, self).save(*args, **kwargs)
 
     def __unicode__(self):

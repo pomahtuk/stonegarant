@@ -1,0 +1,37 @@
+Ваш заказ оформлен
+
+Как только заказ будет рассчитан, менеджер свяжется с вами для подтверждения заказа и условий доставки.
+
+Номер заказа {{ order.order_number }}
+
+_______
+
+
+{{ order.memorial.title }}
+
+{% if order.stella %}
+    {{ order.stella.order_text }}<br/>
+{% endif %}
+{% if order.podstavka %}
+    {{ order.podstavka.order_text }}<br/>
+{% endif %}
+{% if order.cvetnik %}
+    {{ order.cvetnik.order_text }}<br/>
+{% endif %}
+{% if order.polirovka %}
+    {{ order.polirovka.title }} полировка<br/>
+{% endif %}
+
+-----
+
+Общая стоимость без доставки:
+{{ order.formatted_price }} р.
+
+_______
+
+Если у вас возникнут какие-либо вопросы, просто ответьте на это письмо или позвоните по бесплатному номеру 8 800 775-86-24
+
+Мы работаем с 9:00 до 21:00 по московскому времени, без выходных.
+
+С уважением, мастеркая StoneGarant.ru
+

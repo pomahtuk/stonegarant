@@ -164,6 +164,7 @@ THUMBNAIL_ALIASES = {
         'product': {'size': (375, 480), 'crop': False, 'autocrop': True},
         'thumb': {'size': (160, 160), 'crop': False, 'autocrop': True},
         'catalog': {'size': (230, 320), 'crop': False, 'autocrop': True},
+        'email': {'size': (230, 250), 'crop': False, 'autocrop': True},
         'work': {'size': (200, 280), 'crop': False},
         'ready': {'size': (400, 560), 'crop': False},
         'admin': {'size': (100, 100), 'crop': False}
@@ -236,13 +237,14 @@ INSTALLED_APPS = (
     'gunicorn',
     'uuslug',
     'stonegarant',
-    'compressor'
+    'compressor',
+    'django_premailer'
 )
 
 ## replace this with yandex.pdd
 # EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_HOST_USER = 'login@example.com'
-# EMAIL_HOST_PASSWORD = 'password'
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
 # EMAIL_PORT = 465
 # EMAIL_USE_TLS = True
 
