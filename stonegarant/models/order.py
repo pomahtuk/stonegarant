@@ -80,7 +80,7 @@ class Order(models.Model):
             send_mail(
                 u'Новый заказ на сайте Stone-Garant.ru',
                 msg_plain,
-                'info@stone-garant.ru',
+                'postmaster@stone-garant.ru',
                 [self.user_email, 'pman89@ya.ru', 'info@stone-garant.ru'],
                 html_message=msg_html,
             )
