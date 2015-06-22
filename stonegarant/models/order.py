@@ -51,6 +51,32 @@ class Order(models.Model):
     def formatted_price(self):
         return "{:,}".format(self.total_price).replace(',', ' ')
 
+    def send_email(self):
+        print('trying to send an email')
+        msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
+        msg_html = render_to_string('email/html/new_order.html', {'order': self})
+        # use some real values
+        send_mail(
+            u'Новый заказ на сайте Stone-Garant.ru',
+            msg_plain,
+            'info@stone-garant.ru',
+            [self.user_email, 'info@stone-garant.ru'],
+            html_message=msg_html,
+        )
+        return True
+
+    def calculate_price(self):
+        # 0 - get total price
+        total_price = self.memorial.base_price
+        total_price += self.stella.added_value
+        if self.cvetnik:
+            total_price += self.cvetnik.added_value
+        if self.podstavka:
+            total_price += self.podstavka.added_value
+        # this is tricky but still works fine
+        total_price = int(total_price * (1 + ((self.polirovka.added_value + 0.0) / 100)))
+        return total_price
+
     # this has to ba based on user filling status
     def save(self, *args, **kwargs):
         status = 'N'
@@ -60,14 +86,7 @@ class Order(models.Model):
                 status = orig.status
         if not self.order_number:
             # 0 - get total price
-            total_price = self.memorial.base_price
-            total_price += self.stella.added_value
-            if self.cvetnik:
-                total_price += self.cvetnik.added_value
-            if self.podstavka:
-                total_price += self.podstavka.added_value
-            # this is tricky but still works fine
-            total_price = int(total_price * (1 + ((self.polirovka.added_value + 0.0) / 100)))
+            total_price = self.calculate_price()
             self.total_price = total_price
             # 1 - generate number and pin on creation
             # number generation could have some collisions but pretty safe
@@ -76,17 +95,7 @@ class Order(models.Model):
             # 3 - update memorial popularity?
             self.memorial.popularity += 100
         if self.status == 'D' and status != 'D' and self.user_email:
-            print('trying to send an email')
-            msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
-            msg_html = render_to_string('email/html/new_order.html', {'order': self})
-            # use some real values
-            send_mail(
-                u'Новый заказ на сайте Stone-Garant.ru',
-                msg_plain,
-                'postmaster@stone-garant.ru',
-                [self.user_email, 'info@stone-garant.ru'],
-                html_message=msg_html,
-            )
+            self.send_email()
         super(Order, self).save(*args, **kwargs)
 
     def __unicode__(self):

@@ -241,18 +241,11 @@ INSTALLED_APPS = (
     'django_premailer'
 )
 
-## replace this with yandex.pdd
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_PORT = 465
-# EMAIL_USE_TLS = True
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
-EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+EMAIL_USE_SSL = True
+EMAIL_HOST = os.environ.get('YANDEX_HOST')
+EMAIL_HOST_USER = os.environ.get('YANDEX_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('YANDEX_PASSWORD')
+EMAIL_PORT = os.environ.get('YANDEX_PORT')
 
 JIVOSITE_ID = os.environ.get('JIVOSITE_ID', 'd5VtEOvH6q')
 

@@ -24,6 +24,7 @@ def order_create_view(request):
 
 def order_email_test(request):
     order_data = Order.objects.all()[:1].get()
+    # order_data.send_email()
     # order_data = get_object_or_404(Order, order_number='af4e4121')
     return render_to_response('email/html/new_order.html', {'order': order_data}, context_instance=RequestContext(request))
 
