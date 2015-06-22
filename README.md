@@ -14,6 +14,9 @@
 
 ## Instalation:
     ALTER TABLE stonegarant_order MODIFY total_price bigint(20);
+    alter table stonegarant_order modify podstavka_id int(11);
+    alter table stonegarant_order modify cvetnik_id int(11);
+    alter table stonegarant_order modify polirovka_id int(11);
 
 ### Python
 	

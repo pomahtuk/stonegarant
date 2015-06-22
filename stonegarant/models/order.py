@@ -53,8 +53,11 @@ class Order(models.Model):
 
     # this has to ba based on user filling status
     def save(self, *args, **kwargs):
+        status = 'N'
         if self.pk is not None:
             orig = Order.objects.get(pk=self.pk)
+            if orig:
+                status = orig.status
         if not self.order_number:
             # 0 - get total price
             total_price = self.memorial.base_price
@@ -72,7 +75,7 @@ class Order(models.Model):
             self.order_pin = random.randrange(10000, 99999)
             # 3 - update memorial popularity?
             self.memorial.popularity += 100
-        if self.status == 'D' and orig.status != 'D' and self.user_email:
+        if self.status == 'D' and status != 'D' and self.user_email:
             print('trying to send an email')
             msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
             msg_html = render_to_string('email/html/new_order.html', {'order': self})
@@ -81,7 +84,7 @@ class Order(models.Model):
                 u'Новый заказ на сайте Stone-Garant.ru',
                 msg_plain,
                 'postmaster@stone-garant.ru',
-                [self.user_email, 'pman89@ya.ru', 'info@stone-garant.ru'],
+                [self.user_email, 'info@stone-garant.ru'],
                 html_message=msg_html,
             )
         super(Order, self).save(*args, **kwargs)
