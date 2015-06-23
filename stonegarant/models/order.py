@@ -77,13 +77,13 @@ class Order(models.Model):
 
         msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': template_image})
 
-        # send_mail(
-        #     u'Новый заказ на сайте Stone-Garant.ru',
-        #     msg_plain,
-        #     'info@stone-garant.ru',
-        #     [self.user_email, 'info@stone-garant.ru'],
-        #     html_message=msg_html,
-        # )
+        send_mail(
+            u'Новый заказ на сайте Stone-Garant.ru',
+            msg_plain,
+            'info@stone-garant.ru',
+            [self.user_email, 'info@stone-garant.ru'],
+            html_message=msg_html,
+        )
         return True
 
     def calculate_price(self):
