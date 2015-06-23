@@ -136,15 +136,16 @@
         </div>
       </div>
       {% if page.description %}
-      <div class='content_line light_gray_2'>
-        <div class="mlr20">
-          <div class="content user_content seo_content">
-            {{ page.description | safe}}
+        <div class='content_line light_gray_2'>
+          <div class="mlr20">
+            <div class="content user_content seo_content">
+              {{ page.description | safe}}
+            </div>
           </div>
         </div>
-      </div>
       {% endif %}
     {% endblock %}
+
     {% include 'footer.html' %}
 
     {% compress js %}
