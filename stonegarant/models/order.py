@@ -5,6 +5,9 @@ import random
 import uuid
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+import os
+from django.core.mail import EmailMultiAlternatives
+from email.MIMEImage import MIMEImage
 
 
 from memorial import Memorial
@@ -47,7 +50,6 @@ class Order(models.Model):
                                     unique=True)  # генерировать автоматически
     order_pin = models.CharField(max_length=150, verbose_name='ПИН-код')  # так же
 
-
     def formatted_price(self):
         return "{:,}".format(self.total_price).replace(',', ' ')
 
@@ -55,7 +57,23 @@ class Order(models.Model):
         print('trying to send an email')
         msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
         msg_html = render_to_string('email/html/new_order.html', {'order': self})
-        # use some real values
+
+        # msg = EmailMultiAlternatives(
+        #     u'Новый заказ на сайте Stone-Garant.ru',
+        #     msg_plain,
+        #     'info@stone-garant.ru',
+        #     [self.user_email, 'info@stone-garant.ru'],
+        # )
+        # msg.attach_alternative(msg_html, "text/html")
+        # msg.mixed_subtype = 'related'
+        # image = self.memorial.catalog_image()
+        # if image and image.photo:
+        #     msg_img = MIMEImage(image.photo.file)
+        #     msg_img.add_header('Content-ID', '<{memorial}>')
+        #     msg.attach(msg_img)
+        #
+        # msg.send()
+
         send_mail(
             u'Новый заказ на сайте Stone-Garant.ru',
             msg_plain,
