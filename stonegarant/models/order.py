@@ -73,9 +73,8 @@ class Order(models.Model):
                 template_image = image_buffer.getvalue().encode('base64')
                 template_image = u'data:%s;base64,%s' % (mime_type, template_image)
 
-                print(template_image)
-
-        msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': template_image})
+        msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': True})
+        msg_html.replace('http://stone-garant.ru/replace_code', template_image)
 
         send_mail(
             u'Новый заказ на сайте Stone-Garant.ru',
