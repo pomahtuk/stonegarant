@@ -31,3 +31,4 @@ django-appconf==1.0.1
 django-htmlmin==0.7.0
 PyReact==0.5.2
 django-premailer==0.1.0
+requests==2.7.0

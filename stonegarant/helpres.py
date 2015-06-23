@@ -74,3 +74,11 @@ def admin_thumb(obj, photo):
 
         else:
             return 'нет изображения'
+
+
+def email_thumb(photo):
+    Image.open(photo)
+    thumbnailer = get_thumbnailer(photo)
+    thumbnailer_options = ({'size': (230, 250), 'crop': False, 'autocrop': True})
+    thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+    return thumb_file.url

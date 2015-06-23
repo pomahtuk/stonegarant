@@ -3,12 +3,12 @@ from django.db import models
 from datetime import *
 import random
 import uuid
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
-import os
-from django.core.mail import EmailMultiAlternatives
-from email.MIMEImage import MIMEImage
-
+from stonegarant.helpres import email_thumb
+from django.core.mail import send_mail
+import requests
+from StringIO import StringIO
+from mimetypes import MimeTypes
 
 from memorial import Memorial
 from stella import Stella
@@ -55,24 +55,25 @@ class Order(models.Model):
 
     def send_email(self):
         print('trying to send an email')
-        msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
-        msg_html = render_to_string('email/html/new_order.html', {'order': self})
 
-        # msg = EmailMultiAlternatives(
-        #     u'Новый заказ на сайте Stone-Garant.ru',
-        #     msg_plain,
-        #     'info@stone-garant.ru',
-        #     [self.user_email, 'info@stone-garant.ru'],
-        # )
-        # msg.attach_alternative(msg_html, "text/html")
-        # msg.mixed_subtype = 'related'
-        # image = self.memorial.catalog_image()
-        # if image and image.photo:
-        #     msg_img = MIMEImage(image.photo.file)
-        #     msg_img.add_header('Content-ID', '<{memorial}>')
-        #     msg.attach(msg_img)
-        #
-        # msg.send()
+        template_image = ''
+
+        msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
+
+        image = self.memorial.catalog_image()
+        if image and image.photo:
+            mime = MimeTypes()
+            thumb = email_thumb(image.photo)
+            mime_type = mime.guess_type(thumb)[0]
+            # Steam the image from the url
+            request = requests.get(thumb)
+            image_buffer = StringIO(request.content)
+
+            if image_buffer:
+                template_image = image_buffer.getvalue().encode('base64')
+                template_image = u'data:%s;base64,%s' % (mime_type, template_image)
+
+        msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image': template_image})
 
         send_mail(
             u'Новый заказ на сайте Stone-Garant.ru',
