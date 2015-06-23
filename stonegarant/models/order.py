@@ -73,15 +73,17 @@ class Order(models.Model):
                 template_image = image_buffer.getvalue().encode('base64')
                 template_image = u'data:%s;base64,%s' % (mime_type, template_image)
 
-        msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image': template_image})
+                print(template_image)
 
-        send_mail(
-            u'Новый заказ на сайте Stone-Garant.ru',
-            msg_plain,
-            'info@stone-garant.ru',
-            [self.user_email, 'info@stone-garant.ru'],
-            html_message=msg_html,
-        )
+        msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': template_image})
+
+        # send_mail(
+        #     u'Новый заказ на сайте Stone-Garant.ru',
+        #     msg_plain,
+        #     'info@stone-garant.ru',
+        #     [self.user_email, 'info@stone-garant.ru'],
+        #     html_message=msg_html,
+        # )
         return True
 
     def calculate_price(self):
