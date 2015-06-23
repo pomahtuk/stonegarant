@@ -41,7 +41,7 @@ class Memorial(SeoEmpoweredModel):
     categories = models.ManyToManyField(Category, verbose_name='Категории')
 
     # this fields will be deprecated
-    stella = models.CharField(max_length=50, verbose_name='Стелла')
+    stella = models.CharField(max_length=50, verbose_name='Стела')
     podstavka = models.CharField(max_length=50, verbose_name='Подставка')
     cvetnik = models.CharField(max_length=50, verbose_name='Цветник')
 

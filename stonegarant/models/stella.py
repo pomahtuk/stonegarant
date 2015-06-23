@@ -14,8 +14,8 @@ class Stella(models.Model):
     memorial = models.ForeignKey(Memorial, verbose_name='Мемориал', related_name='stella_variants', null=True, blank=True)
 
     class Meta:
-        verbose_name = u"Вариант стэллы"
-        verbose_name_plural = u"Варианты стэллы"
+        verbose_name = u"Вариант стелы"
+        verbose_name_plural = u"Варианты стелы"
 
     def data_size(self):
         return '%s,%s,%s' % (
