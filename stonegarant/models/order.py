@@ -4,11 +4,8 @@ from datetime import *
 import random
 import uuid
 from django.template.loader import render_to_string
-from stonegarant.helpres import email_thumb
+from stonegarant.helpres import email_thumb, get_base64_image
 from django.core.mail import send_mail
-import requests
-from StringIO import StringIO
-from mimetypes import MimeTypes
 
 from memorial import Memorial
 from stella import Stella
@@ -57,22 +54,12 @@ class Order(models.Model):
         print('trying to send an email')
 
         template_image = ''
-
-        msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
-
         image = self.memorial.catalog_image()
         if image and image.photo:
-            mime = MimeTypes()
             thumb = email_thumb(image.photo)
-            mime_type = mime.guess_type(thumb)[0]
-            # Steam the image from the url
-            request = requests.get(thumb)
-            image_buffer = StringIO(request.content)
+            template_image = get_base64_image(thumb)
 
-            if image_buffer:
-                template_image = image_buffer.getvalue().encode('base64')
-                template_image = u'data:%s;base64,%s' % (mime_type, template_image)
-
+        msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
         msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': True})
         msg_html = msg_html.replace('http://stone-garant.ru/replace_code', template_image)
 
@@ -83,6 +70,7 @@ class Order(models.Model):
             [self.user_email, 'info@stone-garant.ru'],
             html_message=msg_html,
         )
+
         return True
 
     def calculate_price(self):

@@ -2,11 +2,15 @@
 from easy_thumbnails.files import get_thumbnailer
 from PIL import Image
 from django.core.urlresolvers import reverse
+import requests
+from StringIO import StringIO
+from mimetypes import MimeTypes
 
 
 class InlineEditLinkMixin(object):
     readonly_fields = ['edit_details']
     edit_label = u'Редактировать'
+
     def edit_details(self, obj):
         if obj.id:
             opts = self.model._meta
@@ -46,6 +50,7 @@ def simple_admin_thumb(obj, photo):
         else:
             return 'нет изображения'
 
+
 def admin_thumb(obj, photo):
     output = [
         u'<style>',
@@ -82,3 +87,18 @@ def email_thumb(photo):
     thumbnailer_options = ({'size': (230, 250), 'crop': False, 'autocrop': True})
     thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
     return thumb_file.url
+
+
+def get_base64_image(url):
+    template_image = ''
+    mime = MimeTypes()
+    mime_type = mime.guess_type(url)[0]
+    # Steam the image from the url
+    request = requests.get(url)
+    image_buffer = StringIO(request.content)
+
+    if image_buffer:
+        template_image = image_buffer.getvalue().encode('base64')
+        template_image = u'data:%s;base64,%s' % (mime_type, template_image)
+
+    return template_image
