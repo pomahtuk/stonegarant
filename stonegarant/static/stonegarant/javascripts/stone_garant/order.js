@@ -8,28 +8,31 @@ $(document).ready(function () {
 
     $inputs.change(function () {
         var $input = $(this);
+        var $formLine = $input.parents('.form-group');
         var value = $input.val().trim();
 
         if ($input.hasClass('invalid') && value) {
             validInputs += 1;
-            $input.removeClass('invalid').addClass('valid');
+            $formLine.removeClass('invalid').addClass('valid');
         }
     });
 
     $inputs.blur(function () {
         var $input = $(this);
+        var $formLine = $input.parents('.form-group');
         var value = $input.val().trim();
 
         if (!value) {
-            validInputs > 0 ? validInputs -= 1 : validInputs = 0;
-            $input.addClass('invalid').removeClass('valid');
+            validInputs > 0 ? validInputs = validInputs - 1 : validInputs = 0;
+            $formLine.addClass('invalid').removeClass('valid');
         } else {
             validInputs += 1;
-            $input.removeClass('invalid').addClass('valid');
+            $formLine.removeClass('invalid').addClass('valid');
         }
     });
 
     $form.submit(function () {
+        console.log(totalInputs, validInputs);
         return totalInputs === validInputs;
     });
 

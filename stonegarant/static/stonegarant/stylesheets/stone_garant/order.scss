@@ -189,6 +189,26 @@
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   }
 
+  .invalid {
+    label {
+      color: #c75a38;
+    }
+    .form-control {
+      border-color: #c75a38;
+      box-shadow: 0 0 1px 1px rgba(199, 90, 56, 0.75);
+    }
+  }
+
+  .valid {
+    label {
+      color: #76b855;
+    }
+    .form-control {
+      border-color: #76b855;
+      box-shadow: 0 0 1px 1px rgba(118, 184, 85, 0.75);
+    }
+  }
+
   .form-buttons {
     margin: 40px 0 0 88px;
 
