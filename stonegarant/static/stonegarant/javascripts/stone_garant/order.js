@@ -22,7 +22,9 @@ $(document).ready(function () {
         var $formLine = $input.parents('.form-group');
         var value = $input.val().trim();
 
-        if (!value) {
+        var valid = value.length > 0;
+
+        if (!valid) {
             validInputs > 0 ? validInputs = validInputs - 1 : validInputs = 0;
             $formLine.addClass('invalid').removeClass('valid');
         } else {
@@ -32,7 +34,8 @@ $(document).ready(function () {
     });
 
     $form.submit(function () {
-        console.log(totalInputs, validInputs);
+        //console.log(totalInputs, validInputs);
+        $inputs.blur();
         return totalInputs === validInputs;
     });
 
