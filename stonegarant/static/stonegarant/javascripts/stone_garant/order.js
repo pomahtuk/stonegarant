@@ -3,15 +3,16 @@ $(document).ready(function () {
     var $inputs = $('.input-holder input');
     var $form = $('form.order-form');
 
-    var validInputs = 0;
     var totalInputs = $inputs.length;
 
     var validations = {
         email: function (value) {
-            return value.indexOf('@') != -1;
+            var index = value.indexOf('@');
+            // @ is not last symbol
+            return index != -1 && index < value.length - 2;
         },
         phone: function (value) {
-            return value.length > 5;
+            return value.length >= 5;
         },
         name: function (value) {
             return value.length > 3;
@@ -24,22 +25,10 @@ $(document).ready(function () {
         }
     };
 
-    $inputs.change(function () {
-        var $input = $(this);
+    function runValidations ($input) {
         var $formLine = $input.parents('.form-group');
         var value = $input.val().trim();
-
-        if ($input.hasClass('invalid') && value) {
-            validInputs += 1;
-            $formLine.removeClass('invalid').addClass('valid');
-        }
-    });
-
-    $inputs.blur(function () {
-        var $input = $(this);
-        var $formLine = $input.parents('.form-group');
-        var value = $input.val().trim();
-        var validationName = $input.data('validation') || 'def';
+        var validationName = $input.data('validate') || 'def';
         var validationFunction = validations[validationName];
 
         // also some error messages
@@ -47,17 +36,39 @@ $(document).ready(function () {
         var valid = validationFunction(value);
 
         if (!valid) {
-            validInputs > 0 ? validInputs = validInputs - 1 : validInputs = 0;
             $formLine.addClass('invalid').removeClass('valid');
         } else {
-            validInputs += 1;
+            $formLine.removeClass('invalid').addClass('valid');
+        }
+    }
+
+    $inputs.change(function () {
+        var $input = $(this);
+        var $formLine = $input.parents('.form-group');
+        var value = $input.val().trim();
+
+        if ($formLine.hasClass('invalid') && value) {
             $formLine.removeClass('invalid').addClass('valid');
         }
     });
 
+    $inputs.keyup(function () {
+        var $input = $(this);
+        var $formLine = $input.parents('.form-group');
+        // on keyup validate field only if it is already invalid
+        if ($formLine.hasClass('invalid')) {
+            runValidations($input);
+        }
+    });
+
+    $inputs.blur(function () {
+        var $input = $(this);
+        runValidations($input);
+    });
+
     $form.submit(function () {
-        //console.log(totalInputs, validInputs);
         $inputs.blur();
+        var validInputs = $inputs.filter('.valid');
         return totalInputs === validInputs;
     });
 

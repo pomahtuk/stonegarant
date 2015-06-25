@@ -190,22 +190,22 @@
   }
 
   .invalid {
-    label {
-      color: #c75a38;
+    input {
+      color: #c04f31;
     }
     .form-control {
+      background: #f2d9d1;
       border-color: #c75a38;
-      box-shadow: 0 0 1px 1px rgba(199, 90, 56, 0.75);
     }
   }
 
   .valid {
-    label {
-      color: #76b855;
+    input {
+      color: #6baf4b;
     }
     .form-control {
+      background: #e0efd8;
       border-color: #76b855;
-      box-shadow: 0 0 1px 1px rgba(118, 184, 85, 0.75);
     }
   }
 

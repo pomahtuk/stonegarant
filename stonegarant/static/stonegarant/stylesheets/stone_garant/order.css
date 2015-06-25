@@ -144,16 +144,16 @@
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
-  .order-form .invalid label {
-    color: #c75a38; }
+  .order-form .invalid input {
+    color: #c04f31; }
   .order-form .invalid .form-control {
-    border-color: #c75a38;
-    box-shadow: 0 0 1px 1px rgba(199, 90, 56, 0.75); }
-  .order-form .valid label {
-    color: #76b855; }
+    background: #f2d9d1;
+    border-color: #c75a38; }
+  .order-form .valid input {
+    color: #6baf4b; }
   .order-form .valid .form-control {
-    border-color: #76b855;
-    box-shadow: 0 0 1px 1px rgba(118, 184, 85, 0.75); }
+    background: #e0efd8;
+    border-color: #76b855; }
   .order-form .form-buttons {
     margin: 40px 0 0 88px; }
     .order-form .form-buttons .btn_link {
