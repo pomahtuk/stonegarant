@@ -68,7 +68,7 @@ $(document).ready(function () {
 
     $form.submit(function () {
         $inputs.blur();
-        var validInputs = $inputs.filter('.valid');
+        var validInputs = $inputs.filter('.valid').length;
         return totalInputs === validInputs;
     });
 
