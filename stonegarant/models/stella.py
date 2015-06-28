@@ -32,7 +32,7 @@ class Stella(models.Model):
         )
 
     def order_text(self):
-        return 'Стэла %sx%sx%s см' % (
+        return 'Стела %sx%sx%s см' % (
             self.length,
             self.width,
             self.height,
