@@ -45,12 +45,7 @@ class Memorial(SeoEmpoweredModel):
     podstavka = models.CharField(max_length=50, verbose_name='Подставка')
     cvetnik = models.CharField(max_length=50, verbose_name='Цветник')
 
-    # and this prices but... wait...
-    price_face = models.BigIntegerField(verbose_name='Цена за лицевую полировку')
-    price_circle = models.BigIntegerField(verbose_name='Цена за круговую полировку')
-
     # stella_variants
-
     discount = models.BooleanField(verbose_name='Со скидкой')
     # discount_percent - auto populated field not exposed to admin area
     discount_percent = models.BigIntegerField(verbose_name='Скидка (процент)', null=True, blank=True)
