@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from seo_model import *
+from uuslug import uuslug
 
 
 class StaticPage(SeoEmpoweredModel):
