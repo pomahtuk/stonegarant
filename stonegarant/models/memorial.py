@@ -139,9 +139,9 @@ def create_admin_thumb(sender, instance, **kwargs):
             instance.save()
     else:
         print 'no image provided'
-        # current thumb is irrelevant
-        instance.admin_thumb = None
-        instance.save()
+        # # current thumb is irrelevant
+        # instance.admin_thumb = None
+        # instance.save()
 
 
 signals.post_save.connect(create_admin_thumb, sender=Memorial)
