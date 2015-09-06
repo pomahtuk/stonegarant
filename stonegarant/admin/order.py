@@ -12,14 +12,14 @@ class OrderPageForm(ModelForm):
 
 class OrderAdmin(admin.ModelAdmin):
     form = OrderPageForm
-    list_display = ('pub_date', 'memorial', 'user_name', 'user_phone', 'user_comment', 'status', 'notes')
-    search_fields = ['memorial', 'user_name', 'user_phone', 'user_comment', 'status']
+    list_display = ('pub_date', 'memorial', 'user_name', 'user_phone', 'user_email', 'user_comment', 'status', 'notes')
+    search_fields = ['memorial', 'user_name', 'user_phone', 'user_email', 'user_comment', 'status']
     ordering = ('-pub_date',)
     list_filter = ['status']
     fieldsets = (
         (u'Основное', {
             'fields': (
-                'order_number', 'order_pin', 'status', 'user_name', 'user_phone', 'user_comment'
+                'order_number', 'order_pin', 'status', 'user_name', 'user_phone', 'user_email', 'user_comment'
             )
         }),
         (u'Детали заказа', {
