@@ -11,4 +11,4 @@ class Reply(models.Model):
         verbose_name_plural = u"Отзывы"
 
     def __unicode__(self):
-        return self.preson
+        return self.person
