@@ -16,6 +16,9 @@ def index_view(request):
         'page': page
     }, context_instance=RequestContext(request))
 
+def robots_view(request):
+    return render_to_response('robots.txt', context_instance=RequestContext(request), content_type="text/plain")
+
 def sitemap_view(request):
     memorials = Memorial.objects.all()
     pages = StaticPage.objects.all()
