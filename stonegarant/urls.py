@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
-from django.views.generic.base import TemplateView
+# from django.views.generic.base import TemplateView
 
 from stonegarant.views import *
 
@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^404', not_found_view, name="404"),
 
     url(r'^sitemap.xml$', sitemap_view, name="sitemap"),
-    url(r'^robots\.txt$', TemplateView, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+    # url(r'^robots\.txt$', TemplateView, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
 )
 
 handler404 = not_found_view
