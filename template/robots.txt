@@ -1,0 +1,8 @@
+User-agent: Yandex
+Host: www.stone-garant.ru
+
+User-Agent: Slurp
+Disallow: /
+
+User-agent: *
+Disallow:

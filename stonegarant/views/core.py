@@ -16,7 +16,6 @@ def index_view(request):
         'page': page
     }, context_instance=RequestContext(request))
 
-
 def sitemap_view(request):
     memorials = Memorial.objects.all()
     pages = StaticPage.objects.all()
