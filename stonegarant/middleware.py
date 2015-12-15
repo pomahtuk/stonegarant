@@ -28,6 +28,7 @@ class HostnameRedirectMiddleware(object):
     def process_request(self, request):
         try:
             server_name = request.META['SERVER_NAME']
+            print(server_name)
         except KeyError:
             pass
         else:
