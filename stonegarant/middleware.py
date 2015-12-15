@@ -2,7 +2,6 @@ __author__ = 'ilovriakov'
 
 from django.http import HttpResponsePermanentRedirect
 from django.conf import settings
-from django.contrib.sites.models import Site
 
 def _get_redirect(new_hostname, request):
     new_location = '%s://%s%s' % (
@@ -12,21 +11,27 @@ def _get_redirect(new_hostname, request):
     )
     return HttpResponsePermanentRedirect(new_location)
 
+
+class SetRemoteAddrFromForwardedFor(object):
+    def process_request(self, request):
+        try:
+            real_ip = request.META['HTTP_X_FORWARDED_FOR']
+        except KeyError:
+            pass
+        else:
+            # HTTP_X_FORWARDED_FOR can be a comma-separated list of IPs.
+            # Take just the first one.
+            real_ip = real_ip.split(",")[0]
+            request.META['REMOTE_ADDR'] = real_ip
+
 class HostnameRedirectMiddleware(object):
     def process_request(self, request):
-        server_name = request.META['SERVER_NAME']
-
-        if getattr(settings, 'REMOVE_WWW', None) and server_name.startswith('www.'):
-            return _get_redirect(server_name[4:], request)
-
-        catchall = getattr(settings, 'CATCHALL_REDIRECT_HOSTNAME', None)
-        # if catchall hostname is set, verify that the current
-        # hostname is valid, and redirect if not
-        if catchall:
-            # cache all site domains in one query
-            if not hasattr(self, '_sites'):
-                self._sites = Site.objects.values_list('domain', flat=True)
-            if server_name not in self._sites:
-                return _get_redirect(catchall, request)
+        try:
+            server_name = request.META['SERVER_NAME']
+        except KeyError:
+            pass
+        else:
+            if getattr(settings, 'REMOVE_WWW', None) and server_name.startswith('www.'):
+                return _get_redirect(server_name[4:], request)
 
         return None
