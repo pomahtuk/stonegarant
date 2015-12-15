@@ -122,6 +122,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'stonegarant.middleware.HostnameRedirectMiddleware'
     'django.middleware.gzip.GZipMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'django.middleware.cache.CacheMiddleware',
@@ -134,6 +135,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'pagination.middleware.PaginationMiddleware',
 )
+
+REMOVE_WWW = True
 
 ROOT_URLCONF = 'stonegarant.urls'
 
