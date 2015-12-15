@@ -136,7 +136,7 @@ MIDDLEWARE_CLASSES = (
     'pagination.middleware.PaginationMiddleware',
 )
 
-REMOVE_WWW = True
+FORCE_WWW = True
 
 ROOT_URLCONF = 'stonegarant.urls'
 

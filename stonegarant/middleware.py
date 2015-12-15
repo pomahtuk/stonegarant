@@ -31,7 +31,7 @@ class HostnameRedirectMiddleware(object):
         except KeyError:
             pass
         else:
-            if getattr(settings, 'REMOVE_WWW', None) and server_name.startswith('www.'):
-                return _get_redirect(server_name[4:], request)
+            if getattr(settings, 'FORCE_WWW', None) and not (server_name.startswith('www.')):
+                return _get_redirect('%s.%s' % ('www', server_name), request)
 
         return None
