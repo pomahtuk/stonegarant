@@ -122,7 +122,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'stonegarant.middleware.HostnameRedirectMiddleware'
+    'stonegarant.middleware.HostnameRedirectMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'django.middleware.cache.CacheMiddleware',
