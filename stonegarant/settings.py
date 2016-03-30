@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 #DEBUG = False if (os.environ.get('DJANGO_DEBUG') and os.environ.get('DJANGO_DEBUG') is False) else True
 # just for stage
-DEBUG = True
+DEBUG = False
 FORCE_WWW = not DEBUG
 
 ADMINS = (
