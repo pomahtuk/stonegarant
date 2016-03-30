@@ -5,9 +5,8 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DEBUG = False if os.environ.get('DJANGO_DEBUG') else True
-# DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False if (os.environ.get('DJANGO_DEBUG') and os.environ.get('DJANGO_DEBUG') is False) else True
+FORCE_WWW = DEBUG
 
 ADMINS = (
     ('PMaN', 'pman89@ya.ru'),
@@ -153,8 +152,6 @@ MIDDLEWARE_CLASSES = (
     'pagination.middleware.PaginationMiddleware',
 )
 
-FORCE_WWW = True
-
 ROOT_URLCONF = 'stonegarant.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -256,7 +253,11 @@ EMAIL_PORT = os.environ.get('YANDEX_PORT')
 JIVOSITE_ID = os.environ.get('JIVOSITE_ID', 'd5VtEOvH6q')
 
 
-
+DEBUG_TOOLBAR_CONFIG = {
+    'JQUERY_URL': '',
+    'INTERCEPT_REDIRECTS': False,
+    'MEDIA_URL': '/__debug__/m/',
+}
 
 # CACHES = {
 #     'default': {

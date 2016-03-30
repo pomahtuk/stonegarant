@@ -33,8 +33,3 @@ urlpatterns = patterns('',
 )
 
 handler404 = not_found_view
-
-if settings.DEBUG:
-    urlpatterns += patterns('', 
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    )
