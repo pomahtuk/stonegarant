@@ -21,9 +21,9 @@
 
 {% block content %}
     {% load thumbnail %}
-    {% load pagination_tags %}
+    {% load el_pagination_tags %}
 
-    {% autopaginate works 10 %}
+    {% paginate 10 works %}
 
     <div class="content_line light_gray_2">
       <div class="content_holder">
@@ -57,7 +57,7 @@
       <div class='content_holder pagination-holder'>
         <div class='mlr20'>
 
-          {% paginate %}
+          {% show_pages %}
 
         </div>
       </div>

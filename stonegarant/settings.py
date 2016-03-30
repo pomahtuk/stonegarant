@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 #DEBUG = False if (os.environ.get('DJANGO_DEBUG') and os.environ.get('DJANGO_DEBUG') is False) else True
 # just for stage
-DEBUG = False
+DEBUG = not True
 FORCE_WWW = not DEBUG
 
 ADMINS = (
@@ -129,6 +129,7 @@ TEMPLATES = [{
             'django.template.context_processors.static',
             'django.contrib.messages.context_processors.messages',
             'stonegarant.context_processors.jivosite',
+
         ],
         'loaders': [
             ('django.template.loaders.cached.Loader', [
@@ -237,7 +238,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'debug_toolbar',
     'suit_redactor',
-    'pagination',
+    'el_pagination',
     'storages',
     'gunicorn',
     'uuslug',
