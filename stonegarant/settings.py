@@ -6,7 +6,7 @@ import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = False if (os.environ.get('DJANGO_DEBUG') and os.environ.get('DJANGO_DEBUG') is False) else True
-FORCE_WWW = DEBUG
+FORCE_WWW = not DEBUG
 
 ADMINS = (
     ('PMaN', 'pman89@ya.ru'),

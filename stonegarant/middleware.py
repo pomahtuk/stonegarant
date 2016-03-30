@@ -33,7 +33,7 @@ class HostnameRedirectMiddleware(object):
         else:
             server_should_be_prefixed = not (server_name.startswith('www.') or ('stage' in server_name))
 
-            if getattr(settings, 'FORCE_WWW', False) and server_should_be_prefixed:
+            if settings.FORCE_WWW and server_should_be_prefixed:
                 return _get_redirect('%s.%s' % ('www', server_name), request)
 
         return None
