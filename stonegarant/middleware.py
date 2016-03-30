@@ -31,7 +31,7 @@ class HostnameRedirectMiddleware(object):
         except KeyError:
             pass
         else:
-            if getattr(settings, 'FORCE_WWW', None) and not (server_name.startswith('www.')):
+            if getattr(settings, 'FORCE_WWW', None) and not (server_name.startswith('www.') or server_name.startswith('stonegarant-stage.')):
                 return _get_redirect('%s.%s' % ('www', server_name), request)
 
         return None
