@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from stonegarant.models import *
 from django.template import RequestContext
+from django.views.decorators.cache import cache_page
 
 
 def memorial_view(request, memorial_slug):
@@ -12,6 +13,7 @@ def memorial_view(request, memorial_slug):
     return render_to_response('product.html', {'memorial': memorial_data}, context_instance=RequestContext(request))
 
 
+@cache_page(60 * 60)
 def memorial_list_view(request):
     service_page_data = get_object_or_404(ServicePage, id=75)
 

@@ -115,11 +115,28 @@ STATICFILES_FINDERS = (
 SECRET_KEY = 'b1m^i+3*w8x5z)5nxx71%v-bq3rgk683yxp^+rk#s4zm=ch-i&amp;'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    # 'django.template.loaders.eggs.Loader',
-)
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [os.path.join(PROJECT_ROOT, 'template')],
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.template.context_processors.csrf',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.contrib.messages.context_processors.messages',
+            'stonegarant.context_processors.jivosite',
+        ],
+        'loaders': [
+            ('django.template.loaders.cached.Loader', [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]),
+        ],
+    },
+}]
 
 MIDDLEWARE_CLASSES = (
     'stonegarant.middleware.HostnameRedirectMiddleware',
@@ -142,20 +159,6 @@ ROOT_URLCONF = 'stonegarant.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'stonegarant.wsgi.application'
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_ROOT, 'template'),
-)
-
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'stonegarant.context_processors.jivosite',
-    'django.core.context_processors.request',
-)
 
 
 THUMBNAIL_CHECK_CACHE_MISS = True
@@ -252,6 +255,68 @@ EMAIL_PORT = os.environ.get('YANDEX_PORT')
 
 JIVOSITE_ID = os.environ.get('JIVOSITE_ID', 'd5VtEOvH6q')
 
+
+
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'stonegarant_cache',
+#     }
+# }
+
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_bmemcached.memcached.BMemcached',
+#         'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+#         'OPTIONS': {
+#                     'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+#                     'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+#             }
+#     }
+# }
+
+os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
+os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
+os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+CACHES = {
+    'default': {
+        # Use pylibmc
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+
+        # Use binary memcache protocol (needed for authentication)
+        'BINARY': True,
+
+        # TIMEOUT is not the connection timeout! It's the default expiration
+        # timeout that should be applied to keys! Setting it to `None`
+        # disables expiration.
+        'TIMEOUT': None,
+
+        'OPTIONS': {
+            # Enable faster IO
+            'no_block': True,
+            'tcp_nodelay': True,
+
+            # Keep connection alive
+            'tcp_keepalive': True,
+
+            # Timeout for set/get requests
+            '_poll_timeout': 2000,
+
+            # Use consistent hashing for failover
+            'ketama': True,
+
+            # Configure failover timings
+            'connect_timeout': 2000,
+            'remove_failed': 4,
+            'retry_timeout': 2,
+            'dead_timeout': 10
+        }
+    }
+}
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
@@ -279,6 +344,11 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
         },
