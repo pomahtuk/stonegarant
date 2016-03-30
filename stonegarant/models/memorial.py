@@ -34,6 +34,7 @@ class Memorial(SeoEmpoweredModel):
                                    blank=True
                                    )
     admin_thumb = models.CharField(max_length=255, null=True, blank=True)
+    catalog_thumb = models.CharField(max_length=255, null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     slug = models.CharField(max_length=255, verbose_name='URL')
@@ -97,6 +98,14 @@ class Memorial(SeoEmpoweredModel):
             photo = None
         return simple_admin_thumb(self, photo)
 
+    def catalog_thumbnail(self):
+        photo = self.catalog_thumb
+        if photo:
+            return photo
+        else:
+            create_catalog_thumb(False, self)
+            return self.catalog_thumb
+
     def formatted_price(self):
         return "{:,}".format(self.base_price).replace(',', ' ')
 
@@ -119,6 +128,26 @@ class Memorial(SeoEmpoweredModel):
     class Meta:
         verbose_name = u"Памятник"
         verbose_name_plural = u"Памятники"
+
+
+def create_catalog_thumb(sender, instance, **kwargs):
+    # sometimes order is not updated
+    photo_list = instance.get_images()
+    if len(photo_list) > 0:
+        photo = photo_list[0].photo
+        # generate new thumb
+        thumbnailer = get_thumbnailer(photo.name, photo)
+        thumbnailer_options = ({'size': (230, 320), 'crop': False, 'autocrop': True})
+        thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+        same = instance.catalog_thumb == thumb_file.url if thumb_file.url else True
+        # print u'%s, %s, %s' % (instance.catalog_thumb, thumb_file.url, same)
+        if not same:
+            # print u'not same'
+            instance.catalog_thumb = thumb_file.url
+            print 'thumb_file %s' % thumb_file.url
+            instance.save()
+    else:
+        print 'no image provided'
 
 
 def create_admin_thumb(sender, instance, **kwargs):
@@ -145,3 +174,4 @@ def create_admin_thumb(sender, instance, **kwargs):
 
 
 signals.post_save.connect(create_admin_thumb, sender=Memorial)
+signals.post_save.connect(create_catalog_thumb, sender=Memorial)

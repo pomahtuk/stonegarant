@@ -13,7 +13,7 @@ class OrderPageForm(ModelForm):
 class OrderAdmin(admin.ModelAdmin):
     form = OrderPageForm
     list_display = ('pub_date', 'memorial', 'user_name', 'user_phone', 'user_email', 'user_comment', 'status', 'notes')
-    search_fields = ['memorial', 'user_name', 'user_phone', 'user_email', 'user_comment', 'status']
+    search_fields = ['memorial', 'user_name', 'user_phone', 'user_email[jnz', 'user_comment', 'status']
     ordering = ('-pub_date',)
     list_filter = ['status']
     fieldsets = (
