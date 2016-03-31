@@ -51,7 +51,7 @@
             <form id="sorting_form" method="get">
               Сортировать по:
               <select name="order">
-                <option value="popularity" {% if sort_order == 'popularity' %}selected{% endif %}>популярности</option>
+                <option value="-popularity" {% if sort_order == '-popularity' %}selected{% endif %}>популярности</option>
                 <option value="-price" {% if sort_order == '-discount_price' %}selected{% endif %}>самой высокой цене</option>
                 <option value="price" {% if sort_order == 'discount_price' %}selected{% endif %}>самой низкой цене</option>
                 <option value="title" {% if sort_order == 'title' %}selected{% endif %}>названию Ая</option>
@@ -124,7 +124,7 @@
         </span>
         <br/>
         <a href="#" class="catalog-banner-button btn_link">
-          Подобрать памятник
+          Рассчитать памятник
         </a>
       </div>
     </div>

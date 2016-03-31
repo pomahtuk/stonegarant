@@ -30,7 +30,7 @@ def memorial_list_view(request):
     elif sort_order == '-title':
         sort_order = '-title'
     else:
-        sort_order = 'popularity'
+        sort_order = '-popularity'
 
     # this could be tricky
     memorials_list = Memorial.objects.order_by(u"%s" % sort_order)
