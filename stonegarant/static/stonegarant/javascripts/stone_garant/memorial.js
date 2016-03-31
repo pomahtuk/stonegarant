@@ -147,12 +147,19 @@ $('document').ready(function () {
 
             if (memorialOptionsToggle.hasClass('polirovka')) {
                 trackYandex('POLIROVKA');
+                ga('send', {
+                  hitType: 'event',
+                  eventAction: 'POLIROVKA'
+                });
                 priceOptions.polirovka = 1 + (priceMod / 100);
                 selectedOptionsIds.polirovka = memorialOption.data('optid');
 
             } else if (memorialOptionsToggle.hasClass('podstavka')) {
                 trackYandex('PODSTAVKA');
-
+                ga('send', {
+                  hitType: 'event',
+                  eventAction: 'PODSTAVKA'
+                });
                 if (memorialOption.hasClass('selected')) {
                     priceOptions.podstavka = priceMod;
                     selectedOptionsIds.podstavka = memorialOption.data('optid');
@@ -182,7 +189,10 @@ $('document').ready(function () {
 
     submitButton.click(function () {
         trackYandex('ORDER');
-
+        ga('send', {
+          hitType: 'event',
+          eventAction: 'ORDER'
+        });
         // add spinner to a button
 
         var xhr = $.ajax({
@@ -243,6 +253,10 @@ $('document').ready(function () {
 
         optionsButtons.click(function() {
             trackYandex('CVETNIK');
+            ga('send', {
+              hitType: 'event',
+              eventAction: 'CVETNIK'
+            });
             var elem = $(this);
             optionsButtons.removeClass('selected');
             elem.addClass('selected');
@@ -272,6 +286,10 @@ $('document').ready(function () {
 
     emitter.on('stella:changed', function (evt, data) {
         trackYandex('STELLA');
+        ga('send', {
+          hitType: 'event',
+          eventAction: 'STELLA'
+        });
 
         var dimensionsArr = data.dimensions.split(',');
 
@@ -355,6 +373,10 @@ $('document').ready(function () {
 
     lighboxTriggers.click(function () {
         trackYandex('LIGHTBOX');
+        ga('send', {
+          hitType: 'event',
+          eventAction: 'LIGHTBOX'
+        });
 
         var lbHeight, wHeight, margins;
 
