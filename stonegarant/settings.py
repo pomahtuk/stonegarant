@@ -5,7 +5,7 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DEBUG = os.environ.get('DJANGO_DEBUG', False)
+DEBUG = os.environ.get('DJANGO_DEBUG', False) is 'True'
 # just for stage
 # DEBUG = not True
 FORCE_WWW = not DEBUG
