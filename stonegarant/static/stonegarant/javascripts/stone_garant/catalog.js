@@ -5,6 +5,10 @@ $(document).ready(function() {
         } catch (e) {
             console.log('goals available only on prod');
         }
-       $('#sorting_form').submit();
+        ga('send', {
+          hitType: 'event',
+          eventAction: 'ORDER'
+        });
+        $('#sorting_form').submit();
    });
 });
