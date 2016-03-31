@@ -5,7 +5,7 @@ import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DEBUG = False if (os.environ.get('DJANGO_DEBUG') and os.environ.get('DJANGO_DEBUG') is False) else True
+DEBUG = False if (os.environ.get('DJANGO_DEBUG', False) and os.environ.get('DJANGO_DEBUG') is False) else True
 # just for stage
 # DEBUG = not True
 FORCE_WWW = not DEBUG
@@ -262,61 +262,13 @@ DEBUG_TOOLBAR_CONFIG = {
     'MEDIA_URL': '/__debug__/m/',
 }
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION': 'stonegarant_cache',
-#     }
-# }
-
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_bmemcached.memcached.BMemcached',
-#         'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-#         'OPTIONS': {
-#                     'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-#                     'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-#             }
-#     }
-# }
-
-os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
-os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
-os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
-
 CACHES = {
     'default': {
-        # Use pylibmc
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-
-        # Use binary memcache protocol (needed for authentication)
-        'BINARY': True,
-
-        # TIMEOUT is not the connection timeout! It's the default expiration
-        # timeout that should be applied to keys! Setting it to `None`
-        # disables expiration.
-        'TIMEOUT': None,
-
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHIER_SERVERS', '').split(','),
         'OPTIONS': {
-            # Enable faster IO
-            'no_block': True,
-            'tcp_nodelay': True,
-
-            # Keep connection alive
-            'tcp_keepalive': True,
-
-            # Timeout for set/get requests
-            '_poll_timeout': 2000,
-
-            # Use consistent hashing for failover
-            'ketama': True,
-
-            # Configure failover timings
-            'connect_timeout': 2000,
-            'remove_failed': 4,
-            'retry_timeout': 2,
-            'dead_timeout': 10
+            'username': os.environ.get('MEMCACHIER_USERNAME'),
+            'password': os.environ.get('MEMCACHIER_PASSWORD')
         }
     }
 }
