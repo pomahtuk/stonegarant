@@ -17,11 +17,12 @@ class ReadyWork(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is not None:
             orig = ReadyWork.objects.get(pk=self.pk)
-            if orig.photo != self.photo:
+            if orig.photo is not self.photo:
                 # generate new thumb
-                thumbnailer = get_thumbnailer(self.photo)
+                thumbnailer = get_thumbnailer(self.photo.name, self.photo)
                 thumbnailer_options = ({'size': (100, 100), 'crop': False})
                 thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
+
                 self.admin_thumb = thumb_file
         super(ReadyWork, self).save(*args, **kwargs)
 

@@ -4,7 +4,7 @@ from django.template import RequestContext
 import datetime
 
 
-def not_found_view(request):
+def not_found_view(request, *args, **kwargs):
     return render(request, '404.html', status=404)
 
 
