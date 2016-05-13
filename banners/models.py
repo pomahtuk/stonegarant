@@ -4,8 +4,8 @@ from django.db import models
 
 class FooterBanner(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
-    contents = models.TextField(verbose_name='Текст', null=True, blank=True)
-    active = models.BooleanField(null=False, default=False)
+    active = models.BooleanField(null=False, default=False, verbose_name='Активный')
+    contents = models.TextField(verbose_name='Содержимое', null=True, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -17,8 +17,8 @@ class FooterBanner(models.Model):
 
 class CatalogBanner(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
-    contents = models.TextField(verbose_name='Текст', null=True, blank=True)
-    active = models.BooleanField(null=False, default=False)
+    active = models.BooleanField(null=False, default=False, verbose_name='Активный')
+    contents = models.TextField(verbose_name='Содержимое', null=True, blank=True)
 
     def __unicode__(self):
         return self.title
