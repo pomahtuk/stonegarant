@@ -187,6 +187,7 @@ AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your acce
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # enter your secret access key
 AWS_STORAGE_BUCKET_NAME = 'stonegarant'
 AWS_IS_GZIPPED = True
+AWS_DEFAULT_ACL = ''
 
 AWS_HEADERS = {
     'Cache-Control': 'max-age=86400',

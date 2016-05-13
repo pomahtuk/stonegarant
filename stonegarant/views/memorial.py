@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from stonegarant.models import *
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
+from banners.models import CatalogBanner, FooterBanner
 
 
 def memorial_view(request, memorial_slug):
@@ -16,6 +17,9 @@ def memorial_view(request, memorial_slug):
 @cache_page(60 * 60)
 def memorial_list_view(request):
     service_page_data = get_object_or_404(ServicePage, id=75)
+
+    footer_banners = FooterBanner.objects.filter(active=True).order_by('-pub_date')[:3]
+    catalog_banner = CatalogBanner.objects.filter(active=True).order_by('-pub_date')[:1]
 
     sort_order = request.GET.get('order')
     page = request.GET.get('page')
@@ -58,5 +62,7 @@ def memorial_list_view(request):
         'sort_order': sort_order,
         'memorials': memorials,
         'lmt': lmt,
-        'service_page': service_page_data
+        'service_page': service_page_data,
+        'footer_banners': footer_banners,
+        'catalog_banner': catalog_banner,
     }, context_instance=RequestContext(request))

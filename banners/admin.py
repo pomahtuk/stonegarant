@@ -7,23 +7,17 @@ from django.forms import ModelForm
 class BannerCodeForm(ModelForm):
     class Meta:
         widgets = {
-            'contents': CodeMirrorTextarea(mode="html"),
+            'contents': CodeMirrorTextarea(mode="xml", theme="monokai", config={'htmlMode': True}),
         }
 
 
-# Register your models here.
-class FooterBannerAdmin(admin.ModelAdmin):
-    list_display = ('title', 'active')
-    search_fields = ['title', 'active']
-    ordering = ('-title',)
-
-
-class CatalogBannerAdmin(admin.ModelAdmin):
+class BannerAdmin(admin.ModelAdmin):
     form = BannerCodeForm
     list_display = ('title', 'active')
     search_fields = ['title', 'active']
     ordering = ('-title',)
 
 
-admin.site.register(FooterBanner, FooterBannerAdmin)
-admin.site.register(CatalogBanner, CatalogBannerAdmin)
+# Register your models here.
+admin.site.register(FooterBanner, BannerAdmin)
+admin.site.register(CatalogBanner, BannerAdmin)
