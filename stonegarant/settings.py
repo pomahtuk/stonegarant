@@ -256,7 +256,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('YANDEX_PASSWORD')
 EMAIL_PORT = os.environ.get('YANDEX_PORT')
 
 JIVOSITE_ID = os.environ.get('JIVOSITE_ID', 'd5VtEOvH6q')
-CODEMIRROR_PATH = r"banners/CodeMirror"
+CODEMIRROR_PATH = r"CodeMirror"
 
 DEBUG_TOOLBAR_CONFIG = {
     'JQUERY_URL': '',
