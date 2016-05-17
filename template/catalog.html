@@ -1,11 +1,7 @@
 {% extends "index.html" %}
 
 {% block title %}
-  {% if category.slug %}
-    Памятники - {{category.meta_title}}
-  {% else %}
-    {{service_page.meta_title}}
-  {% endif %}
+    {{ parent_page.meta_title }}
 {% endblock %}
 
 {% block meta %}
@@ -131,12 +127,12 @@
         </div>
       </div>
     </div>
-    {% if service_page.description %}
+    {% if parent_page.description %}
     <div class='content_line light_gray_1'>
       <div class="mlr20">
         <div class="content user_content seo_content">
           <br>
-          {{ service_page.description | safe}}
+          {{ parent_page.description | safe}}
         </div>
       </div>
     </div>

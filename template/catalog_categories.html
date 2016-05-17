@@ -2,13 +2,13 @@
   <div class='content_holder sections_nav cf'>
     <div class='mlr20'>
       <div class='sections'>
-        <a href="/catalog" class="category category-all {% if not category.slug and memorials %} active{% endif %}">Все памятники</a>
-        <a href="/catalog/odinarnye" class="category category-odinarnye {% if category.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
-        <a href="/catalog/dvoinye" class="category category-dvoinye {% if category.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
-        <a href="/catalog/s-krestom" class="category category-s-krestom {% if category.slug == 's-krestom' %} active{% endif %}">С крестами</a>
-        <a href="/catalog/prostye" class="category category-prostye {% if category.slug == 'prostye' %} active{% endif %}">Простые</a>
-        <a href="/catalog/ekskliuzivnye" class="category category-ekskliuzivnye {% if category.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
-        <a href="/catalog/komplektuiushchie" class="category category-komplektuiushchie {% if category.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
+        <a href="/catalog" class="category category-all {% if not parent_page.id == 75 %} active{% endif %}">Все памятники</a>
+        <a href="/catalog/odinarnye" class="category category-odinarnye {% if parent_page.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
+        <a href="/catalog/dvoinye" class="category category-dvoinye {% if parent_page.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
+        <a href="/catalog/s-krestom" class="category category-s-krestom {% if parent_page.slug == 's-krestom' %} active{% endif %}">С крестами</a>
+        <a href="/catalog/prostye" class="category category-prostye {% if parent_page.slug == 'prostye' %} active{% endif %}">Простые</a>
+        <a href="/catalog/ekskliuzivnye" class="category category-ekskliuzivnye {% if parent_page.slug == 'ekskliuzivnye' %} active{% endif %}">Эксклюзивные</a>
+        <a href="/catalog/komplektuiushchie" class="category category-komplektuiushchie {% if parent_page.slug == 'komplektuiushchie' %} active{% endif %}">Комплектующие</a>
       </div>
     </div>
   </div>
