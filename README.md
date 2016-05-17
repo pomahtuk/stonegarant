@@ -1,5 +1,10 @@
 ## ToDo list:
 
+* Banners manage,ent in admin
+* Ajax catalog loading
+* Translations?
+
+
 * Automated e-mail sending
 
 Стэлла (120/60/8):

@@ -75,6 +75,8 @@ class Memorial(SeoEmpoweredModel):
                 if self.base_price > 0:
                     division_value = 100 - (float(self.discount_price) / float(self.base_price) * 100)
                     self.discount_percent = round(division_value)
+            if not self.discount_price:
+                self.discount_price = self.base_price
         # generate slug
         self.slug = uuslug(self.title, instance=self)
         super(Memorial, self).save(*args, **kwargs)

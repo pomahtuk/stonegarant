@@ -3,56 +3,85 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from stonegarant.models import *
 from django.template import RequestContext
 from banners.models import CatalogBanner, FooterBanner
+from django.views.decorators.cache import cache_page
 
 
-def category_view(request, category_slug):
-    category_data = get_object_or_404(Category, slug=category_slug)
-
-    footer_banners = FooterBanner.objects.filter(active=True).order_by('-pub_date')[:3]
-    catalog_banner = CatalogBanner.objects.filter(active=True).order_by('-pub_date')[:1]
-
-    sort_order = request.GET.get('order')
-    page = request.GET.get('page')
-    limit = request.GET.get('limit')
-
-    if sort_order == '-price':
-        sort_order = '-discount_price'
-    elif sort_order == 'price':
-        sort_order = 'discount_price'
-    elif sort_order == 'title':
-        sort_order = 'title'
-    elif sort_order == '-title':
-        sort_order = '-title'
+def determine_sort_order(user_order):
+    if user_order == '-price':
+        resulting_order = '-discount_price'
+    elif user_order == 'price':
+        resulting_order = 'discount_price'
+    elif user_order == 'title':
+        resulting_order = 'title'
+    elif user_order == '-title':
+        resulting_order = '-title'
     else:
-        sort_order = 'popularity'
+        resulting_order = 'popularity'
 
-    # this could be tricky
-    memorials_list = category_data.memorial_set.all().order_by(u"%s" % sort_order)
+    return resulting_order
+
+
+def paginate_memorials(parent_page, page, limit, sort_order):
+    if isinstance(parent_page, Category):
+        memorials_list = parent_page.memorial_set.all().order_by(u"%s" % sort_order)
+    else:
+        memorials_list = Memorial.objects.order_by(u"%s" % sort_order)
 
     if limit is not None:
-        lmt = int(limit)
+        limit = int(limit)
     else:
-        lmt = 100  # temp decision
-
-    paginator = Paginator(memorials_list, lmt)
+        limit = 9999  # temp decision
 
     if page is not None:
-        pg = int(page)
+        page = int(page)
     else:
-        pg = 1
+        page = 1
+
+    paginator = Paginator(memorials_list, limit)
 
     try:
-        memorials = paginator.page(pg)
+        memorials = paginator.page(page)
     except PageNotAnInteger:
         memorials = paginator.page(1)
     except EmptyPage:
         memorials = paginator.page(paginator.num_pages)
+        
+    return memorials
+
+
+def get_parent_page(category_slug):
+    if category_slug is not None:
+        parent_page = get_object_or_404(Category, slug=category_slug)
+    else:
+        parent_page = get_object_or_404(ServicePage, id=75)
+
+    return parent_page
+
+
+@cache_page(60 * 60)
+def category_view(request, category_slug):
+    parent_page = get_parent_page(category_slug)
+
+    footer_banners = FooterBanner.objects.filter(active=True).order_by('-pub_date')[:3]
+    catalog_banner = CatalogBanner.objects.filter(active=True).order_by('-pub_date')[:1]
+
+    page = request.GET.get('page')
+    limit = request.GET.get('limit')
+    sort_order = determine_sort_order(request.GET.get('order'))
+
+    memorials = paginate_memorials(parent_page, page, limit, sort_order)
 
     return render_to_response('catalog.html', {
         'sort_order': sort_order,
         'memorials': memorials,
-        'lmt': lmt,
-        'category': category_data,
+        'lmt': limit,
+        'category': parent_page,
         'footer_banners': footer_banners,
         'catalog_banner': catalog_banner,
     }, context_instance=RequestContext(request))
+
+
+@cache_page(60 * 60)
+def memorial_list_view(request):
+    return category_view(request, None)
+

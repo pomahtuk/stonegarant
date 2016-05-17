@@ -24,7 +24,7 @@ class MemorialPageForm(ModelForm):
 
 class MemorialPageAdmin(admin.ModelAdmin):
     form = MemorialPageForm
-    list_display = ('admin_thumbnail', 'title', 'slug', 'number', 'base_price', 'get_categories')
+    list_display = ('admin_thumbnail', 'title', 'slug', 'number', 'base_price', 'discount_price', 'get_categories')
     search_fields = ['title', 'slug', 'description']
     ordering = ['number']
     inlines = [
