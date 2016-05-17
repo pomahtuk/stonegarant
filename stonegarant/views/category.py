@@ -16,7 +16,7 @@ def determine_sort_order(user_order):
     elif user_order == '-title':
         resulting_order = '-title'
     else:
-        resulting_order = 'popularity'
+        resulting_order = '-popularity'
 
     return resulting_order
 
@@ -75,7 +75,7 @@ def category_view(request, category_slug):
         'sort_order': sort_order,
         'memorials': memorials,
         'lmt': limit,
-        'category': parent_page,
+        'parent_page': parent_page,
         'footer_banners': footer_banners,
         'catalog_banner': catalog_banner,
     }, context_instance=RequestContext(request))

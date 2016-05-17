@@ -9,13 +9,8 @@
 {% endblock %}
 
 {% block meta %}
-  {% if category.slug %}
-    <meta name="description" content="{{category.seo_description}}" />
-    <meta name="keywords" content="{{category.seo_keywords}}" />
-  {% else %}
-    <meta name="description" content="{{service_page.seo_description}}" />
-    <meta name="keywords" content="{{service_page.seo_keywords}}" />
-  {% endif %}
+    <meta name="description" content="{{parent_page.seo_description}}" />
+    <meta name="keywords" content="{{parent_page.seo_keywords}}" />
 {% endblock %}
 
 {% block stylesheets %}
