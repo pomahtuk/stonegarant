@@ -1,5 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 from stonegarant.views import *
 
@@ -30,5 +32,9 @@ urlpatterns = [
     url(r'^sitemap.xml$', sitemap_view, name="sitemap"),
     url(r'^robots\.txt$', robots_view, name="robots"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = not_found_view

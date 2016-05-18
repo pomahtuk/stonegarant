@@ -160,7 +160,6 @@ ROOT_URLCONF = 'stonegarant.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'stonegarant.wsgi.application'
 
-
 THUMBNAIL_CHECK_CACHE_MISS = True
 
 THUMBNAIL_ALIASES = {
@@ -177,29 +176,35 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+if os.environ.get('AWS_ACCESS_KEY_ID', False):
+# if False:
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_S3_SECURE_URLS = False       # use http instead of https
+    AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+    AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your access key id
+    AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # enter your secret access key
+    AWS_STORAGE_BUCKET_NAME = 'stonegarant'
+    AWS_IS_GZIPPED = True
+    AWS_DEFAULT_ACL = ''
 
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')     # enter your access key id
-AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # enter your secret access key
-AWS_STORAGE_BUCKET_NAME = 'stonegarant'
-AWS_IS_GZIPPED = True
-AWS_DEFAULT_ACL = ''
+    AWS_HEADERS = {
+        'Cache-Control': 'max-age=86400',
+    }
 
-AWS_HEADERS = {
-    'Cache-Control': 'max-age=86400',
-}
+    STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+    COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
-STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
-COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
+    S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = S3_URL + '/'
+    MEDIA_URL = S3_URL + '/media/'
+    COMPRESS_URL = STATIC_URL
 
-S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
-STATIC_URL = S3_URL + '/'
-MEDIA_URL = S3_URL + '/media/'
-COMPRESS_URL = STATIC_URL
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    COMPRESS_URL = STATIC_URL
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False

@@ -6,6 +6,9 @@ from banners.models import CatalogBanner, FooterBanner
 from django.views.decorators.cache import cache_page
 
 
+DEFAULT_LIMIT = 9999
+
+
 def determine_sort_order(user_order):
     if user_order == '-price':
         resulting_order = '-discount_price'
@@ -30,7 +33,7 @@ def paginate_memorials(parent_page, page, limit, sort_order):
     if limit is not None:
         limit = int(limit)
     else:
-        limit = 9999  # temp decision
+        limit = DEFAULT_LIMIT  # temp decision
 
     if page is not None:
         page = int(page)
@@ -65,8 +68,8 @@ def category_view(request, category_slug):
     footer_banners = FooterBanner.objects.filter(active=True)[:3]
     catalog_banner = CatalogBanner.objects.filter(active=True)[:1]
 
-    page = request.GET.get('page')
-    limit = request.GET.get('limit')
+    page = request.GET.get('page', 1)
+    limit = request.GET.get('limit', DEFAULT_LIMIT)
     sort_order = determine_sort_order(request.GET.get('order'))
 
     memorials = paginate_memorials(parent_page, page, limit, sort_order)
@@ -87,9 +90,9 @@ def memorial_list_view(request):
 
 
 def ajax_memorials(request):
-    page_slug = request.POST.get('slug', '')
+    page_slug = request.POST.get('slug', None)
     page = request.POST.get('page', 1)
-    limit = request.POST.get('limit', 999)
+    limit = request.POST.get('limit', DEFAULT_LIMIT)
     raw_order = request.POST.get('order', '-popularity')
 
     parent_page = get_parent_page(page_slug)

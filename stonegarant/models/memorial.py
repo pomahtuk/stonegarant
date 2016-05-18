@@ -55,9 +55,12 @@ class Memorial(SeoEmpoweredModel):
     def save(self, *args, **kwargs):
         if self.pk is not None:
             orig = Memorial.objects.get(pk=self.pk)
+            if not self.discount_price:
+                self.discount_price = self.base_price
             # update discount_percent
-            if orig and (orig.discount_price != self.discount_price) or (orig.base_price != self.base_price):
+            if orig and ((orig.discount_price != self.discount_price) or (orig.base_price != self.base_price)):
                 if self.base_price > 0:
+                    # error!
                     division_value = 100 - (float(self.discount_price) / float(self.base_price) * 100)
                     self.discount_percent = round(division_value)
             if not self.discount_price:
