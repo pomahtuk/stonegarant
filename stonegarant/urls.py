@@ -5,7 +5,7 @@ from stonegarant.views import *
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', index_view, name="index"),
@@ -29,6 +29,6 @@ urlpatterns = patterns('',
 
     url(r'^sitemap.xml$', sitemap_view, name="sitemap"),
     url(r'^robots\.txt$', robots_view, name="robots"),
-)
+]
 
 handler404 = not_found_view
