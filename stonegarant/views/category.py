@@ -80,7 +80,7 @@ def category_view(request, category_slug):
         'lmt': limit,
         'parent_page': parent_page,
         'footer_banners': footer_banners,
-        'catalog_banner': catalog_banner,
+        'catalog_banner': catalog_banner[0],
     }, context_instance=RequestContext(request))
 
 

@@ -1,19 +1,9 @@
 <ul class='cf'>
   {% for memorial in memorials %}
     {% if forloop.counter == 4 and catalog_banner %}
-      <li class="memorial-promo-block">
-        <div class="memorial-promo-block-inner">
-          <div class="memorial-promo-block-year">
-            2015-2016
-          </div>
-          <img src="{{ STATIC_URL }}stonegarant/images/promo-image.png" class="memorial-promo-block-image">
-          <div class="memorial-promo-block-title">
-            <br/>
-            Бесплатное хранение памятников до лета. <br/>
-            Закажите до подорожания!<br/>
-          </div>
-        </div>
-      </li>
+      {% if catalog_banner.contents %}
+        {{ catalog_banner.contents | safe }}
+      {% endif %}
     {% endif %}
     <li class="single-memorial">
       <div class="single-memorial-image-holder">
