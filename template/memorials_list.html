@@ -1,0 +1,45 @@
+<ul class='cf'>
+  {% for memorial in memorials %}
+    {% if forloop.counter == 4 and catalog_banner %}
+      <li class="memorial-promo-block">
+        <div class="memorial-promo-block-inner">
+          <div class="memorial-promo-block-year">
+            2015-2016
+          </div>
+          <img src="{{ STATIC_URL }}stonegarant/images/promo-image.png" class="memorial-promo-block-image">
+          <div class="memorial-promo-block-title">
+            <br/>
+            Бесплатное хранение памятников до лета. <br/>
+            Закажите до подорожания!<br/>
+          </div>
+        </div>
+      </li>
+    {% endif %}
+    <li class="single-memorial">
+      <div class="single-memorial-image-holder">
+        <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
+          <!-- use propper image -->
+          <img src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>
+          {% if memorial.discount %}
+            <span class="single-memorial-discount">
+              {{ memorial.discount_percent }}<span class="percent">%</span>
+            </span>
+          {% endif %}
+        </a>
+      </div>
+      <div class='single-memorial-info'>
+        <div class="single-memorial-info-title">{{memorial.title}}</div>
+        {% if memorial.discount %}
+          <span class="single-memorial-strikeout">{{ memorial.base_price }}&nbsp;р.</span>&nbsp;
+          <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
+            от <b>{{memorial.discount_price}}&nbsp;р.</b>
+          </a>
+        {% else %}
+          <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
+            от <b>{{memorial.base_price}} р.</b>
+          </a>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>

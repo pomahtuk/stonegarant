@@ -23,16 +23,6 @@ from granit import *
 
 
 class Memorial(SeoEmpoweredModel):
-    photo1 = ThumbnailerImageField(upload_to='uploads/memorials',
-                                   verbose_name='Изображение 1',
-                                   null=True,
-                                   blank=True
-                                   )
-    photo2 = ThumbnailerImageField(upload_to='uploads/memorials',
-                                   verbose_name='Изображение 2',
-                                   null=True,
-                                   blank=True
-                                   )
     admin_thumb = models.CharField(max_length=255, null=True, blank=True)
     catalog_thumb = models.CharField(max_length=255, null=True, blank=True)
     number = models.BigIntegerField(unique=True, verbose_name='Номер')
@@ -40,11 +30,6 @@ class Memorial(SeoEmpoweredModel):
     slug = models.CharField(max_length=255, verbose_name='URL')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     categories = models.ManyToManyField(Category, verbose_name='Категории')
-
-    # this fields will be deprecated
-    stella = models.CharField(max_length=50, verbose_name='Стела')
-    podstavka = models.CharField(max_length=50, verbose_name='Подставка')
-    cvetnik = models.CharField(max_length=50, verbose_name='Цветник')
 
     # stella_variants
     discount = models.BooleanField(verbose_name='Со скидкой')

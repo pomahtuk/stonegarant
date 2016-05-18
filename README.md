@@ -5,6 +5,8 @@
 * Translations?
 
 
+http://sorl-thumbnail.readthedocs.io/en/latest/examples.html#model-examples
+
 * Automated e-mail sending
 
 Стэлла (120/60/8):

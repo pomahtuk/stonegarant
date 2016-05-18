@@ -34,26 +34,26 @@
                 {% for image in memorial.ordered_images %}
                   <li class="catalog-image-thumb {% if forloop.counter == 1%}active{% endif %}">
                     <a href="javascript:void(0)" class="js-thumb-changer">
-                      <img src="{{ image.photo | thumbnail_url:'preview'  }}" data-original="{{ image.photo | thumbnail_url:'product' }}">
+                      <img src="{{ image.preview }}" data-original="{{ image.product }}">
                     </a>
                   </li>
                 {% endfor %}
               </ul>
               <div class="product-image-current">
-                <img src="{{ memorial.catalog_image.photo | thumbnail_url:'product' }}" class="js-thumb-holder">
+                <img src="{{ memorial.catalog_image }}" class="js-thumb-holder">
               </div>
               <div class="product-details">
                 <span class="height">
                   Высота&nbsp;
-                  <span class="value"> {{ memorial.stella_variants.all.0.length }} см</span>
+                  <span class="value"> {{ stella_variants.0.length }} см</span>
                 </span>
                 <span class="length">
                   Длина&nbsp;
-                  <span class="value"> {{ memorial.stella_variants.all.0.width }} см</span>
+                  <span class="value"> {{ stella_variants.0.width }} см</span>
                 </span>
                 <span class="width">
                   Ширина&nbsp;
-                  <span class="value"> {{ memorial.stella_variants.all.0.height }} см</span>
+                  <span class="value"> {{ stella_variants.0.height }} см</span>
                 </span>
               </div>
             </div>
@@ -65,7 +65,7 @@
               <div class="memorial-description">
                 {{ memorial.description | safe }}
               </div>
-              <div class="memorial-options" data-stella-id="{{ memorial.stella_variants.all.0.pk }}" data-stella-count="2">
+              <div class="memorial-options" data-stella-id="{{ stella_variants.0.pk }}" data-stella-count="2">
                 <div class="memorial-options-complect">
                   <div class="memorial-opions-title">
                     Выберите комплектующие
@@ -73,7 +73,7 @@
                   </div>
 
                   <div class="memorial-options-group stella">
-                    {% for stella in memorial.stella_variants.all %}
+                    {% for stella in stella_variants %}
                       <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ stella.added_value }}" data-dimensions="{{ stella.data_size }}"
                           data-stella-id="{{ stella.pk }}">
                         {{ stella.title }}
@@ -82,10 +82,10 @@
                     {% endfor %}
                   </div>
 
-                  {% for stella in memorial.stella_variants.all %}
+                  {% for stella in stella_variants %}
                     <div class="memorial-options-group podstavka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
                       <!--  {{ forloop.counter}} stella -->
-                      {% for podstavka in stella.podstavka_set.all %}
+                      {% for podstavka in stella.podstavka_set %}
                         <div class="memorial-options-group-option" data-price-mod="{{ podstavka.added_value }}" data-optid="{{ podstavka.pk }}">
                           {{ podstavka.title }}
                           <div>{{ podstavka.text_size }}</div>
@@ -94,7 +94,7 @@
                     </div>
                   {% endfor %}
 
-                  {% for stella in memorial.stella_variants.all %}
+                  {% for stella in stella_variants %}
                     <div class="memorial-options-group cvetnik stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
                       <div class="memorial-options-group-option dropdown-toggle js-additional-elements">
                         Доп.
@@ -102,7 +102,7 @@
                       </div>
                       <div class="dropdown-content memorial-options-dropdown">
                         <div class="reset-additional">Сбросить</div>
-                        {% for cvetnik in stella.cvetnik_set.all %}
+                        {% for cvetnik in stella.cvetnik_set %}
                           <div class="additional-element-option" data-price-mod="{{ cvetnik.added_value }}" data-optid="{{ cvetnik.pk }}">
                             {{ cvetnik.title }}
                             <div>{{ cvetnik.text_size }}</div>
@@ -120,10 +120,10 @@
                     <a href="javascript:void(0)" class="js-lightbox-trigger" data-lightbox="polirovka">?</a>
                   </div>
 
-                  {% for stella in memorial.stella_variants.all %}
+                  {% for stella in stella_variants %}
                     <div class="memorial-options-group polirovka stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
                       <!--  {{ forloop.counter}} stella -->
-                      {% for polirovka in stella.polirovka_set.all %}
+                      {% for polirovka in stella.polirovka_set %}
                         <div class="memorial-options-group-option {% if forloop.counter == 1 %}selected{% endif %}" data-price-mod="{{ polirovka.added_value }}" data-optid="{{ polirovka.pk }}">
                           {{ polirovka.title }}
                         </div>
@@ -202,13 +202,13 @@
                 портрет и эпитафию. Стелы различаются по форме и размерам.
                 Для двух и более человек следует выбирать стелы горизонтального расположения.
               </p>
-              {% for stella in memorial.stella_variants.all %}
+              {% for stella in stella_variants %}
                  <div class="lightbox-price">{{ stella.lightbox_info }}</div>
               {% endfor %}
             </div>
 
 
-            {% for stella in memorial.stella_variants.all %}
+            {% for stella in stella_variants %}
               <div class="stella-related-info stella_{{ stella.pk }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
 
                 <div class="lightbox-text lightbox-podstavka-text">
@@ -219,7 +219,7 @@
                     устойчивости всей конструкции. Подставка
                     увеличивает общую высоту надгробия на 15 см.
                   </p>
-                  {% for podstavka in stella.podstavka_set.all %}
+                  {% for podstavka in stella.podstavka_set %}
                      <div class="lightbox-price">{{ podstavka.lightbox_info }}</div>
                   {% endfor %}
                 </div>
@@ -231,7 +231,7 @@
                     лучше оборудовать памятник надгробной плитой. Плита хорошо подходит для
                     нанесения гравировки, также можно вмонтировать вазу.
                   </p>
-                  <div class="lightbox-price">{{ stella.cvetnik_set.all.0.lightbox_info }}</div>
+                  <div class="lightbox-price">{{ stella.cvetnik_set.0.lightbox_info }}</div>
                 </div>
 
                 <div class="lightbox-text lightbox-cvetnik-text">
@@ -242,7 +242,7 @@
                     Если вы не планируете сажать цветы и ухаживать за ними,
                     цветник можно заменить плитой.
                   </p>
-                  <div class="lightbox-price">{{ stella.cvetnik_set.all.1.lightbox_info }}</div>
+                  <div class="lightbox-price">{{ stella.cvetnik_set.1.lightbox_info }}</div>
                 </div>
 
               </div>

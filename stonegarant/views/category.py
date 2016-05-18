@@ -62,8 +62,8 @@ def get_parent_page(category_slug):
 def category_view(request, category_slug):
     parent_page = get_parent_page(category_slug)
 
-    footer_banners = FooterBanner.objects.filter(active=True).order_by('-pub_date')[:3]
-    catalog_banner = CatalogBanner.objects.filter(active=True).order_by('-pub_date')[:1]
+    footer_banners = FooterBanner.objects.filter(active=True)[:3]
+    catalog_banner = CatalogBanner.objects.filter(active=True)[:1]
 
     page = request.GET.get('page')
     limit = request.GET.get('limit')
@@ -84,4 +84,21 @@ def category_view(request, category_slug):
 @cache_page(60 * 60)
 def memorial_list_view(request):
     return category_view(request, None)
+
+
+def ajax_memorials(request):
+    page_slug = request.POST.get('slug', '')
+    page = request.POST.get('page', 1)
+    limit = request.POST.get('limit', 999)
+    raw_order = request.POST.get('order', '-popularity')
+
+    parent_page = get_parent_page(page_slug)
+    sort_order = determine_sort_order(raw_order)
+
+    memorials = paginate_memorials(parent_page, page, limit, sort_order)
+
+    return render_to_response('memorials_list.html', {
+        'memorials': memorials,
+    }, context_instance=RequestContext(request))
+
 

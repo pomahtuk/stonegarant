@@ -2,7 +2,7 @@
   <div class='content_holder sections_nav cf'>
     <div class='mlr20'>
       <div class='sections'>
-        <a href="/catalog" class="category category-all {% if parent_page.id == 75 %} active{% endif %}">Все памятники</a>
+        <a href="/catalog" class="category category-all {% if not parent_page.slug %} active{% endif %}">Все памятники</a>
         <a href="/catalog/odinarnye" class="category category-odinarnye {% if parent_page.slug == 'odinarnye' %} active{% endif %}">Одинарные</a>
         <a href="/catalog/dvoinye" class="category category-dvoinye {% if parent_page.slug == 'dvoinye' %} active{% endif %}">Двойные</a>
         <a href="/catalog/s-krestom" class="category category-s-krestom {% if parent_page.slug == 's-krestom' %} active{% endif %}">С крестами</a>
