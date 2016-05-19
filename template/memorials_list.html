@@ -35,7 +35,7 @@
 
 {% if memorials.has_next %}
   <div class="load-more-wrapper">
-    <a href="#" class="catalog-banner-button btn_link" data-limit="{{ lmt }}" data-page="{{ page }}">
+    <a href="#" class="js-load-more btn_link" data-limit="{{ lmt }}" data-page="{{ page }}" data-slug="{{ parent_page.slug }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
       Показать еще {{ show_next }}
     </a>
   </div>

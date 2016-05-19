@@ -4,9 +4,9 @@ from stonegarant.models import *
 from django.template import RequestContext
 from banners.models import CatalogBanner, FooterBanner
 from django.views.decorators.cache import cache_page
+from django.http import HttpResponseBadRequest
 
-
-DEFAULT_LIMIT = 9999
+DEFAULT_LIMIT = 10
 
 
 def determine_sort_order(user_order):
@@ -70,8 +70,8 @@ def category_view(request, category_slug):
 
     catalog_banner = catalog_banner[0] if catalog_banner else None
 
-    page = request.GET.get('page', 1)
-    limit = request.GET.get('limit', DEFAULT_LIMIT)
+    page = int(request.GET.get('page', 1))
+    limit = int(request.GET.get('limit', DEFAULT_LIMIT))
     sort_order = determine_sort_order(request.GET.get('order'))
 
     memorials = paginate_memorials(parent_page, page, limit, sort_order)
@@ -95,22 +95,25 @@ def memorial_list_view(request):
 
 
 def ajax_memorials(request):
-    page_slug = request.POST.get('slug', None)
-    page = request.POST.get('page', 1)
-    limit = request.POST.get('limit', DEFAULT_LIMIT)
-    raw_order = request.POST.get('order', '-popularity')
+    if request.method == "POST":
+        page_slug = request.POST.get('slug', None)
+        page = int(request.POST.get('page', 1))
+        limit = int(request.POST.get('limit', DEFAULT_LIMIT))
+        raw_order = request.POST.get('order', '-popularity')
 
-    parent_page = get_parent_page(page_slug)
-    sort_order = determine_sort_order(raw_order)
+        parent_page = get_parent_page(page_slug)
+        sort_order = determine_sort_order(raw_order)
 
-    memorials = paginate_memorials(parent_page, page, limit, sort_order)
-    items_left = memorials.paginator.count - page * limit
+        memorials = paginate_memorials(parent_page, page, limit, sort_order)
+        items_left = memorials.paginator.count - page * limit
 
-    return render_to_response('memorials_list.html', {
-        'memorials': memorials,
-        'lmt': limit,
-        'page': page,
-        'show_next': items_left if items_left < limit else limit
-    }, context_instance=RequestContext(request))
-
+        return render_to_response('memorials_list.html', {
+            'memorials': memorials,
+            'lmt': limit,
+            'page': page,
+            'parent_page': parent_page,
+            'show_next': items_left if items_left < limit else limit
+        }, context_instance=RequestContext(request))
+    else:
+        return HttpResponseBadRequest('use ajax, Luke!')
 

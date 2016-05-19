@@ -14,6 +14,7 @@ urlpatterns = [
 
     url(r'^catalog/(?P<category_slug>(.+))', category_view, name="category"),
     url(r'^catalog/', memorial_list_view, name="catalog"),
+    url(r'^ajax_catalog.html', ajax_memorials, name="ajax_catalog"),
     url(r'^memorial-(?P<memorial_slug>(.+))', memorial_view, name="memorial"),
 
     url(r'^page-raboty', ready_works_view, name="ready"),
