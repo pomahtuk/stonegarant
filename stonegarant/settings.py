@@ -177,6 +177,7 @@ THUMBNAIL_ALIASES = {
 }
 
 if os.environ.get('AWS_ACCESS_KEY_ID', False):
+# if False:
     THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 

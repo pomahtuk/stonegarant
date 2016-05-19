@@ -25,7 +25,7 @@ $(function() {
         var request = $.ajax({
             method: 'POST',
             url: '/ajax_catalog.html',
-            data: $.extend({}, {
+            data: $.extend({}, elemData, {
                 page: elemData.page + 1
             }),
             headers: {
