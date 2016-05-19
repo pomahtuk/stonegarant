@@ -68,19 +68,24 @@ def category_view(request, category_slug):
     footer_banners = FooterBanner.objects.filter(active=True)[:3]
     catalog_banner = CatalogBanner.objects.filter(active=True)[:1]
 
+    catalog_banner = catalog_banner[0] if catalog_banner else None
+
     page = request.GET.get('page', 1)
     limit = request.GET.get('limit', DEFAULT_LIMIT)
     sort_order = determine_sort_order(request.GET.get('order'))
 
     memorials = paginate_memorials(parent_page, page, limit, sort_order)
+    items_left = memorials.paginator.count - page * limit
 
     return render_to_response('catalog.html', {
         'sort_order': sort_order,
         'memorials': memorials,
         'lmt': limit,
+        'page': page,
         'parent_page': parent_page,
         'footer_banners': footer_banners,
-        'catalog_banner': catalog_banner[0],
+        'catalog_banner': catalog_banner,
+        'show_next': items_left if items_left < limit else limit
     }, context_instance=RequestContext(request))
 
 
@@ -99,9 +104,13 @@ def ajax_memorials(request):
     sort_order = determine_sort_order(raw_order)
 
     memorials = paginate_memorials(parent_page, page, limit, sort_order)
+    items_left = memorials.paginator.count - page * limit
 
     return render_to_response('memorials_list.html', {
         'memorials': memorials,
+        'lmt': limit,
+        'page': page,
+        'show_next': items_left if items_left < limit else limit
     }, context_instance=RequestContext(request))
 
 

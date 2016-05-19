@@ -1,8 +1,9 @@
 ## ToDo list:
 
-* Banners manage,ent in admin
+* Banners management in admin
 * Ajax catalog loading
-* Translations?
+* review submission
+* hover on memorial?
 
 
 http://sorl-thumbnail.readthedocs.io/en/latest/examples.html#model-examples

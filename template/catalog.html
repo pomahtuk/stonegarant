@@ -20,6 +20,8 @@
 
 {% block content %}
     {% load thumbnail %}
+    {% load localize %}
+
     <div class='content_line light_gray_2'>
       <div class='content_holder catalog'>
 
@@ -36,6 +38,8 @@
           {% else %}
             <h1>Наиболее популярные</h1>
           {% endif %}
+
+          <span class="memorials-count">{{ memorials.paginator.count | num_memorials }}</span>
 
           <!-- and this has to be styled -->
           <div class="sort-switcher">

@@ -8,7 +8,6 @@
     <li class="single-memorial">
       <div class="single-memorial-image-holder">
         <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
-          <!-- use propper image -->
           <img src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>
           {% if memorial.discount %}
             <span class="single-memorial-discount">
@@ -33,3 +32,11 @@
     </li>
   {% endfor %}
 </ul>
+
+{% if memorials.has_next %}
+  <div class="load-more-wrapper">
+    <a href="#" class="catalog-banner-button btn_link" data-limit="{{ lmt }}" data-page="{{ page }}">
+      Показать еще {{ show_next }}
+    </a>
+  </div>
+{% endif %}
