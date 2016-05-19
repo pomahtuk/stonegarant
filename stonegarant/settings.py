@@ -176,7 +176,7 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-if os.environ.get('AWS_ACCESS_KEY_ID', False) and not DEBUG:
+if os.environ.get('AWS_ACCESS_KEY_ID', False):
     THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
@@ -206,7 +206,7 @@ else:
     MEDIA_URL = '/media/'
     COMPRESS_URL = STATIC_URL
 
-COMPRESS_ENABLED = not DEBUG
+COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
 
 COMPRESS_CSS_FILTERS = [
