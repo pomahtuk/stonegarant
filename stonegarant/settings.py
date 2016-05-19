@@ -176,8 +176,8 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-if os.environ.get('AWS_ACCESS_KEY_ID', False):
-# if False:
+# if os.environ.get('AWS_ACCESS_KEY_ID', False):
+if False:
     THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
@@ -194,6 +194,7 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
     }
 
     STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
     S3_URL = 'http://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
@@ -206,7 +207,7 @@ else:
     MEDIA_URL = '/media/'
     COMPRESS_URL = STATIC_URL
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = not DEBUG
 COMPRESS_OFFLINE = False
 
 COMPRESS_CSS_FILTERS = [

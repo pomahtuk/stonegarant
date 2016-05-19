@@ -26,34 +26,34 @@
       <div class='content_holder catalog'>
 
         <div class="catalog-header">
-          <!-- this has to be picked depending on sort oder -->
-          {% if sort_order == '-discount_price' %}
-            <h1>Самые дорогие</h1>
-          {% elif sort_order == 'discount_price' %}
-            <h1>Самые выгодные предложения</h1>
-          {% elif sort_order == 'title' %}
-            <h1>По названию А-Я</h1>
-          {% elif sort_order == '-title' %}
-            <h1>По названию Я-А</h1>
-          {% else %}
-            <h1>Наиболее популярные</h1>
-          {% endif %}
-
-          <div class="memorials-count">{{ memorials.paginator.count | num_memorials }}</div>
-
-          <!-- and this has to be styled -->
           <div class="sort-switcher">
             <form id="sorting_form" method="get">
               Сортировать по:
               <select name="order">
-                <option value="-popularity" {% if sort_order == '-popularity' %}selected{% endif %}>популярности</option>
-                <option value="-price" {% if sort_order == '-discount_price' %}selected{% endif %}>самой высокой цене</option>
-                <option value="price" {% if sort_order == 'discount_price' %}selected{% endif %}>самой низкой цене</option>
-                <option value="title" {% if sort_order == 'title' %}selected{% endif %}>названию Ая</option>
-                <option value="-title" {% if sort_order == '-title' %}selected{% endif %}>названию Яа</option>
+                <option value="-popularity" {% if sort_order == '-popularity' %}selected{% endif %}>Популярности</option>
+                <option value="price" {% if sort_order == 'discount_price' %}selected{% endif %}>Самой низкой цене</option>
+                <option value="-price" {% if sort_order == '-discount_price' %}selected{% endif %}>Самой высокой цене</option>
+                <option value="title" {% if sort_order == 'title' %}selected{% endif %}>По названию от А до Я</option>
+                <option value="-title" {% if sort_order == '-title' %}selected{% endif %}>По названию от Я до А</option>
               </select>
             </form>
           </div>
+
+          <h1>
+            {% if sort_order == '-discount_price' %}
+              Самые дорогие
+            {% elif sort_order == 'discount_price' %}
+              Самые выгодные предложения
+            {% elif sort_order == 'title' %}
+              По названию от А до Я
+            {% elif sort_order == '-title' %}
+              По названию от Я до А
+            {% else %}
+              Наиболее популярные
+            {% endif %}
+            <span class="memorials-count">{{ memorials.paginator.count | num_memorials }}</span>
+          </h1>
+
         </div>
 
         <div class="catalog-list--container">

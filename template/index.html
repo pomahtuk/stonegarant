@@ -19,9 +19,12 @@
         <link href="{{STATIC_URL}}stonegarant/stylesheets/base/headers.scss" media="screen" rel="stylesheet" type="text/x-scss" />
         <link href="{{STATIC_URL}}stonegarant/stylesheets/base/custom.scss" media="screen" rel="stylesheet" type="text/x-scss" />
         <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/layout.css" media="screen" rel="stylesheet" type="text/css" />
-      {% endblock %}git 
+      {% endblock %}
         <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/index.scss" media="screen" rel="stylesheet" type="text/x-scss" />
         <link href="{{STATIC_URL}}stonegarant/stylesheets/stone_garant/slider.scss" media="screen" rel="stylesheet" type="text/x-scss" />
+
+        <link href="{{STATIC_URL}}components/slick-carousel/slick/slick.css" media="screen" rel="stylesheet" type="text/x-scss" />
+        <link href="{{STATIC_URL}}components/slick-carousel/slick/slick-theme.css" media="screen" rel="stylesheet" type="text/x-scss" />
     {% endcompress %}
 
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -109,24 +112,22 @@
       <div class='content_line light_gray_3'>
         <div class='content_holder feedback'>
           <p class='title'>Мы оправдываем доверие сотен людей</p>
-          <div class='slider' id='slider'>
-            <a class="bck" href="#"></a>
-            <a class="fwd" href="#"></a>
-            <div class='viewport user_content'>
-              <ul>
-                {% for reply in replies %}
-                  <li>
-                    <blockquote>
-                      {{reply.reply | safe}}
-                    </blockquote>
-                    <div class='author'>
-                      <span>{{reply.person}}</span>
-                    </div>
-                  </li>
-                {% endfor %}
-              </ul>
+
+          <div class="slider" id="slider">
+            <div class="viewport user_content">
+              {% for reply in replies %}
+                <div>
+                  <blockquote>
+                    {{reply.reply | safe}}
+                  </blockquote>
+                  <div class='author'>
+                    <span>{{reply.person}}</span>
+                  </div>
+                </div>
+              {% endfor %}
             </div>
           </div>
+
           <a class="feedback_list" href="/page-reply">Читать все отзывы</a>
         </div>
       </div>
@@ -151,10 +152,11 @@
     {% compress js %}
       {% block javascripts %}
         <script src="{{STATIC_URL}}components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="{{STATIC_URL}}components/slick-carousel/slick/slick.min.js" type="text/javascript"></script>
 
         <script src="{{STATIC_URL}}stonegarant/javascripts/app/logger.js" type="text/javascript"></script>
-        <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/slider.js" type="text/javascript"></script>
         <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/menu.js" type="text/javascript"></script>
+        <script src="{{STATIC_URL}}stonegarant/javascripts/stone_garant/index.js" type="text/javascript"></script>
       {% endblock %}
     {% endcompress %}
 
