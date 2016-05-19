@@ -10,9 +10,9 @@ def num_memorials(value):
 
     if modulo == 1:
         loc_string = "ПАМЯТНИК"
-    elif modulo in [2,3,4]:
+    elif modulo in [2, 3, 4]:
         loc_string = "ПАМЯТНИКA"
 
-    return u"%d %s" % (number, loc_string)
+    return "%d %s" % (number, loc_string)
 
 register.filter('num_memorials', num_memorials)

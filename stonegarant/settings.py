@@ -269,16 +269,24 @@ DEBUG_TOOLBAR_CONFIG = {
     'MEDIA_URL': '/__debug__/m/',
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        'LOCATION': os.environ.get('MEMCACHIER_SERVERS', '').split(','),
-        'OPTIONS': {
-            'username': os.environ.get('MEMCACHIER_USERNAME'),
-            'password': os.environ.get('MEMCACHIER_PASSWORD')
+if not DEBUG:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_bmemcached.memcached.BMemcached',
+            'LOCATION': os.environ.get('MEMCACHIER_SERVERS', '').split(','),
+            'OPTIONS': {
+                'username': os.environ.get('MEMCACHIER_USERNAME'),
+                'password': os.environ.get('MEMCACHIER_PASSWORD')
+            }
         }
     }
-}
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
