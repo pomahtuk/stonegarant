@@ -3,6 +3,18 @@ $(function() {
         $memorialsList = $container.find('ul.cf'),
         $buttonHolder = $container.find('.load-more-wrapper');
 
+    // banners carusel in footer
+    $('.banner-rotator').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        adaptiveHeight: false
+        //prevArrow: "<a class='bck' href='#'></a>",
+        //nextArrow: "<a class='fwd' href='#'></a>"
+    });
+
+
 
     $('.sort-switcher select').change(function () {
         try {

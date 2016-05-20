@@ -68,18 +68,38 @@
         <img class="catalog-banner-image" src="{{ STATIC_URL }}stonegarant/images/memorial_banner.png">
       </div>
       <div class="catalog-banner-data-holder">
-        <h3 class="catalog-banner-header">
-          Не нашли нужного памятника?
-        </h3>
-        <span class="catalog-banner-text">
-          Пришлите фото или эскиз памятника, его размеры и мы
-          <br>
-          рассчитаем стоимость в течение одного дня
-        </span>
-        <br/>
-        <a href="#" class="catalog-banner-button btn_link">
-          Рассчитать памятник
-        </a>
+        {% if footer_banners %}
+          <div class="banner-rotator">
+            {% for banner in footer_banners %}
+              <div class="banner-content">
+                <h3 class="catalog-banner-header">
+                  {{ banner.title }}
+                </h3>
+                <span class="catalog-banner-text">
+                  {{ banner.contents | safe }}
+                </span>
+                <br/>
+                <a href="{{ banner.link }}" class="catalog-banner-button btn_link">
+                  {{ banner.link_title }}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <h3 class="catalog-banner-header">
+            Не нашли нужного памятника?
+          </h3>
+          <span class="catalog-banner-text">
+            Пришлите фото или эскиз памятника, его размеры и мы
+            <br>
+            рассчитаем стоимость в течение одного дня
+          </span>
+          <br/>
+          <a href="#" class="catalog-banner-button btn_link">
+            Рассчитать памятник
+          </a>
+        {% endif %}
+
       </div>
     </div>
     <div class='content_line light_gray_1'>
