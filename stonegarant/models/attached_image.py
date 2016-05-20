@@ -12,7 +12,7 @@ def upload_path_handler(self, filename):
         model_type = 'memorial'
         model_id = self.memorial.pk
     target_filename = os.path.basename(filename)
-    return "uploads/{type}/{id}/{file}".format(type=model_type, id=model_id, file=target_filename)
+    return "uploads/{type}/{id}/{file}".format(type=model_type, id=model_id, file=target_filename.encode('utf-8'))
 
 
 class AttachedImage(models.Model):

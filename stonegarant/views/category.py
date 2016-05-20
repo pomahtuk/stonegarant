@@ -6,7 +6,7 @@ from banners.models import CatalogBanner, FooterBanner
 from django.views.decorators.cache import cache_page
 from django.http import HttpResponseBadRequest
 
-DEFAULT_LIMIT = 10
+DEFAULT_LIMIT = 999
 
 
 def determine_sort_order(user_order):
