@@ -29,7 +29,6 @@ class Order(models.Model):
     cvetnik = models.ForeignKey(Cvetnik, verbose_name='Цветник', null=True, blank=True)
     podstavka = models.ForeignKey(Podstavka, verbose_name='Подставка', null=True, blank=True)
     polirovka = models.ForeignKey(Polirovka, verbose_name='Полировка', null=True, blank=True)
-    # email = models.CharField(max_length=150, verbose_name='Email', null=True, blank=True)
     # old fields
     calc_result = models.TextField(verbose_name='Результат рассчётов', null=True, blank=True)
     user_phone = models.CharField(max_length=150, verbose_name='Телефон', null=True, blank=True)

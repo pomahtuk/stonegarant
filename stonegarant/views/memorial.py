@@ -11,6 +11,7 @@ def memorial_view(request, memorial_slug):
     catalog_image = memorial_data.catalog_image()
 
     data_to_render = {
+        'pk': memorial_data.pk,
         'ordered_images': [],
         'catalog_image': thumbnail_url(catalog_image.photo, 'product') if catalog_image else False,
         'title': memorial_data.title,

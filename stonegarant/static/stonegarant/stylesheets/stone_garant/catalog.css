@@ -78,7 +78,7 @@ h1 {
     color: #c75a38;
     font-size: 3.6em;
 }
-.catalog ul .single-memorial {
+.catalog ul .single-memorial-new {
     float: left;
     width: 247px;
     height: 440px;
@@ -86,7 +86,7 @@ h1 {
     position: relative;
     margin-bottom: 20px;
 }
-.catalog .single-memorial-discount {
+.catalog .single-memorial-new .single-memorial-discount {
     display: block;
     width: 70px;
     height: 70px;
@@ -119,37 +119,37 @@ h1 {
     transition: all 200ms cubic-bezier(.6, .05, .3, 1);
 }
 
-.catalog .single-memorial-name,
-.catalog .single-memorial-price {
+.catalog .single-memorial-new .single-memorial-name,
+.catalog .single-memorial-new .single-memorial-price {
     font-size: 16px;
     position: relative;
     z-index: 2;
     color: #3e3932;
 }
 
-.catalog .single-memorial-button {
+.catalog .single-memorial-new .single-memorial-button {
     display: none;
     line-height: 40px;
     color: #fff;
     position: absolute;
 }
 
-.catalog .single-memorial-link {
+.catalog .single-memorial-new .single-memorial-link {
     position: relative;
     display: block;
     text-decoration: none;
 }
 
-.catalog .single-memorial-image {
+.catalog .single-memorial-new .single-memorial-image {
     margin: 0 auto;
     display: block;
 }
 
-.catalog .single-memorial-link:hover .single-memorial-button {
+.catalog .single-memorial-new .single-memorial-link:hover .single-memorial-button {
     display: block;
 }
 
-.catalog .single-memorial-link:hover .single-memorial-discount {
+.catalog .single-memorial-new .single-memorial-link:hover .single-memorial-discount {
     left: 0px;
     top: 0;
     -webkit-border-top-left-radius: 0;
@@ -215,3 +215,57 @@ h1 {
 .banner-rotator {
     width: 450px;
 }
+
+
+
+.catalog ul .single-memorial-old {
+  float: left;
+  width: 247px;
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px; }
+  .catalog ul .single-memorial-old .single-memorial-image-holder {
+    width: 100%;
+    height: 330px;
+    display: block;
+    position: relative; }
+  .catalog ul .single-memorial-old .single-memorial-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    text-align: center; }
+    .catalog ul .single-memorial-old .single-memorial-image img {
+      display: inline-block; }
+  .catalog ul .single-memorial-old .single-memorial-discount {
+    border-radius: 70px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 70px;
+    width: 70px;
+    background: #c75a38;
+    font-size: 2.4em;
+    line-height: 70px;
+    color: #fff;
+    text-align: center; }
+    .catalog ul .single-memorial-old .single-memorial-discount .percent {
+      font-size: 18px;
+      padding-left: 2px; }
+  .catalog ul .single-memorial-old .single-memorial-strikeout {
+    text-decoration: line-through;
+    font-size: 1.4em; }
+  .catalog ul .single-memorial-old .single-memorial-info {
+    text-align: center; }
+    .catalog ul .single-memorial-old .single-memorial-info .single-memorial-info-title {
+      font-size: 16px;
+      margin: 15px 0; }
+    .catalog ul .single-memorial-old .single-memorial-info .single-memorial-button {
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+      vertical-align: middle;
+      line-height: 40px;
+      color: #fff; }
