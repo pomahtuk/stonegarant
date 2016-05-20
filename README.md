@@ -5,6 +5,7 @@
 * review submission
 * hover on memorial?
 
+git remote add fastvps git@s052d7cc1.fastvps-server.com:stonegarant.git
 
 http://sorl-thumbnail.readthedocs.io/en/latest/examples.html#model-examples
 
