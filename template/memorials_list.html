@@ -6,60 +6,60 @@
       {% endif %}
     {% endif %}
 
-    <li class="single-memorial-old">
-      <div class="single-memorial-image-holder">
-        <a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">
-          <img src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>
-          {% if memorial.discount %}
-            <span class="single-memorial-discount">
-              {{ memorial.discount_percent }}<span class="percent">%</span>
-            </span>
-          {% endif %}
-        </a>
-      </div>
-      <div class='single-memorial-info'>
-        <div class="single-memorial-info-title">{{memorial.title}}</div>
-        {% if memorial.discount %}
-          <span class="single-memorial-strikeout">{{ memorial.base_price }}&nbsp;р.</span>&nbsp;
-          <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
-            от <b>{{memorial.discount_price}}&nbsp;р.</b>
-          </a>
-        {% else %}
-          <a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">
-            от <b>{{memorial.base_price}} р.</b>
-          </a>
-        {% endif %}
-      </div>
-    </li>
+    <!--<li class="single-memorial-old">-->
+      <!--<div class="single-memorial-image-holder">-->
+        <!--<a class='single-memorial-image' href="{% url 'memorial' memorial.slug %}">-->
+          <!--<img src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>-->
+          <!--{% if memorial.discount %}-->
+            <!--<span class="single-memorial-discount">-->
+              <!--{{ memorial.discount_percent }}<span class="percent">%</span>-->
+            <!--</span>-->
+          <!--{% endif %}-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class='single-memorial-info'>-->
+        <!--<div class="single-memorial-info-title">{{memorial.title}}</div>-->
+        <!--{% if memorial.discount %}-->
+          <!--<span class="single-memorial-strikeout">{{ memorial.base_price }}&nbsp;р.</span>&nbsp;-->
+          <!--<a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">-->
+            <!--от <b>{{memorial.discount_price}}&nbsp;р.</b>-->
+          <!--</a>-->
+        <!--{% else %}-->
+          <!--<a class="single-memorial-button btn_link" href="{% url 'memorial' memorial.slug %}">-->
+            <!--от <b>{{memorial.base_price}} р.</b>-->
+          <!--</a>-->
+        <!--{% endif %}-->
+      <!--</div>-->
+    <!--</li>-->
 
-{#    <li class="single-memorial-new">#}
-{#      <a href="{% url 'memorial' memorial.slug %}" class="single-memorial-link">#}
-{#        <img class="single-memorial-image" src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>#}
-{##}
-{#        {% if memorial.discount %}#}
-{#          <span class="single-memorial-discount">#}
-{#            - {{ memorial.discount_percent }}<small>%</small>#}
-{#          </span>#}
-{#        {% endif %}#}
-{##}
-{#        <div class="single-memorial-button btn_link">Смотреть подробности</div>#}
-{##}
-{#        <div class='single-memorial-info'>#}
-{#          <p class="single-memorial-name">{{memorial.title}}</p>#}
-{#          <p class="single-memorial-price">#}
-{#              от#}
-{#              <b>#}
-{#                {% if memorial.discount %}#}
-{#                  {{ memorial.discount_price }}#}
-{#                {% else %}#}
-{#                  {{ memorial.base_price }}#}
-{#                {% endif %}#}
-{#                &nbsp;р.#}
-{#              </b>#}
-{#          </p>#}
-{#        </div>#}
-{#      </a>#}
-{#    </li>#}
+    <li class="single-memorial-new">
+      <a href="{% url 'memorial' memorial.slug %}" class="single-memorial-link">
+        <img class="single-memorial-image" src="{{ memorial.catalog_thumbnail }}" alt='{{ memorial.title }}'>
+
+        {% if memorial.discount %}
+          <span class="single-memorial-discount">
+            - {{ memorial.discount_percent }}<small>%</small>
+          </span>
+        {% endif %}
+
+        <div class="single-memorial-button btn_link">Смотреть подробности</div>
+
+        <div class='single-memorial-info'>
+          <p class="single-memorial-name">{{memorial.title}}</p>
+          <p class="single-memorial-price">
+              от
+              <b>
+                {% if memorial.discount %}
+                  {{ memorial.discount_price }}
+                {% else %}
+                  {{ memorial.base_price }}
+                {% endif %}
+                &nbsp;р.
+              </b>
+          </p>
+        </div>
+      </a>
+    </li>
 
   {% endfor %}
 </ul>

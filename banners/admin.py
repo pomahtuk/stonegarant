@@ -16,6 +16,10 @@ class BannerAdmin(admin.ModelAdmin):
     list_display = ('title', 'active')
     search_fields = ['title', 'active']
     ordering = ('-title',)
+    list_editable = ('active',)
+    list_filter = (
+        ('active', admin.BooleanFieldListFilter),
+    )
 
 
 # Register your models here.

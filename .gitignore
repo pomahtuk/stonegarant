@@ -53,5 +53,7 @@ docs/_build/
 .sass-cache
 
 static
+media
+src
 
 !stonegarant/static
