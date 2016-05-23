@@ -7,7 +7,10 @@
 
 git remote add fastvps git@s052d7cc1.fastvps-server.com:stonegarant.git
 
-http://sorl-thumbnail.readthedocs.io/en/latest/examples.html#model-examples
+
+// queues
+python manage.py rqworker high default low --burst
+python manage.py rqscheduler
 
 * Automated e-mail sending
 

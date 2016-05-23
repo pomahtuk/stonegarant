@@ -1,5 +1,6 @@
 beautifulsoup4==4.4.1
 boto==2.40.0
+click==6.6
 cssselect==0.9.1
 cssutils==1.0.1
 dj-database-url==0.4.1
@@ -19,6 +20,7 @@ django-mptt==0.8.4
 django-pagination==1.0.7
 django-premailer==0.1.0
 django-pylibmc==0.6.1
+django-rq==0.9.1
 django-storages==1.4.1
 django-suit==0.2.18
 django-suit-redactor==0.0.4
@@ -49,8 +51,10 @@ python-mimeparse==1.5.2
 python-slugify==1.2.0
 pytz==2016.4
 rcssmin==1.0.6
+redis==2.10.5
 requests==2.10.0
 rjsmin==1.0.12
+rq==0.6.0
 six==1.10.0
 sqlparse==0.1.19
 static==1.1.1

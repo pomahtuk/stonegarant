@@ -129,12 +129,12 @@ def create_catalog_thumb(sender, instance, **kwargs):
         thumbnailer = get_thumbnailer(photo.name, photo)
         thumbnailer_options = ({'size': (230, 320), 'crop': False, 'autocrop': True})
         thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-        same = instance.catalog_thumb == thumb_file.url if thumb_file.url else True
+        same = instance.catalog_thumb == thumb_file.url[5:] if thumb_file.url else True
         # print u'%s, %s, %s' % (instance.catalog_thumb, thumb_file.url, same)
         if not same:
             # print u'not same'
-            instance.catalog_thumb = thumb_file.url
-            print 'thumb_file %s' % thumb_file.url
+            instance.catalog_thumb = thumb_file.url[5:]
+            print 'thumb_file %s' % thumb_file.url[5:]
             instance.save()
     else:
         print 'no image provided'
@@ -149,12 +149,12 @@ def create_admin_thumb(sender, instance, **kwargs):
         thumbnailer = get_thumbnailer(photo.name, photo)
         thumbnailer_options = ({'size': (100, 100), 'crop': False})
         thumb_file = thumbnailer.get_thumbnail(thumbnailer_options)
-        same = instance.admin_thumb == thumb_file.url if thumb_file.url else True
+        same = instance.admin_thumb == thumb_file.url[5:] if thumb_file.url else True
         # print u'%s, %s, %s' % (instance.admin_thumb, thumb_file.url, same)
         if not same:
             print u'not same'
-            instance.admin_thumb = thumb_file.url
-            print 'thumb_file %s' % thumb_file.url
+            instance.admin_thumb = thumb_file.url[5:]
+            print 'thumb_file %s' % thumb_file.url[5:]
             instance.save()
     else:
         print 'no image provided'

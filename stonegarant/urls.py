@@ -34,6 +34,10 @@ urlpatterns = [
     url(r'^robots\.txt$', robots_view, name="robots"),
 ]
 
+urlpatterns += [
+    url(r'^django-rq/', include('django_rq.urls')),
+]
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

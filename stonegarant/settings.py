@@ -252,8 +252,28 @@ INSTALLED_APPS = (
     'stonegarant',
     'banners',
     'compressor',
-    'django_premailer'
+    'django_premailer',
+    'django_rq',
 )
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        # 'PASSWORD': 'some-password',
+        'DEFAULT_TIMEOUT': 360,
+    },
+    'high': {
+        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'),
+        'DEFAULT_TIMEOUT': 500,
+    },
+    'low': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    }
+}
 
 EMAIL_USE_SSL = True
 EMAIL_HOST = os.environ.get('YANDEX_HOST')
