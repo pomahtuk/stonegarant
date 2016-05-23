@@ -2,6 +2,7 @@ __author__ = 'ilovriakov'
 
 from django.http import HttpResponsePermanentRedirect
 from django.conf import settings
+import sys
 
 def _get_redirect(new_hostname, request):
     new_location = '%s://%s%s' % (
@@ -35,7 +36,7 @@ class HostnameRedirectMiddleware(object):
                 'fastvps-server' in server_name
             ) or ('localhost' in server_name))
 
-            print server_should_be_prefixed, settings.FORCE_WWW
+            print >> sys.stderr, server_should_be_prefixed, settings.FORCE_WWW
 
             if settings.FORCE_WWW and server_should_be_prefixed:
                 return _get_redirect('%s.%s' % ('www', server_name), request)
