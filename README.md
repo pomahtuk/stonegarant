@@ -8,6 +8,8 @@
 git remote add fastvps git@s052d7cc1.fastvps-server.com:stonegarant.git
 
 
+http://python-rq.org/patterns/supervisor/
+
 // queues
 python manage.py rqworker high default low --burst
 python manage.py rqscheduler
