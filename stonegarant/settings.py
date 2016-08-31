@@ -171,7 +171,7 @@ THUMBNAIL_ALIASES = {
         'catalog': {'size': (230, 320), 'crop': False, 'autocrop': True},
         'email': {'size': (230, 250), 'crop': False, 'autocrop': True},
         'work': {'size': (200, 280), 'crop': False},
-        'ready': {'size': (400, 560), 'crop': False},
+        'ready': {'size': (1920, 1080), 'crop': False},
         'admin': {'size': (100, 100), 'crop': False}
     },
 }
