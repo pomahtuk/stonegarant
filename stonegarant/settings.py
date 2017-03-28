@@ -211,6 +211,8 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
     # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
     # refers directly to STATIC_URL. So it's safest to always set it.
     STATIC_URL = "//%s/" % AWS_S3_CUSTOM_DOMAIN
+    COMPRESS_VERBOSE = True
+    URL_PLACEHOLDER = "https://stonegarant.s3.amazonaws.com/"
     COMPRESS_URL = STATIC_URL
 
 else:
