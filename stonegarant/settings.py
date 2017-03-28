@@ -197,12 +197,10 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
     }
 
     COMPRESS_ROOT = STATIC_ROOT
-    STATICFILES_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
-    COMPRESS_STORAGE = STATICFILES_STORAGE
 
-    # STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
-    # # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    # COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
+    STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
@@ -212,7 +210,7 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
 
     # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
     # refers directly to STATIC_URL. So it's safest to always set it.
-    STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+    STATIC_URL = "//%s/" % AWS_S3_CUSTOM_DOMAIN
     COMPRESS_URL = STATIC_URL
 
 else:
