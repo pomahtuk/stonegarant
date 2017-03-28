@@ -219,7 +219,8 @@ else:
     COMPRESS_URL = STATIC_URL
 
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = False
+# COMPRESS_OFFLINE = False
+COMPRESS_OFFLINE = True
 
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
