@@ -60,7 +60,7 @@ class Order(models.Model):
 
         msg_plain = render_to_string('email/text/new_order.txt', {'order': self})
         msg_html = render_to_string('email/html/new_order.html', {'order': self, 'image_code': True})
-        msg_html = msg_html.replace('http://stone-garant.ru/replace_code', template_image)
+        msg_html = msg_html.replace('https://stone-garant.ru/replace_code', template_image)
 
         send_mail(
             u'Новый заказ на сайте Stone-Garant.ru',
