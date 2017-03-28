@@ -196,8 +196,12 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
         'Cache-Control': 'max-age=86400',
     }
 
-    STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
-    COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    COMPRESS_ROOT = STATIC_ROOT
+    STATICFILES_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
+    COMPRESS_STORAGE = STATICFILES_STORAGE
+
+    # STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+    # # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     # COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
