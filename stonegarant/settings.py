@@ -197,8 +197,8 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
     }
 
     STATICFILES_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
-    # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
+    COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    # COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
