@@ -197,7 +197,7 @@ if os.environ.get('AWS_ACCESS_KEY_ID', False):
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     COMPRESS_STORAGE = 'stonegarant.storage.CachedS3BotoStorage'
 
-    S3_URL = '//s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
+    S3_URL = 'https://s3.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL + '/'
     MEDIA_URL = S3_URL + '/media/'
     COMPRESS_URL = STATIC_URL
