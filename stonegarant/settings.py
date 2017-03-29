@@ -160,8 +160,8 @@ ROOT_URLCONF = 'stonegarant.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'stonegarant.wsgi.application'
 
-# SECURE_SSL_REDIRECT = True # [1]
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True # [1]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 THUMBNAIL_CHECK_CACHE_MISS = True
 
