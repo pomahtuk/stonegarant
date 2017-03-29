@@ -153,6 +153,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'stonegarant.urls'
@@ -160,7 +161,7 @@ ROOT_URLCONF = 'stonegarant.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'stonegarant.wsgi.application'
 
-SECURE_SSL_REDIRECT = True # [1]
+SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 THUMBNAIL_CHECK_CACHE_MISS = True
