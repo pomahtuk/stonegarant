@@ -223,7 +223,10 @@ else:
     MEDIA_URL = '/media/'
     COMPRESS_URL = STATIC_URL
 
-COMPRESS_ENABLED = False
+
+STATIC_URL = "https://stonegarant.s3.amazonaws.com/"
+
+COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
 # COMPRESS_OFFLINE = True
 
