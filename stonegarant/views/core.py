@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response, render
+from django.shortcuts import get_object_or_404, render
 from stonegarant.models import *
 from django.template import RequestContext
 import datetime
@@ -11,22 +11,22 @@ def not_found_view(request, *args, **kwargs):
 def index_view(request):
     all_replies = Reply.objects.all()
     page = get_object_or_404(ServicePage, id=74)
-    return render_to_response('index.html', {
+    return render(request, 'index.html', {
         'replies': all_replies,
         'page': page
-    }, context_instance=RequestContext(request))
+    })
 
 def robots_view(request):
-    return render_to_response('robots.txt', context_instance=RequestContext(request), content_type="text/plain")
+    return render(request, 'robots.txt', content_type="text/plain")
 
 def sitemap_view(request):
     memorials = Memorial.objects.all()
     pages = StaticPage.objects.all()
     categories = Category.objects.all()
     now = datetime.datetime.now()
-    return render_to_response('sitemap.xml', {
+    return render(request, 'sitemap.xml', {
         'memorials': memorials,
         'pages': pages,
         'categories': categories,
         'now': now
-    }, context_instance=RequestContext(request), content_type="application/xml")
+    }, content_type="application/xml")

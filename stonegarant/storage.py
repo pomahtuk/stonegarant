@@ -15,4 +15,5 @@ class CachedS3BotoStorage(S3BotoStorage):
         name = super(CachedS3BotoStorage, self).save(name, content)
         print 'storage_file: %s' % name
         self.local_storage._save(name, content)
+        print 'saved storage_file: %s' % name
         return name

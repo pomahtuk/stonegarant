@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from stonegarant.models import *
 from django.template import RequestContext
@@ -48,7 +48,7 @@ def paginate_memorials(parent_page, page, limit, sort_order):
         memorials = paginator.page(1)
     except EmptyPage:
         memorials = paginator.page(paginator.num_pages)
-        
+
     return memorials
 
 
@@ -77,7 +77,7 @@ def category_view(request, category_slug):
     memorials = paginate_memorials(parent_page, page, limit, sort_order)
     items_left = memorials.paginator.count - page * limit
 
-    return render_to_response('catalog.html', {
+    return render(request, 'catalog.html', {
         'sort_order': sort_order,
         'memorials': memorials,
         'lmt': limit,
@@ -86,7 +86,7 @@ def category_view(request, category_slug):
         'footer_banners': footer_banners,
         'catalog_banner': catalog_banner,
         'show_next': items_left if items_left < limit else limit
-    }, context_instance=RequestContext(request))
+    })
 
 
 @cache_page(60 * 60)
@@ -107,13 +107,12 @@ def ajax_memorials(request):
         memorials = paginate_memorials(parent_page, page, limit, sort_order)
         items_left = memorials.paginator.count - page * limit
 
-        return render_to_response('memorials_list.html', {
+        return render(request, 'memorials_list.html', {
             'memorials': memorials,
             'lmt': limit,
             'page': page,
             'parent_page': parent_page,
             'show_next': items_left if items_left < limit else limit
-        }, context_instance=RequestContext(request))
+        })
     else:
         return HttpResponseBadRequest('use ajax, Luke!')
-

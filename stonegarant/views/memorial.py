@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from stonegarant.models import *
 from django.template import RequestContext
 from easy_thumbnails.templatetags.thumbnail import thumbnail_url
@@ -55,7 +55,7 @@ def memorial_view(request, memorial_slug):
     # memorial_data.save()
     threading.Thread(target=memorial_data.save).start()
 
-    return render_to_response('product.html', {
+    return render(request, 'product.html', {
         'memorial': data_to_render,
         'stella_variants': stella_variants
-    }, context_instance=RequestContext(request))
+    })

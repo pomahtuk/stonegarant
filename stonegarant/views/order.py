@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404, JsonResponse
 from stonegarant.models import *
 from django.template import RequestContext
@@ -26,13 +26,13 @@ def order_email_test(request):
     order_data = Order.objects.all()[:1].get()
     order_data.send_email()
     # order_data = get_object_or_404(Order, order_number='af4e4121')
-    return render_to_response('email/html/new_order.html', {'order': order_data}, context_instance=RequestContext(request))
+    return render(request, 'email/html/new_order.html', {'order': order_data})
 
 
 # this has to respond on GET if order created already
 def order_confirm_view(request, order_number):
     order_data = get_object_or_404(Order, order_number=order_number)
-    return render_to_response('order_confirm.html', {'order': order_data}, context_instance=RequestContext(request))
+    return render(request, 'order_confirm.html', {'order': order_data})
 
 
 # POST - update order and return confirmation page
@@ -47,4 +47,4 @@ def order_details_view(request, order_number):
                 order_data = order_form.save()
                 order_data.status = 'D'
                 order_data.save()
-    return render_to_response('order_details.html', {'order': order_data}, context_instance=RequestContext(request))
+    return render(request, 'order_details.html', {'order': order_data})
