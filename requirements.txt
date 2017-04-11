@@ -6,7 +6,7 @@ cssselect==1.0.1
 cssutils==1.0.2
 dj-database-url==0.4.2
 dj-static==0.0.6
-Django==1.10.6
+Django==1.11
 django-appconf==1.0.2
 django-bmemcached==0.2.3
 django-cached-s3-storage==0.2.1
@@ -22,12 +22,13 @@ django-pagination==1.0.7
 django-premailer==0.2.0
 django-pylibmc==0.6.1
 django-rq==0.9.5
+django-secure==1.0.1
 django-storages==1.5.2
-django-suit==0.2.24
+django-suit==0.2.25
 django-suit-redactor==0.0.4
 django-tastypie==0.13.3
 django-uuslug==1.1.8
-easy-thumbnails==2.3
+easy-thumbnails==2.4.1
 feedparser==5.2.1
 FeinCMS==1.13.1
 futures==3.0.5
@@ -41,7 +42,7 @@ MySQL-python==1.2.5
 newrelic==2.82.0.62
 olefile==0.44
 packaging==16.8
-Pillow==4.0.0
+Pillow==4.1.0
 ply==3.10
 premailer==3.0.1
 PyExecJS==1.4.0
@@ -52,8 +53,8 @@ pystache==0.5.4
 python-binary-memcached==0.26.0
 python-dateutil==2.6.0
 python-mimeparse==1.6.0
-python-slugify==1.2.1
-pytz==2016.10
+python-slugify==1.2.4
+pytz==2017.2
 rcssmin==1.0.6
 redis==2.10.5
 requests==2.13.0
@@ -66,4 +67,4 @@ static3==0.7.0
 Unidecode==0.4.20
 virtualenv==15.1.0
 waitress==1.0.2
-webencodings==0.5
+webencodings==0.5.1
