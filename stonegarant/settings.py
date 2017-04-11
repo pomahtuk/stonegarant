@@ -223,7 +223,6 @@ else:
 
 
 STATIC_URL = "https://stonegarant.s3.amazonaws.com/"
-MEDIA_URL = "https://stonegarant.s3.amazonaws.com/"
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
